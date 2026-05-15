@@ -5,154 +5,185 @@
 
 set -e
 
+PLUGIN_NAME="sofia"
+REPO_URL="https://github.com/srbentostk/smart-content-plugin"
+LOG="/tmp/sofia-install.log"
+
 clear 2>/dev/null || true
 
-echo ""
-echo "╔══════════════════════════════════════════╗"
-echo "║     Sofia 2.0 — Instalação Automática    ║"
-echo "║                                          ║"
-echo "║  Relaxe. Vou instalar tudo pra você.     ║"
-echo "║  Pode levar uns 5 minutos.               ║"
-echo "╚══════════════════════════════════════════╝"
-echo ""
+echo "" | tee "$LOG"
+echo "╔══════════════════════════════════════════╗" | tee -a "$LOG"
+echo "║     Sofia 2.0 — Instalação Automática    ║" | tee -a "$LOG"
+echo "║                                          ║" | tee -a "$LOG"
+echo "║  Relaxe. Vou instalar tudo pra você.     ║" | tee -a "$LOG"
+echo "║  Pode levar uns 5 minutos.               ║" | tee -a "$LOG"
+echo "╚══════════════════════════════════════════╝" | tee -a "$LOG"
+echo "" | tee -a "$LOG"
 
-# Detectar sistema operacional
 OS="$(uname -s)"
 case "$OS" in
   Darwin) PLATFORM="mac" ;;
   Linux)  PLATFORM="linux" ;;
   MINGW*|MSYS*|CYGWIN*) PLATFORM="windows" ;;
-  *) echo "❌ Sistema não suportado: $OS"; exit 1 ;;
+  *) echo "Sistema não suportado: $OS" | tee -a "$LOG"; exit 1 ;;
 esac
 
-echo "✓ Sistema detectado: $PLATFORM"
-echo ""
+echo "Sistema detectado: $PLATFORM" | tee -a "$LOG"
+echo "" | tee -a "$LOG"
 
-# Função para verificar se comando existe
 has_command() {
   command -v "$1" >/dev/null 2>&1
 }
+
+ERRORS=()
 
 # ─────────────────────────────────────
 # 1. Ferramentas de sistema (Homebrew no Mac)
 # ─────────────────────────────────────
 if [ "$PLATFORM" = "mac" ]; then
   if ! has_command brew; then
-    echo "▸ Instalando Homebrew (gerenciador de programas do Mac)..."
-    echo "  Isso pode demorar uns 2 minutos. Aguarde..."
-    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/null
-    # Adicionar Homebrew ao PATH para esta sessão
+    echo "▸ Instalando Homebrew..." | tee -a "$LOG"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/null >> "$LOG" 2>&1
     if [ -f /opt/homebrew/bin/brew ]; then
       eval "$(/opt/homebrew/bin/brew shellenv)"
     elif [ -f /usr/local/bin/brew ]; then
       eval "$(/usr/local/bin/brew shellenv)"
     fi
-    echo "  ✓ Homebrew instalado"
+    echo "  ✓ Homebrew instalado" | tee -a "$LOG"
   else
-    echo "✓ Homebrew já instalado"
+    echo "✓ Homebrew já instalado" | tee -a "$LOG"
   fi
 fi
 
 # ─────────────────────────────────────
 # 2. Node.js
 # ─────────────────────────────────────
-echo ""
-echo "▸ Verificando Node.js..."
+echo "" | tee -a "$LOG"
+echo "▸ Verificando Node.js..." | tee -a "$LOG"
 if has_command node; then
-  echo "  ✓ Node.js já instalado ($(node --version))"
+  echo "  ✓ Node.js já instalado ($(node --version))" | tee -a "$LOG"
 else
-  echo "  Instalando Node.js..."
+  echo "  Instalando Node.js..." | tee -a "$LOG"
   if [ "$PLATFORM" = "mac" ]; then
-    brew install node
+    brew install node >> "$LOG" 2>&1
   elif [ "$PLATFORM" = "linux" ]; then
-    curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-    sudo apt-get install -y nodejs
+    curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - >> "$LOG" 2>&1
+    sudo apt-get install -y nodejs >> "$LOG" 2>&1
   fi
-  echo "  ✓ Node.js instalado ($(node --version))"
+  if has_command node; then
+    echo "  ✓ Node.js instalado ($(node --version))" | tee -a "$LOG"
+  else
+    ERRORS+=("Node.js nao pode ser instalado. Baixe em: nodejs.org")
+  fi
 fi
 
 # ─────────────────────────────────────
 # 3. Claude Code
 # ─────────────────────────────────────
-echo ""
-echo "▸ Verificando Claude Code..."
+echo "" | tee -a "$LOG"
+echo "▸ Verificando Claude Code..." | tee -a "$LOG"
 if has_command claude; then
-  echo "  ✓ Claude Code já instalado"
+  echo "  ✓ Claude Code já instalado" | tee -a "$LOG"
 else
-  echo "  Instalando Claude Code..."
-  # Tentar instalador nativo primeiro, fallback para npm
-  if curl -fsSL https://claude.ai/install.sh 2>/dev/null | bash 2>/dev/null; then
-    echo "  ✓ Claude Code instalado (instalador nativo)"
-  else
-    npm install -g @anthropic-ai/claude-code 2>/dev/null
-    echo "  ✓ Claude Code instalado (via npm)"
+  echo "  Instalando Claude Code..." | tee -a "$LOG"
+  if curl -fsSL https://claude.ai/install.sh 2>/dev/null | bash >> "$LOG" 2>&1; then
+    echo "  ✓ Claude Code instalado (instalador nativo)" | tee -a "$LOG"
+  elif has_command npm; then
+    npm install -g @anthropic-ai/claude-code >> "$LOG" 2>&1
+    echo "  ✓ Claude Code instalado (via npm)" | tee -a "$LOG"
+  fi
+  export PATH="$HOME/.local/bin:$HOME/.claude/local/bin:$PATH"
+  if ! has_command claude; then
+    ERRORS+=("Claude Code nao pode ser instalado")
   fi
 fi
 
 # ─────────────────────────────────────
 # 4. yt-dlp (extrator de vídeos — grátis)
 # ─────────────────────────────────────
-echo ""
-echo "▸ Verificando yt-dlp..."
+echo "" | tee -a "$LOG"
+echo "▸ Verificando yt-dlp..." | tee -a "$LOG"
 if has_command yt-dlp; then
-  echo "  ✓ yt-dlp já instalado ($(yt-dlp --version))"
+  echo "  ✓ yt-dlp já instalado ($(yt-dlp --version))" | tee -a "$LOG"
 else
-  echo "  Instalando yt-dlp..."
+  echo "  Instalando yt-dlp..." | tee -a "$LOG"
   if [ "$PLATFORM" = "mac" ]; then
-    brew install yt-dlp
+    brew install yt-dlp >> "$LOG" 2>&1
   elif [ "$PLATFORM" = "linux" ]; then
-    pip3 install yt-dlp 2>/dev/null || sudo apt-get install -y yt-dlp
+    pip3 install yt-dlp >> "$LOG" 2>&1 || sudo apt-get install -y yt-dlp >> "$LOG" 2>&1
   fi
-  echo "  ✓ yt-dlp instalado"
+  if has_command yt-dlp; then
+    echo "  ✓ yt-dlp instalado" | tee -a "$LOG"
+  else
+    ERRORS+=("yt-dlp nao pode ser instalado")
+  fi
 fi
 
 # ─────────────────────────────────────
-# 5. Instalar plugin Sofia via marketplace
+# 5. Instalar plugin Sofia via Claude Code
 # ─────────────────────────────────────
-echo ""
-echo "▸ Instalando plugin Sofia..."
-PLUGIN_NAME="sofia"
+echo "" | tee -a "$LOG"
+echo "▸ Instalando plugin Sofia..." | tee -a "$LOG"
 
 if has_command claude; then
-  # Atualizar PATH para garantir que claude encontre npm/node
-  export PATH="$HOME/.claude/local/bin:$HOME/.local/bin:$PATH"
+  echo "Installing plugin \"$PLUGIN_NAME\"..." >> "$LOG"
 
-  if claude plugin install "$PLUGIN_NAME" 2>/dev/null; then
-    echo "  ✓ Plugin Sofia instalado via marketplace"
-  elif claude plugin install --url "https://github.com/srbentostk/smart-content-plugin" 2>/dev/null; then
-    echo "  ✓ Plugin Sofia instalado via GitHub"
+  if claude plugin install "$PLUGIN_NAME" >> "$LOG" 2>&1; then
+    echo "  ✓ Plugin Sofia instalado via marketplace" | tee -a "$LOG"
   else
-    echo "  ⚠ Plugin nao pode ser instalado automaticamente."
-    echo "    Abra o Claude e digite: /plugin install $PLUGIN_NAME"
+    echo "Plugin Sofia: marketplace falhou, tentando via GitHub..." >> "$LOG"
+    if claude plugin marketplace add "$REPO_URL" >> "$LOG" 2>&1 && \
+       claude plugin install "$PLUGIN_NAME" >> "$LOG" 2>&1; then
+      echo "  ✓ Plugin Sofia instalado via GitHub" | tee -a "$LOG"
+    else
+      ERRORS+=("Plugin Sofia nao pode ser instalado automaticamente. Abra o Claude e digite: /plugin install sofia")
+    fi
   fi
 else
-  echo "  ⚠ Claude Code nao encontrado. Instale o plugin manualmente depois."
+  ERRORS+=("Claude Code nao disponivel para instalar o plugin")
 fi
 
 # ─────────────────────────────────────
 # 6. Resultado final
 # ─────────────────────────────────────
-echo ""
-echo ""
-echo "╔══════════════════════════════════════════════════╗"
-echo "║                                                  ║"
-echo "║   ✅  INSTALAÇÃO COMPLETA!                       ║"
-echo "║                                                  ║"
-echo "║   Para usar a Sofia:                             ║"
-echo "║                                                  ║"
-echo "║   1. Abra o Terminal e digite: claude            ║"
-echo "║   2. Faca login em claude.ai                     ║"
-echo "║   3. Digite:                                     ║"
-echo "║      /sofia:setup           ║"
-echo "║                                                  ║"
-echo "╚══════════════════════════════════════════════════╝"
-echo ""
-echo "Na primeira vez, o Claude vai pedir para voce"
-echo "fazer login. Crie uma conta gratis em claude.ai"
-echo "se ainda nao tiver."
-echo ""
+echo "" | tee -a "$LOG"
+echo "" | tee -a "$LOG"
 
-# Perguntar se quer abrir agora (só se estiver em terminal interativo)
+if [ ${#ERRORS[@]} -eq 0 ]; then
+  echo "╔══════════════════════════════════════════════════╗" | tee -a "$LOG"
+  echo "║                                                  ║" | tee -a "$LOG"
+  echo "║   ✅  INSTALAÇÃO COMPLETA!                       ║" | tee -a "$LOG"
+  echo "║                                                  ║" | tee -a "$LOG"
+  echo "║   Para usar a Sofia:                             ║" | tee -a "$LOG"
+  echo "║                                                  ║" | tee -a "$LOG"
+  echo "║   1. Abra o Terminal e digite: claude            ║" | tee -a "$LOG"
+  echo "║   2. Na primeira vez, faça login em claude.ai    ║" | tee -a "$LOG"
+  echo "║   3. Depois digite:                              ║" | tee -a "$LOG"
+  echo "║      /sofia:setup                                ║" | tee -a "$LOG"
+  echo "║                                                  ║" | tee -a "$LOG"
+  echo "╚══════════════════════════════════════════════════╝" | tee -a "$LOG"
+else
+  echo "╔══════════════════════════════════════════════════╗" | tee -a "$LOG"
+  echo "║                                                  ║" | tee -a "$LOG"
+  echo "║   ⚠️  INSTALAÇÃO PARCIAL                         ║" | tee -a "$LOG"
+  echo "║                                                  ║" | tee -a "$LOG"
+  echo "║   Alguns itens não puderam ser instalados.       ║" | tee -a "$LOG"
+  echo "║   Consulte o log: /tmp/sofia-install.log         ║" | tee -a "$LOG"
+  echo "║                                                  ║" | tee -a "$LOG"
+  echo "╚══════════════════════════════════════════════════╝" | tee -a "$LOG"
+  echo "" | tee -a "$LOG"
+  echo "Itens com problema:" | tee -a "$LOG"
+  for err in "${ERRORS[@]}"; do
+    echo "  • $err" | tee -a "$LOG"
+  done
+fi
+
+echo "" | tee -a "$LOG"
+echo "Na primeira vez, o Claude vai pedir para você" | tee -a "$LOG"
+echo "fazer login. Crie uma conta grátis em claude.ai" | tee -a "$LOG"
+echo "se ainda não tiver." | tee -a "$LOG"
+echo "" | tee -a "$LOG"
+
 if [ -t 0 ] || [ -e /dev/tty ]; then
   read -p "Quer abrir o Claude agora? (s/n) " -n 1 -r REPLY </dev/tty 2>/dev/null || REPLY="n"
   echo ""

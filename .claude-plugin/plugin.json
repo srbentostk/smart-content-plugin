@@ -1,6 +1,6 @@
 {
   "name": "sofia",
-  "description": "Smart content research and writing plugin. Analyzes viral videos, extracts engagement patterns, and helps write scripts using cognitive psychology principles.",
+  "description": "Plugin inteligente para pesquisa de vídeos virais e escrita de roteiros, guiado por princípios de Psicologia Cognitiva do Engajamento.",
   "version": "2.1.0",
   "author": {
     "name": "srbentostk"
