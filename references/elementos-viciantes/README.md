@@ -11,6 +11,9 @@ Elementos que tornam um conteudo impossivel de ignorar. Sao ferramentas que pode
 | [Relevancia Emocional](relevancia-emocional.md) | Sem emocao nao existe atencao | Faz o publico SENTIR algo |
 | [Linguagem Familiar + Imagem Mental](linguagem-familiar.md) | A mente e preguicosa — fale como seu publico fala | Faz o publico ENTENDER sem esforco e VER a cena |
 | [Tema e Moral da Historia](tema-e-moral.md) | Tema atrai, moral planta a ideia | Faz o publico PARAR e depois PENSAR |
+| [Conflito e Mudanca](conflito-e-mudanca.md) | Sem conflito nao tem historia | Faz o publico querer saber O QUE ACONTECEU |
+| [Curiosidade e Efeito AHA](curiosidade-e-aha.md) | Abre loop na cabeca, fecha com recompensa | Faz o publico FICAR ate o final |
+| [Contraste](contraste.md) | Opostos lado a lado amplificam emocao | Faz o publico SENTIR mais intensamente |
 
 ## Como os agentes usam estes elementos
 
@@ -23,6 +26,9 @@ Elementos que tornam um conteudo impossivel de ignorar. Sao ferramentas que pode
 
 1. **Tema e Moral** — sem tema interessante ninguem para; sem moral nada e plantado
 2. **Relevancia Emocional** — sem emocao nao existe atencao
-3. **Linguagem Familiar + Imagem Mental** — sem clareza o publico desiste
+3. **Conflito e Mudanca** — sem conflito nao tem historia
+4. **Curiosidade e Efeito AHA** — sem curiosidade ninguem fica; sem AHA ninguem volta
+5. **Contraste** — amplifica tudo que ja existe
+6. **Linguagem Familiar + Imagem Mental** — sem clareza o publico desiste
 
-Os tres elementos trabalham juntos. Um roteiro forte tem todos.
+Todos os elementos trabalham juntos. Um roteiro forte combina varios deles.
