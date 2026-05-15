@@ -1,0 +1,258 @@
+#!/bin/bash
+# ═══════════════════════════════════════════
+# Sofia 2.0 — Instalador Visual para Mac
+#
+# Este script roda dentro de um .app bundle.
+# Nenhuma janela de Terminal aparece.
+# Toda a interface usa dialogos nativos do macOS.
+# ═══════════════════════════════════════════
+
+INSTALL_DIR="$HOME/sofia-2.0"
+REPO_URL="https://github.com/srbentostk/smart-content-plugin.git"
+LOG_FILE="/tmp/sofia-install.log"
+
+# Garantir PATH completo (dentro de .app o PATH e minimo)
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin:$PATH"
+
+# Limpar log
+echo "Sofia 2.0 — Instalacao iniciada em $(date)" > "$LOG_FILE"
+
+# ─────────────────────────────────────
+# Funcoes de UI (dialogos nativos macOS)
+# ─────────────────────────────────────
+
+show_dialog() {
+    osascript -e "display dialog \"$1\" buttons {\"OK\"} default button \"OK\" with title \"Sofia 2.0\" with icon note" 2>/dev/null
+}
+
+show_error() {
+    osascript -e "display dialog \"$1\" buttons {\"OK\"} default button \"OK\" with title \"Sofia 2.0 — Erro\" with icon stop" 2>/dev/null
+}
+
+show_confirm() {
+    osascript -e "button returned of (display dialog \"$1\" buttons {\"Cancelar\", \"$2\"} default button \"$2\" with title \"Sofia 2.0\" with icon note)" 2>/dev/null
+}
+
+show_progress() {
+    osascript -e "display notification \"$1\" with title \"Sofia 2.0\" subtitle \"$2\"" 2>/dev/null
+}
+
+run_with_admin() {
+    osascript -e "do shell script \"$1\" with administrator privileges" 2>>"$LOG_FILE"
+}
+
+has_cmd() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# ─────────────────────────────────────
+# Tela de boas-vindas
+# ─────────────────────────────────────
+
+REPLY=$(osascript 2>/dev/null <<'WELCOME'
+button returned of (display dialog "Bem-vindo ao instalador da Sofia 2.0!
+
+Vou instalar tudo que você precisa:
+
+  ✦  Node.js (necessário para rodar o Claude)
+  ✦  Claude Code (a inteligência artificial)
+  ✦  yt-dlp (coleta dados de vídeos — grátis)
+  ✦  Arquivos da Sofia
+
+Leva uns 5 minutos. Você não precisa fazer nada." buttons {"Cancelar", "Instalar"} default button "Instalar" with title "Sofia 2.0 — Instalador" with icon note)
+WELCOME
+)
+
+if [ "$REPLY" != "Instalar" ]; then
+    exit 0
+fi
+
+# ─────────────────────────────────────
+# Variavel para rastrear erros
+# ─────────────────────────────────────
+ERRORS=""
+
+# ─────────────────────────────────────
+# 1. Xcode Command Line Tools (pre-requisito)
+# ─────────────────────────────────────
+show_progress "Passo 1 de 5" "Verificando ferramentas do sistema..."
+
+if ! xcode-select -p >/dev/null 2>&1; then
+    show_progress "Passo 1 de 5" "Instalando ferramentas do sistema..."
+    # xcode-select --install mostra um dialog nativo do macOS
+    xcode-select --install 2>>"$LOG_FILE"
+
+    # Esperar a instalacao terminar (xcode-select --install e assincrono)
+    echo "Aguardando Xcode CLT..." >> "$LOG_FILE"
+    until xcode-select -p >/dev/null 2>&1; do
+        sleep 5
+    done
+fi
+
+echo "Xcode CLT: OK" >> "$LOG_FILE"
+
+# ─────────────────────────────────────
+# 2. Homebrew
+# ─────────────────────────────────────
+show_progress "Passo 2 de 5" "Verificando Homebrew..."
+
+if ! has_cmd brew; then
+    show_progress "Passo 2 de 5" "Instalando Homebrew (pode demorar 2 min)..."
+
+    # Criar diretorio com permissoes de admin se necessario
+    if [ "$(uname -m)" = "arm64" ] && [ ! -d /opt/homebrew ]; then
+        run_with_admin "mkdir -p /opt/homebrew && chown -R $(whoami):admin /opt/homebrew" 2>>"$LOG_FILE"
+    fi
+
+    # Instalar Homebrew sem interacao
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/null >>"$LOG_FILE" 2>&1
+
+    # Atualizar PATH
+    if [ -f /opt/homebrew/bin/brew ]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [ -f /usr/local/bin/brew ]; then
+        eval "$(/usr/local/bin/brew shellenv)"
+    fi
+
+    if ! has_cmd brew; then
+        ERRORS="$ERRORS\n• Homebrew não pôde ser instalado"
+        echo "ERRO: Homebrew falhou" >> "$LOG_FILE"
+    fi
+fi
+
+echo "Homebrew: $(command -v brew 2>/dev/null || echo 'FALHOU')" >> "$LOG_FILE"
+
+# ─────────────────────────────────────
+# 3. Node.js
+# ─────────────────────────────────────
+show_progress "Passo 3 de 5" "Verificando Node.js..."
+
+if ! has_cmd node; then
+    show_progress "Passo 3 de 5" "Instalando Node.js..."
+
+    if has_cmd brew; then
+        brew install node >>"$LOG_FILE" 2>&1
+    else
+        # Fallback: baixar .pkg oficial
+        NODE_VERSION="22.15.0"
+        ARCH="$(uname -m)"
+        if [ "$ARCH" = "arm64" ]; then
+            NODE_PKG="node-v${NODE_VERSION}-darwin-arm64"
+        else
+            NODE_PKG="node-v${NODE_VERSION}-darwin-x64"
+        fi
+        curl -sL "https://nodejs.org/dist/v${NODE_VERSION}/${NODE_PKG}.pkg" -o /tmp/node.pkg 2>>"$LOG_FILE"
+        if [ -f /tmp/node.pkg ]; then
+            run_with_admin "installer -pkg /tmp/node.pkg -target /" 2>>"$LOG_FILE"
+            rm -f /tmp/node.pkg
+        fi
+    fi
+
+    # Atualizar PATH
+    export PATH="/usr/local/bin:$PATH"
+
+    if ! has_cmd node; then
+        ERRORS="$ERRORS\n• Node.js não pôde ser instalado"
+        echo "ERRO: Node.js falhou" >> "$LOG_FILE"
+    fi
+fi
+
+echo "Node.js: $(node --version 2>/dev/null || echo 'FALHOU')" >> "$LOG_FILE"
+
+# ─────────────────────────────────────
+# 4. Claude Code + yt-dlp
+# ─────────────────────────────────────
+show_progress "Passo 4 de 5" "Instalando Claude Code e yt-dlp..."
+
+# Claude Code
+if ! has_cmd claude; then
+    if curl -fsSL https://claude.ai/install.sh 2>/dev/null | bash >>"$LOG_FILE" 2>&1; then
+        echo "Claude Code: instalador nativo OK" >> "$LOG_FILE"
+    elif has_cmd npm; then
+        npm install -g @anthropic-ai/claude-code >>"$LOG_FILE" 2>&1
+        echo "Claude Code: npm OK" >> "$LOG_FILE"
+    else
+        ERRORS="$ERRORS\n• Claude Code não pôde ser instalado"
+        echo "ERRO: Claude Code falhou" >> "$LOG_FILE"
+    fi
+    # Atualizar PATH para incluir onde Claude Code pode ter sido instalado
+    export PATH="$HOME/.claude/local/bin:$HOME/.local/bin:$PATH"
+fi
+
+# yt-dlp
+if ! has_cmd yt-dlp; then
+    if has_cmd brew; then
+        brew install yt-dlp >>"$LOG_FILE" 2>&1
+    elif has_cmd pip3; then
+        pip3 install yt-dlp >>"$LOG_FILE" 2>&1
+    else
+        # Download direto do binario
+        curl -sL https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_macos -o /usr/local/bin/yt-dlp 2>>"$LOG_FILE"
+        chmod +x /usr/local/bin/yt-dlp 2>/dev/null
+    fi
+
+    if ! has_cmd yt-dlp; then
+        ERRORS="$ERRORS\n• yt-dlp não pôde ser instalado"
+        echo "ERRO: yt-dlp falhou" >> "$LOG_FILE"
+    fi
+fi
+
+echo "Claude: $(command -v claude 2>/dev/null || echo 'FALHOU')" >> "$LOG_FILE"
+echo "yt-dlp: $(command -v yt-dlp 2>/dev/null || echo 'FALHOU')" >> "$LOG_FILE"
+
+# ─────────────────────────────────────
+# 5. Baixar Sofia 2.0
+# ─────────────────────────────────────
+show_progress "Passo 5 de 5" "Baixando Sofia 2.0..."
+
+if [ -d "$INSTALL_DIR" ]; then
+    cd "$INSTALL_DIR"
+    git pull origin main >>"$LOG_FILE" 2>&1 || echo "Pull falhou (nao critico)" >> "$LOG_FILE"
+else
+    if has_cmd git; then
+        git clone "$REPO_URL" "$INSTALL_DIR" >>"$LOG_FILE" 2>&1
+    else
+        curl -sL https://github.com/srbentostk/smart-content-plugin/archive/main.zip -o /tmp/sofia.zip 2>>"$LOG_FILE"
+        unzip -qo /tmp/sofia.zip -d /tmp/ 2>>"$LOG_FILE"
+        mv /tmp/smart-content-plugin-main "$INSTALL_DIR" 2>>"$LOG_FILE"
+        rm -f /tmp/sofia.zip
+    fi
+fi
+
+# Permissoes dos scripts
+chmod +x "$INSTALL_DIR/scripts/"*.sh 2>/dev/null
+
+if [ ! -d "$INSTALL_DIR" ]; then
+    ERRORS="$ERRORS\n• Arquivos da Sofia não puderam ser baixados"
+    echo "ERRO: Clone/download falhou" >> "$LOG_FILE"
+fi
+
+echo "Sofia dir: $(ls -d $INSTALL_DIR 2>/dev/null || echo 'FALHOU')" >> "$LOG_FILE"
+
+# ─────────────────────────────────────
+# Resultado final
+# ─────────────────────────────────────
+
+if [ -z "$ERRORS" ]; then
+    osascript 2>/dev/null <<'SUCCESS'
+display dialog "Instalação completa!
+
+Para usar a Sofia:
+
+1. Abra o Terminal
+   (Command + Espaço → digite Terminal)
+
+2. Cole este comando:
+   cd ~/sofia-2.0 && claude
+
+3. Na primeira vez, faça login em claude.ai
+
+4. Depois digite:  /sofia-setup
+
+Pronto! A Sofia vai te guiar a partir daí." buttons {"OK"} default button "OK" with title "Sofia 2.0 — Sucesso ✓" with icon note
+SUCCESS
+else
+    osascript -e "display dialog \"Instalação parcial.\n\nAlguns itens não puderam ser instalados:$ERRORS\n\nConsulte o log em:\n/tmp/sofia-install.log\n\nOu peça ajuda ao seu instrutor.\" buttons {\"OK\"} default button \"OK\" with title \"Sofia 2.0 — Atenção\" with icon caution" 2>/dev/null
+fi
+
+echo "Instalacao finalizada em $(date)" >> "$LOG_FILE"
