@@ -28,14 +28,14 @@ Todo o sistema é guiado pelos **Princípios de Psicologia Cognitiva do Engajame
 
 ## Agentes
 
-Os agentes trabalham em conjunto orquestrados pelas skills:
+Os agentes estão em `agents/` e são orquestrados pelas skills. Ao executar uma skill, consulte o agente correspondente para instruções detalhadas:
 
-- **pesquisador** — extrai transcrição, comentários e métricas de vídeos
-- **analista-de-principios** — analisa roteiro frase a frase buscando princípios
-- **critico** — avalia honestamente se o roteiro funciona
-- **roteirista** — escreve roteiros aplicando princípios e estruturas
-- **melhorador** — reescreve baseado em críticas
-- **aprendiz** — evolui a base de conhecimento do plugin
+- **pesquisador** (`agents/pesquisador.md`) — extrai transcrição, comentários e métricas de vídeos
+- **analista-de-principios** (`agents/analista-de-principios.md`) — analisa roteiro frase a frase buscando princípios
+- **critico** (`agents/critico.md`) — avalia honestamente se o roteiro funciona
+- **roteirista** (`agents/roteirista.md`) — escreve roteiros aplicando princípios e estruturas
+- **melhorador** (`agents/melhorador.md`) — reescreve baseado em críticas
+- **aprendiz** (`agents/aprendiz.md`) — evolui a base de conhecimento do plugin
 
 ## Regras fundamentais
 
