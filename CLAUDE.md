@@ -8,13 +8,13 @@ Se `knowledge/config.yaml` não existir ou estiver incompleto, execute o setup a
 
 | Comando | Descrição |
 |---------|-----------|
-| `/smart-content-plugin:sofia-setup` | Configura API keys e dependências |
-| `/smart-content-plugin:sofia-analisar` | Analisa vídeo(s) — cole link(s) |
-| `/smart-content-plugin:sofia-roteiro` | Escreve roteiro guiado por princípios |
-| `/smart-content-plugin:sofia-critica` | Análise crítica de um roteiro |
-| `/smart-content-plugin:sofia-melhorar` | Melhora roteiro pós-crítica |
-| `/smart-content-plugin:sofia-dashboard` | Gera/atualiza dashboard de conhecimentos |
-| `/smart-content-plugin:sofia-exportar` | Exporta aprendizados ou aplica ao plugin |
+| `/sofia:setup` | Configura API keys e dependências |
+| `/sofia:analisar` | Analisa vídeo(s) — cole link(s) |
+| `/sofia:roteiro` | Escreve roteiro guiado por princípios |
+| `/sofia:critica` | Análise crítica de um roteiro |
+| `/sofia:melhorar` | Melhora roteiro pós-crítica |
+| `/sofia:dashboard` | Gera/atualiza dashboard de conhecimentos |
+| `/sofia:exportar` | Exporta aprendizados ou aplica ao plugin |
 
 ## Como funciona
 

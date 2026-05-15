@@ -111,7 +111,7 @@ fi
 # ─────────────────────────────────────
 echo ""
 echo "▸ Instalando plugin Sofia..."
-PLUGIN_NAME="smart-content-plugin"
+PLUGIN_NAME="sofia"
 
 if has_command claude; then
   # Atualizar PATH para garantir que claude encontre npm/node
@@ -143,7 +143,7 @@ echo "║                                                  ║"
 echo "║   1. Abra o Terminal e digite: claude            ║"
 echo "║   2. Faca login em claude.ai                     ║"
 echo "║   3. Digite:                                     ║"
-echo "║      /smart-content-plugin:sofia-setup           ║"
+echo "║      /sofia:setup           ║"
 echo "║                                                  ║"
 echo "╚══════════════════════════════════════════════════╝"
 echo ""

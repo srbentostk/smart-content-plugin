@@ -59,10 +59,10 @@ Criar `knowledge/config.yaml` com todas as configurações.
 
 ### 9. Concluir
 > "Sofia 2.0 configurada com sucesso! Comandos disponíveis:
-> - /sofia-analisar [links] — analisa vídeos
-> - /sofia-roteiro — escreve roteiro guiado
-> - /sofia-critica — critica um roteiro
-> - /sofia-dashboard — gera dashboard de conhecimentos"
+> - /sofia:analisar [links] — analisa vídeos
+> - /sofia:roteiro — escreve roteiro guiado
+> - /sofia:critica — critica um roteiro
+> - /sofia:dashboard — gera dashboard de conhecimentos"
 
 ## Config template
 

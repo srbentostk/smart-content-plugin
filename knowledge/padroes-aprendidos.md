@@ -46,4 +46,4 @@ Base evolutiva de padrões identificados em vídeos virais.
 ## Notas
 
 Esta base é atualizada pelo agente `aprendiz` após cada análise de vídeo.
-Para remover padrões que estão piorando resultados, use /sofia-dashboard.
+Para remover padrões que estão piorando resultados, use /sofia:dashboard.

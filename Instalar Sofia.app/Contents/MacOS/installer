@@ -7,7 +7,7 @@
 # Toda a interface usa dialogos nativos do macOS.
 # ═══════════════════════════════════════════
 
-PLUGIN_NAME="smart-content-plugin"
+PLUGIN_NAME="sofia"
 LOG_FILE="/tmp/sofia-install.log"
 
 # Garantir PATH completo (dentro de .app o PATH e minimo)
@@ -239,7 +239,7 @@ Para usar a Sofia:
 3. Na primeira vez, faca login em claude.ai
 
 4. Depois digite:
-   /smart-content-plugin:sofia-setup
+   /sofia:setup
 
 Pronto! A Sofia vai te guiar a partir dai." buttons {"OK"} default button "OK" with title "Sofia 2.0 — Sucesso" with icon note
 SUCCESS

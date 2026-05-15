@@ -26,7 +26,7 @@ fi
 
 if [ -z "$API_KEY" ]; then
   echo "ERRO: APIFY_API_KEY não configurada."
-  echo "Execute /sofia-setup ou defina APIFY_API_KEY no ambiente."
+  echo "Execute /sofia:setup ou defina APIFY_API_KEY no ambiente."
   exit 1
 fi
 

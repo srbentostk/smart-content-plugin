@@ -77,7 +77,7 @@ Escolha o jeito mais fácil para você:
 Se você já tem o Claude Code instalado, basta abrir o terminal e digitar:
 
 ```
-/plugin install smart-content-plugin
+/plugin install sofia
 ```
 
 Pronto. Todos os comandos da Sofia ficam disponíveis imediatamente.
@@ -117,7 +117,7 @@ Na primeira vez, o Claude vai pedir login. Use a conta que criou no Passo 0.
 Dentro do Claude, digite:
 
 ```
-/smart-content-plugin:sofia-setup
+/sofia:setup
 ```
 
 A Sofia verifica se tudo está funcionando e te guia pela configuração.
@@ -137,44 +137,44 @@ A Sofia verifica se tudo está funcionando e te guia pela configuração.
 
 ## Como usar a Sofia
 
-### Comando 1: Analisar um vídeo — `/smart-content-plugin:sofia-analisar`
+### Comando 1: Analisar um vídeo — `/sofia:analisar`
 
 Você cola o link de um vídeo e a Sofia busca tudo: texto falado, comentários, números, capa. Depois analisa frase por frase por que o vídeo funciona.
 
 ```
-/smart-content-plugin:sofia-analisar https://youtube.com/watch?v=XXXXX
-/smart-content-plugin:sofia-analisar https://instagram.com/reel/XXXXX
-/smart-content-plugin:sofia-analisar https://tiktok.com/@usuario/video/XXXXX
+/sofia:analisar https://youtube.com/watch?v=XXXXX
+/sofia:analisar https://instagram.com/reel/XXXXX
+/sofia:analisar https://tiktok.com/@usuario/video/XXXXX
 ```
 
 **Funciona com:** YouTube, Instagram, TikTok, e milhares de outros sites.
 **Custo:** Grátis (usa yt-dlp). Se yt-dlp não conseguir, pergunta se quer tentar com Apify (~R$0,15).
 
-### Comando 2: Escrever um roteiro — `/smart-content-plugin:sofia-roteiro`
+### Comando 2: Escrever um roteiro — `/sofia:roteiro`
 
 A Sofia faz perguntas sobre seu tema, público e o que as pessoas estão comentando. Depois sugere aberturas e escreve 2-3 versões do roteiro completo.
 
 **Custo:** Grátis
 
-### Comando 3: Criticar um roteiro — `/smart-content-plugin:sofia-critica`
+### Comando 3: Criticar um roteiro — `/sofia:critica`
 
 Cole um roteiro (seu ou de outra pessoa) e ela avalia com honestidade.
 
 **Custo:** Grátis
 
-### Comando 4: Melhorar um roteiro — `/smart-content-plugin:sofia-melhorar`
+### Comando 4: Melhorar um roteiro — `/sofia:melhorar`
 
 Depois de uma crítica, ela reescreve corrigindo os problemas.
 
 **Custo:** Grátis
 
-### Comando 5: Ver painel visual — `/smart-content-plugin:sofia-dashboard`
+### Comando 5: Ver painel visual — `/sofia:dashboard`
 
 Gera uma página bonita com a análise completa do vídeo.
 
 **Custo:** Grátis
 
-### Comando 6: Exportar — `/smart-content-plugin:sofia-exportar`
+### Comando 6: Exportar — `/sofia:exportar`
 
 Salva tudo que a Sofia aprendeu em arquivos organizados.
 
@@ -186,18 +186,18 @@ Salva tudo que a Sofia aprendeu em arquivos organizados.
 
 ```
 1. Analise um vídeo viral que você admira
-   /smart-content-plugin:sofia-analisar + link do vídeo
+   /sofia:analisar + link do vídeo
          ↓
 2. Estude a análise — entenda por que funciona
          ↓
 3. Escreva seu próprio roteiro
-   /smart-content-plugin:sofia-roteiro
+   /sofia:roteiro
          ↓
 4. Peça uma crítica honesta
-   /smart-content-plugin:sofia-critica
+   /sofia:critica
          ↓
 5. Melhore com base na crítica
-   /smart-content-plugin:sofia-melhorar
+   /sofia:melhorar
          ↓
 6. Repita! Quanto mais você analisa e escreve,
    melhor a Sofia fica

@@ -7,7 +7,7 @@
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
-$PLUGIN_NAME = "smart-content-plugin"
+$PLUGIN_NAME = "sofia"
 
 # ─────────────────────────────────────
 # Criar janela principal
@@ -232,7 +232,7 @@ $btnInstall.Add_Click({
     if ($errors.Count -eq 0) {
         Update-UI "Instalacao completa!" "Tudo pronto para usar a Sofia." 100
 
-        $lblDesc.Text = "Para usar a Sofia:`n`n  1. Abra o PowerShell`n  2. Digite: claude`n  3. Na primeira vez, faca login em claude.ai`n  4. Depois digite:`n     /smart-content-plugin:sofia-setup"
+        $lblDesc.Text = "Para usar a Sofia:`n`n  1. Abra o PowerShell`n  2. Digite: claude`n  3. Na primeira vez, faca login em claude.ai`n  4. Depois digite:`n     /sofia:setup"
         $lblDesc.Refresh()
 
         $btnInstall.Text = "Abrir Claude"

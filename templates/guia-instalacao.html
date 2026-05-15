@@ -697,7 +697,7 @@
                     <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.5rem;">Se já tem Claude Code instalado</p>
                     <ol>
                         <li>Abra o <strong>Terminal</strong> e digite <code>claude</code></li>
-                        <li>Dentro do Claude, digite:<br><code style="color:var(--orange);">/plugin install smart-content-plugin</code></li>
+                        <li>Dentro do Claude, digite:<br><code style="color:var(--orange);">/plugin install sofia</code></li>
                         <li>Pronto! A Sofia está instalada.</li>
                     </ol>
                 </div>
@@ -751,7 +751,7 @@
         <div class="step" data-step="3">
             <h3>Configure a Sofia</h3>
             <p>Com o Claude aberto, digite:</p>
-            <div class="code">/smart-content-plugin:sofia-setup<span class="label">configuração inicial</span></div>
+            <div class="code">/sofia:setup<span class="label">configuração inicial</span></div>
             <p>A Sofia vai:</p>
             <ul>
                 <li>Verificar se o yt-dlp está funcionando</li>
@@ -787,32 +787,32 @@
 
         <div class="cmd-grid">
             <div class="cmd-card">
-                <span class="cmd-name">/smart-content-plugin:sofia-analisar</span>
+                <span class="cmd-name">/sofia:analisar</span>
                 <span class="cmd-desc"><strong>Analisar um vídeo.</strong> Você cola o link e ela busca o texto falado, os comentários mais curtidos, os números e faz uma análise completa do que faz aquele vídeo funcionar.</span>
                 <span class="cmd-cost free">Grátis</span>
             </div>
             <div class="cmd-card">
-                <span class="cmd-name">/smart-content-plugin:sofia-roteiro</span>
+                <span class="cmd-name">/sofia:roteiro</span>
                 <span class="cmd-desc"><strong>Escrever um roteiro.</strong> Ela faz perguntas sobre seu tema, seu público e o que as pessoas estão comentando. Depois sugere aberturas e escreve 2-3 versões do roteiro completo.</span>
                 <span class="cmd-cost free">Grátis</span>
             </div>
             <div class="cmd-card">
-                <span class="cmd-name">/smart-content-plugin:sofia-critica</span>
+                <span class="cmd-name">/sofia:critica</span>
                 <span class="cmd-desc"><strong>Criticar um roteiro.</strong> Você cola um roteiro (seu ou de outra pessoa) e ela avalia com honestidade: está bom? Está chato? O que está faltando?</span>
                 <span class="cmd-cost free">Grátis</span>
             </div>
             <div class="cmd-card">
-                <span class="cmd-name">/smart-content-plugin:sofia-melhorar</span>
+                <span class="cmd-name">/sofia:melhorar</span>
                 <span class="cmd-desc"><strong>Melhorar um roteiro.</strong> Depois de uma crítica, ela reescreve o roteiro corrigindo os problemas que encontrou.</span>
                 <span class="cmd-cost free">Grátis</span>
             </div>
             <div class="cmd-card">
-                <span class="cmd-name">/smart-content-plugin:sofia-dashboard</span>
+                <span class="cmd-name">/sofia:dashboard</span>
                 <span class="cmd-desc"><strong>Ver painel visual.</strong> Gera uma página bonita com a análise completa de um vídeo — perfeita para estudar.</span>
                 <span class="cmd-cost free">Grátis</span>
             </div>
             <div class="cmd-card">
-                <span class="cmd-name">/smart-content-plugin:sofia-exportar</span>
+                <span class="cmd-name">/sofia:exportar</span>
                 <span class="cmd-desc"><strong>Salvar e aprender.</strong> Exporta tudo que a Sofia aprendeu em arquivos organizados e faz ela ficar mais inteligente a cada análise.</span>
                 <span class="cmd-cost free">Grátis</span>
             </div>
@@ -834,7 +834,7 @@
                 <div class="chat-avatar user">V</div>
                 <div class="chat-bubble">
                     <div class="who user-name">Você</div>
-                    <p>/smart-content-plugin:sofia-analisar https://youtube.com/watch?v=exemplo123</p>
+                    <p>/sofia:analisar https://youtube.com/watch?v=exemplo123</p>
                 </div>
             </div>
             <div class="chat-msg">
@@ -868,7 +868,7 @@
         <div class="flow">
             <div class="flow-step">
                 <strong>1. Analise um vídeo que você admira</strong><br>
-                <span class="cmd">/smart-content-plugin:sofia-analisar</span> + link do vídeo
+                <span class="cmd">/sofia:analisar</span> + link do vídeo
             </div>
             <div class="flow-arrow">↓</div>
             <div class="flow-step">
@@ -878,17 +878,17 @@
             <div class="flow-arrow">↓</div>
             <div class="flow-step">
                 <strong>3. Escreva seu próprio roteiro</strong><br>
-                <span class="cmd">/smart-content-plugin:sofia-roteiro</span> sobre um tema parecido
+                <span class="cmd">/sofia:roteiro</span> sobre um tema parecido
             </div>
             <div class="flow-arrow">↓</div>
             <div class="flow-step">
                 <strong>4. Peça uma crítica honesta</strong><br>
-                <span class="cmd">/smart-content-plugin:sofia-critica</span>
+                <span class="cmd">/sofia:critica</span>
             </div>
             <div class="flow-arrow">↓</div>
             <div class="flow-step">
                 <strong>5. Melhore com base na crítica</strong><br>
-                <span class="cmd">/smart-content-plugin:sofia-melhorar</span>
+                <span class="cmd">/sofia:melhorar</span>
             </div>
             <div class="flow-arrow">↓</div>
             <div class="flow-step">
@@ -919,37 +919,37 @@
             <tbody>
                 <tr>
                     <td>Analisar vídeo</td>
-                    <td class="mono">/smart-content-plugin:sofia-analisar</td>
+                    <td class="mono">/sofia:analisar</td>
                     <td><span class="check">✓ Sim</span></td>
                     <td>YouTube, Instagram, TikTok, e outros</td>
                 </tr>
                 <tr>
                     <td>Escrever roteiro</td>
-                    <td class="mono">/smart-content-plugin:sofia-roteiro</td>
+                    <td class="mono">/sofia:roteiro</td>
                     <td><span class="check">✓ Sim</span></td>
                     <td>—</td>
                 </tr>
                 <tr>
                     <td>Criticar roteiro</td>
-                    <td class="mono">/smart-content-plugin:sofia-critica</td>
+                    <td class="mono">/sofia:critica</td>
                     <td><span class="check">✓ Sim</span></td>
                     <td>—</td>
                 </tr>
                 <tr>
                     <td>Melhorar roteiro</td>
-                    <td class="mono">/smart-content-plugin:sofia-melhorar</td>
+                    <td class="mono">/sofia:melhorar</td>
                     <td><span class="check">✓ Sim</span></td>
                     <td>—</td>
                 </tr>
                 <tr>
                     <td>Ver painel visual</td>
-                    <td class="mono">/smart-content-plugin:sofia-dashboard</td>
+                    <td class="mono">/sofia:dashboard</td>
                     <td><span class="check">✓ Sim</span></td>
                     <td>—</td>
                 </tr>
                 <tr>
                     <td>Exportar aprendizados</td>
-                    <td class="mono">/smart-content-plugin:sofia-exportar</td>
+                    <td class="mono">/sofia:exportar</td>
                     <td><span class="check">✓ Sim</span></td>
                     <td>—</td>
                 </tr>
