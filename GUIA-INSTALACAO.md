@@ -53,11 +53,13 @@ claude plugin install sofia
 
 Pronto. A Sofia está instalada.
 
+7. Agora **feche o app Claude** e **abra de novo**. Isso é necessário para o Claude reconhecer o plugin novo.
+
 ---
 
 ## Passo 3: Configure a Sofia
 
-Dentro do Claude, digite:
+Depois de reabrir o Claude, digite:
 
 ```
 /sofia:setup
