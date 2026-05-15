@@ -662,73 +662,101 @@
         <div class="section-label">Passo a passo</div>
         <div class="section-title">Instalação</div>
         <p class="section-intro">
-            Escolha o jeito mais fácil para você. Tem opção de dois cliques (sem precisar digitar nada) e opção de colar um comando no Terminal.
+            Escolha o jeito mais fácil para você. Antes de qualquer opção, você precisa de uma <strong>conta no Claude</strong>.
         </p>
 
-        <div class="highlight">
-            <p><strong>Jeito mais fácil (dois cliques):</strong> Baixe o arquivo de instalação do GitHub e dê dois cliques nele. No <strong>Mac</strong>, baixe o arquivo <code>instalar-sofia-mac.command</code>. No <strong>Windows</strong>, baixe o arquivo <code>instalar-sofia-windows.bat</code>. Uma janela vai abrir e tudo será instalado automaticamente.</p>
+        <!-- Contas necessárias -->
+        <div class="instruction">
+            <h4>Passo 0: Crie suas contas (se ainda não tem)</h4>
+            <div class="card-grid-2" style="margin-top:0.8rem;">
+                <div class="card">
+                    <span class="icon">🤖</span>
+                    <h3>Claude (obrigatório)</h3>
+                    <p>Crie sua conta grátis. É onde a Sofia vive.</p>
+                    <p style="margin-top:0.5rem;"><a href="https://claude.ai" target="_blank" style="color:var(--orange);font-family:var(--font-mono);font-size:0.85rem;">claude.ai →</a></p>
+                    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.3rem;">Grátis (limitado) ou Pro $20/mês</p>
+                </div>
+                <div class="card">
+                    <span class="icon">🔗</span>
+                    <h3>Apify (recomendado para Instagram)</h3>
+                    <p>Para comentários com curtidas no Instagram/TikTok.</p>
+                    <p style="margin-top:0.5rem;"><a href="https://apify.com" target="_blank" style="color:var(--purple);font-family:var(--font-mono);font-size:0.85rem;">apify.com →</a></p>
+                    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.3rem;">$5/mês grátis (~150 análises). Opcional para YouTube.</p>
+                </div>
+            </div>
         </div>
 
         <div class="step" data-step="1">
             <h3>Escolha como instalar</h3>
+            <p>Tem 3 opções. Escolha a que for mais fácil para você:</p>
 
             <div class="card-grid-2" style="margin-top:1rem;">
+                <div class="card" style="border-color:rgba(255,77,0,0.4);">
+                    <span class="icon">✨</span>
+                    <h3>Opção A: Pelo Claude Code (mais simples)</h3>
+                    <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.5rem;">Se já tem Claude Code instalado</p>
+                    <ol>
+                        <li>Abra o <strong>Terminal</strong> e digite <code>claude</code></li>
+                        <li>Dentro do Claude, digite:<br><code style="color:var(--orange);">/plugin install smart-content-plugin</code></li>
+                        <li>Pronto! A Sofia está instalada.</li>
+                    </ol>
+                </div>
                 <div class="card">
                     <span class="icon">🖱️</span>
-                    <h3>Opção A: Dois cliques (mais fácil)</h3>
+                    <h3>Opção B: Dois cliques (instala tudo)</h3>
+                    <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.5rem;">Se não tem nada instalado ainda</p>
                     <ol>
-                        <li>Acesse a página do projeto no GitHub</li>
-                        <li>Baixe o arquivo <strong>instalar-sofia-mac.command</strong> (Mac) ou <strong>instalar-sofia-windows.bat</strong> (Windows)</li>
+                        <li>Acesse a <a href="https://github.com/srbentostk/smart-content-plugin" target="_blank" style="color:var(--orange);">página do projeto</a></li>
+                        <li>Baixe <strong>Instalar Sofia.app</strong> (Mac) ou <strong>Instalar Sofia.vbs</strong> (Windows)</li>
                         <li>Dê dois cliques no arquivo baixado</li>
-                        <li>Uma janela vai abrir e instalar tudo sozinha</li>
+                        <li>Siga as instruções na tela</li>
                     </ol>
-                </div>
-                <div class="card">
-                    <span class="icon">⌨️</span>
-                    <h3>Opção B: Comando no Terminal</h3>
-                    <ol>
-                        <li>Abra o <strong>Terminal</strong> (Mac) ou <strong>PowerShell</strong> (Windows)</li>
-                        <li>Cole o comando abaixo e aperte <strong>Enter</strong></li>
-                    </ol>
-                    <div class="code" style="margin-top:0.5rem;" onclick="navigator.clipboard.writeText(this.innerText.replace('clique para copiar','').trim())">curl -sSL https://raw.githubusercontent.com/srbentostk/smart-content-plugin/main/scripts/install.sh | bash<span class="label">clique para copiar</span></div>
                 </div>
             </div>
 
-            <div class="warning">
-                <p>⚠️ <strong>Nota:</strong> O repositório precisa estar publicado no GitHub para funcionar. Se o link não funcionar, peça o link atualizado ao seu instrutor.</p>
+            <div class="card" style="margin-top:1rem;">
+                <span class="icon">⌨️</span>
+                <h3>Opção C: Comando no Terminal (instala tudo)</h3>
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.5rem;">Se prefere usar o Terminal diretamente</p>
+                <ol>
+                    <li>Abra o <strong>Terminal</strong> (Mac) ou <strong>PowerShell</strong> (Windows)</li>
+                    <li>Cole o comando abaixo e aperte <strong>Enter</strong></li>
+                </ol>
+                <div class="code" style="margin-top:0.5rem;" onclick="navigator.clipboard.writeText(this.innerText.replace('clique para copiar','').trim())">curl -sSL https://raw.githubusercontent.com/srbentostk/smart-content-plugin/main/scripts/install.sh | bash<span class="label">clique para copiar</span></div>
             </div>
 
-            <p>O que a instalação faz (tudo sozinho, sem você precisar fazer nada):</p>
+            <div class="highlight" style="margin-top:1rem;">
+                <p><strong>Não tem Claude Code?</strong> É a versão do Claude que roda no Terminal. Instale com:</p>
+                <p style="margin-top:0.3rem;"><a href="https://claude.ai/download" target="_blank" style="color:var(--orange);font-family:var(--font-mono);font-size:0.85rem;">claude.ai/download →</a> (Mac/Windows/Linux)</p>
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.3rem;">Ou as opções B e C acima já instalam o Claude Code automaticamente.</p>
+            </div>
+
+            <p style="margin-top:1rem;">O que as opções B e C instalam automaticamente:</p>
             <ul>
-                <li>✅ Instala o <strong>Node.js</strong> (programa necessário para rodar o Claude Code)</li>
-                <li>✅ Instala o <strong>Claude Code</strong> (a versão do Claude que roda no Terminal)</li>
-                <li>✅ Instala o <strong>yt-dlp</strong> (a ferramenta que coleta dados de vídeos — grátis)</li>
-                <li>✅ Baixa os <strong>arquivos da Sofia</strong> para o seu computador</li>
+                <li>✅ <strong>Node.js</strong> — programa necessário para rodar o Claude Code</li>
+                <li>✅ <strong>Claude Code</strong> — a versão do Claude que roda no Terminal</li>
+                <li>✅ <strong>yt-dlp</strong> — ferramenta grátis que coleta dados de vídeos</li>
+                <li>✅ <strong>Arquivos da Sofia</strong> — baixados para o seu computador</li>
             </ul>
-            <p style="margin-top:0.8rem;">A instalação pode levar uns 5 minutos. Você vai ver mensagens aparecendo na tela — isso é normal.</p>
         </div>
 
         <div class="step" data-step="2">
             <h3>Abra a Sofia</h3>
-            <p>Depois que a instalação terminar, o próprio Terminal vai mostrar o comando para abrir a Sofia. É só digitar:</p>
+            <p>Se usou a <strong>Opção A</strong> (marketplace), a Sofia já está pronta — digite o comando de setup abaixo.</p>
+            <p>Se usou a <strong>Opção B ou C</strong>, abra o Terminal e digite:</p>
             <div class="code">cd ~/sofia-2.0 && claude<span class="label">abrir a Sofia</span></div>
-            <p>Na primeira vez, o Claude vai pedir para você fazer login com sua conta. Siga as instruções na tela.</p>
-
-            <div class="warning">
-                <p><strong>Precisa ter conta no Claude:</strong> Se ainda não tem, crie grátis em <strong>claude.ai</strong>. A versão grátis funciona, mas a Pro ($20/mês) permite usar mais.</p>
-            </div>
+            <p>Na primeira vez, o Claude vai pedir para você fazer login. Use sua conta do <a href="https://claude.ai" target="_blank" style="color:var(--orange);">claude.ai</a>.</p>
         </div>
 
         <div class="step" data-step="3">
             <h3>Configure a Sofia</h3>
             <p>Com o Claude aberto, digite:</p>
             <div class="code">/sofia-setup<span class="label">configuração inicial</span></div>
-            <p>A Sofia vai fazer uma verificação rápida:</p>
+            <p>A Sofia vai:</p>
             <ul>
-                <li>Verifica se o yt-dlp está funcionando</li>
-                <li>Pergunta se você tem conta no Apify (opcional — pode pular)</li>
-                <li>Faz um teste rápido para garantir que tudo está certo</li>
-                <li>Mostra uma mensagem de sucesso</li>
+                <li>Verificar se o yt-dlp está funcionando</li>
+                <li>Perguntar se você tem conta no <a href="https://apify.com" target="_blank" style="color:var(--purple);">Apify</a> (recomendado para Instagram)</li>
+                <li>Fazer um teste rápido para garantir que tudo está certo</li>
             </ul>
         </div>
 
@@ -736,19 +764,16 @@
             <p>🎉 <strong>Pronto!</strong> A Sofia está instalada. Agora é só usar os comandos abaixo.</p>
         </div>
 
-        <!-- Apify setup (opcional) -->
+        <!-- Links úteis -->
         <div class="instruction">
-            <h4>⚡ Extra: Configurar o Apify (opcional)</h4>
-            <p>Só faça isso se o yt-dlp não conseguir pegar alguma informação do Instagram ou TikTok. A maioria das pessoas não precisa.</p>
-            <ol>
-                <li>Abra <strong>apify.com</strong> no navegador</li>
-                <li>Clique em "Start free" e crie sua conta (e-mail ou Google)</li>
-                <li>Clique no seu nome no canto superior direito → <strong>Settings</strong></li>
-                <li>Clique em <strong>Integrations</strong></li>
-                <li>Copie o código que aparece em "Personal API Token"</li>
-                <li>Volte ao Claude e rode <code>/sofia-setup</code> novamente — cole o código quando ela pedir</li>
-            </ol>
-            <p style="margin-top:0.5rem;">Você ganha R$25 por mês em créditos grátis. Cada análise custa ~R$0,15. Dá para umas 150 análises/mês sem pagar.</p>
+            <h4>Links úteis</h4>
+            <ul style="list-style:none;padding-left:0;">
+                <li style="margin-bottom:0.5rem;">🤖 <a href="https://claude.ai" target="_blank" style="color:var(--orange);">claude.ai</a> — criar conta no Claude (obrigatório)</li>
+                <li style="margin-bottom:0.5rem;">💻 <a href="https://claude.ai/download" target="_blank" style="color:var(--orange);">claude.ai/download</a> — baixar o Claude Code</li>
+                <li style="margin-bottom:0.5rem;">🔗 <a href="https://apify.com" target="_blank" style="color:var(--purple);">apify.com</a> — criar conta no Apify (recomendado para Instagram)</li>
+                <li style="margin-bottom:0.5rem;">📦 <a href="https://github.com/srbentostk/smart-content-plugin" target="_blank" style="color:var(--text-secondary);">GitHub do projeto</a> — código e instaladores</li>
+                <li>📺 <a href="https://nodejs.org" target="_blank" style="color:var(--text-secondary);">nodejs.org</a> — Node.js (instalado automaticamente)</li>
+            </ul>
         </div>
     </div>
 

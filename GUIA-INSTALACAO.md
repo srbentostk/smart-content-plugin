@@ -59,20 +59,41 @@ Quando você manda o link de um vídeo, a Sofia coleta:
 
 ---
 
+## Passo 0: Crie suas contas (se ainda não tem)
+
+Antes de instalar, crie contas nestes serviços (todos têm versão grátis):
+
+1. **Claude** — crie sua conta em [claude.ai](https://claude.ai) (obrigatório)
+2. **Apify** — crie sua conta em [apify.com](https://www.apify.com) (recomendado para Instagram/TikTok)
+
+---
+
 ## Instalação
 
 Escolha o jeito mais fácil para você:
 
-### Opção A: Dois cliques (mais fácil)
+### Opção A: Marketplace (mais simples — se já tem Claude Code)
 
-Baixe o arquivo de instalação do GitHub e dê dois cliques nele:
+Se você já tem o Claude Code instalado, basta abrir o terminal e digitar:
 
-- **Mac:** baixe `instalar-sofia-mac.command` e dê dois cliques
-- **Windows:** baixe `instalar-sofia-windows.bat` e dê dois cliques
+```
+/plugin install smart-content-plugin
+```
 
-Uma janela vai abrir e tudo será instalado automaticamente.
+Pronto. Todos os comandos da Sofia ficam disponíveis imediatamente.
 
-### Opção B: Comando no Terminal
+> **Baixar Claude Code:** Se ainda não tem, baixe em [claude.ai/download](https://claude.ai/download)
+
+### Opção B: Instalador visual (dois cliques)
+
+Baixe o instalador do GitHub e dê dois cliques:
+
+- **Mac:** baixe `Instalar Sofia.app` e dê dois cliques (na primeira vez, clique com botão direito > Abrir)
+- **Windows:** baixe `Instalar Sofia.vbs` e dê dois cliques
+
+Uma janela vai abrir e tudo será instalado automaticamente (Node.js, Claude Code, yt-dlp, arquivos da Sofia).
+
+### Opção C: Comando no Terminal
 
 1. Abra o **Terminal** (Mac) ou **PowerShell** (Windows)
 2. Cole o comando abaixo e aperte **Enter**:
@@ -81,16 +102,7 @@ Uma janela vai abrir e tudo será instalado automaticamente.
 curl -sSL https://raw.githubusercontent.com/srbentostk/smart-content-plugin/main/scripts/install.sh | bash
 ```
 
-> **Nota:** O repositório precisa estar publicado no GitHub para funcionar.
-
-### O que a instalação faz (tudo sozinho):
-
-- ✅ Instala o Node.js
-- ✅ Instala o Claude Code
-- ✅ Instala o yt-dlp
-- ✅ Baixa os arquivos da Sofia
-
-### Depois de instalar: Abra a Sofia
+### Depois de instalar (Opções B e C): Abra a Sofia
 
 Digite no Terminal:
 
@@ -98,7 +110,7 @@ Digite no Terminal:
 cd ~/sofia-2.0 && claude
 ```
 
-Na primeira vez, o Claude vai pedir login. Crie uma conta grátis em claude.ai se ainda não tiver.
+Na primeira vez, o Claude vai pedir login. Use a conta que criou no Passo 0.
 
 ### Configure a Sofia
 
@@ -109,6 +121,17 @@ Dentro do Claude, digite:
 ```
 
 A Sofia verifica se tudo está funcionando e te guia pela configuração.
+
+---
+
+## Links úteis
+
+| O que | Link |
+|---|---|
+| Criar conta Claude | [claude.ai](https://claude.ai) |
+| Baixar Claude Code | [claude.ai/download](https://claude.ai/download) |
+| Criar conta Apify | [apify.com](https://www.apify.com) |
+| Repositório Sofia | [github.com/srbentostk/smart-content-plugin](https://github.com/srbentostk/smart-content-plugin) |
 
 ---
 
