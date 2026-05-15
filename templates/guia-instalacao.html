@@ -662,52 +662,43 @@
         <div class="section-label">Passo a passo</div>
         <div class="section-title">Instalação</div>
         <p class="section-intro">
-            A instalação acontece em duas etapas: primeiro você abre o Terminal do seu computador, depois cola um comando que faz tudo automaticamente.
+            Escolha o jeito mais fácil para você. Tem opção de dois cliques (sem precisar digitar nada) e opção de colar um comando no Terminal.
         </p>
 
+        <div class="highlight">
+            <p><strong>Jeito mais fácil (dois cliques):</strong> Baixe o arquivo de instalação do GitHub e dê dois cliques nele. No <strong>Mac</strong>, baixe o arquivo <code>instalar-sofia-mac.command</code>. No <strong>Windows</strong>, baixe o arquivo <code>instalar-sofia-windows.bat</code>. Uma janela vai abrir e tudo será instalado automaticamente.</p>
+        </div>
+
         <div class="step" data-step="1">
-            <h3>Abra o Terminal</h3>
-            <p>O Terminal é um programa que já vem no seu computador. Ele parece uma tela preta onde você digita comandos. Não se preocupe — você só precisa copiar e colar uma coisa.</p>
+            <h3>Escolha como instalar</h3>
 
             <div class="card-grid-2" style="margin-top:1rem;">
                 <div class="card">
-                    <span class="icon">🍎</span>
-                    <h3>No Mac</h3>
+                    <span class="icon">🖱️</span>
+                    <h3>Opção A: Dois cliques (mais fácil)</h3>
                     <ol>
-                        <li>Aperte <strong>Command + Barra de Espaço</strong> no teclado</li>
-                        <li>Digite <strong>Terminal</strong></li>
-                        <li>Clique no ícone que aparece</li>
+                        <li>Acesse a página do projeto no GitHub</li>
+                        <li>Baixe o arquivo <strong>instalar-sofia-mac.command</strong> (Mac) ou <strong>instalar-sofia-windows.bat</strong> (Windows)</li>
+                        <li>Dê dois cliques no arquivo baixado</li>
+                        <li>Uma janela vai abrir e instalar tudo sozinha</li>
                     </ol>
-                    <div class="screenshot">Vai abrir uma janela escura com um cursor piscando — é ali que você vai colar o comando</div>
                 </div>
                 <div class="card">
-                    <span class="icon">🪟</span>
-                    <h3>No Windows</h3>
+                    <span class="icon">⌨️</span>
+                    <h3>Opção B: Comando no Terminal</h3>
                     <ol>
-                        <li>Clique no botão <strong>Iniciar</strong> (cantinho inferior esquerdo)</li>
-                        <li>Digite <strong>PowerShell</strong></li>
-                        <li>Clique em <strong>Windows PowerShell</strong></li>
+                        <li>Abra o <strong>Terminal</strong> (Mac) ou <strong>PowerShell</strong> (Windows)</li>
+                        <li>Cole o comando abaixo e aperte <strong>Enter</strong></li>
                     </ol>
-                    <div class="screenshot">Vai abrir uma janela azul/preta com um cursor piscando</div>
+                    <div class="code" style="margin-top:0.5rem;" onclick="navigator.clipboard.writeText(this.innerText.replace('clique para copiar','').trim())">curl -sSL https://raw.githubusercontent.com/srbentostk/smart-content-plugin/main/scripts/install.sh | bash<span class="label">clique para copiar</span></div>
                 </div>
-            </div>
-        </div>
-
-        <div class="step" data-step="2">
-            <h3>Cole o comando de instalação</h3>
-            <p>Com o Terminal aberto, copie o comando abaixo (clique nele para selecionar) e cole no Terminal. Depois aperte <strong>Enter</strong>.</p>
-
-            <div class="install-box">
-                <h3>Comando único de instalação</h3>
-                <p>Copie e cole no Terminal. Ele instala tudo automaticamente.</p>
-                <div class="code" onclick="navigator.clipboard.writeText(this.innerText.replace('clique para copiar','').trim())">curl -sSL https://raw.githubusercontent.com/srbentostk/smart-content-plugin/main/scripts/install.sh | bash<span class="label">clique para copiar</span></div>
             </div>
 
             <div class="warning">
-                <p>⚠️ <strong>Nota:</strong> O repositório precisa estar publicado no GitHub para o comando funcionar. Se o link não funcionar, peça o link atualizado ao seu instrutor.</p>
+                <p>⚠️ <strong>Nota:</strong> O repositório precisa estar publicado no GitHub para funcionar. Se o link não funcionar, peça o link atualizado ao seu instrutor.</p>
             </div>
 
-            <p>O que esse comando faz (tudo sozinho, sem você precisar fazer nada):</p>
+            <p>O que a instalação faz (tudo sozinho, sem você precisar fazer nada):</p>
             <ul>
                 <li>✅ Instala o <strong>Node.js</strong> (programa necessário para rodar o Claude Code)</li>
                 <li>✅ Instala o <strong>Claude Code</strong> (a versão do Claude que roda no Terminal)</li>
@@ -717,7 +708,7 @@
             <p style="margin-top:0.8rem;">A instalação pode levar uns 5 minutos. Você vai ver mensagens aparecendo na tela — isso é normal.</p>
         </div>
 
-        <div class="step" data-step="3">
+        <div class="step" data-step="2">
             <h3>Abra a Sofia</h3>
             <p>Depois que a instalação terminar, o próprio Terminal vai mostrar o comando para abrir a Sofia. É só digitar:</p>
             <div class="code">cd ~/sofia-2.0 && claude<span class="label">abrir a Sofia</span></div>
@@ -728,7 +719,7 @@
             </div>
         </div>
 
-        <div class="step" data-step="4">
+        <div class="step" data-step="3">
             <h3>Configure a Sofia</h3>
             <p>Com o Claude aberto, digite:</p>
             <div class="code">/sofia-setup<span class="label">configuração inicial</span></div>

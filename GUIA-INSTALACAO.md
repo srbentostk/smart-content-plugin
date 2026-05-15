@@ -32,67 +32,67 @@ Quando você manda o link de um vídeo, a Sofia coleta:
 
 ### yt-dlp (principal — 100% grátis)
 
-É uma ferramenta que roda no seu computador e coleta informações de vídeos de **milhares de sites** — não só YouTube.
+É uma ferramenta que roda no seu computador e coleta informações de vídeos de **milhares de sites**.
 
-- **Funciona com:** YouTube, Instagram, TikTok, Twitter/X, Reddit, Facebook, Twitch, Vimeo, e mais
-- **Coleta:** texto falado, comentários, números, capa, áudio
+- **No YouTube, pega TUDO:** texto falado, comentários com curtidas, visualizações, capa
+- **No Instagram/TikTok, pega dados parciais:** curtidas do vídeo, descrição, capa, áudio — mas NÃO traz as curtidas de cada comentário nem as visualizações
 - **Preço:** grátis, sem conta, sem limite de uso
-- **A Sofia sempre tenta o yt-dlp primeiro**
 
-### Apify (opcional — alternativa quando yt-dlp não conseguir)
+### Apify (necessário para Instagram — tem créditos grátis)
 
-É um serviço online que faz coleta avançada de dados. A Sofia só usa quando o yt-dlp falha.
+É um serviço online que complementa o yt-dlp no Instagram e TikTok, trazendo dados que o yt-dlp não consegue:
 
-- **Funciona com:** YouTube, Instagram, TikTok, Twitter/X, Facebook, LinkedIn
-- **Quando é necessário:** quando Instagram ou TikTok bloqueiam o yt-dlp, ou para dados extras (compartilhamentos, salvamentos)
-- **Preço:** $5/mês grátis ao criar conta. Cada análise custa ~$0.03. Dá para ~150 análises/mês sem pagar
-- **Criar conta:** apify.com (opcional)
+- **Comentários mais curtidos COM a quantidade de curtidas** (essencial para entender o público)
+- **Visualizações** do Reel
+- **Compartilhamentos e salvamentos**
+- **Preço:** $5/mês grátis ao criar conta (~150 análises/mês sem pagar)
+- **Criar conta:** apify.com (recomendado se usa Instagram)
+- **Para YouTube:** não precisa — o yt-dlp já faz tudo
 
-### Resumo rápido
+### Resumo por plataforma
 
-| Ferramenta | Preço | Para que serve | Precisa de conta? |
-|---|---|---|---|
-| Claude | Grátis (limitado) ou $20/mês | Rodar a Sofia | Sim — claude.ai |
-| yt-dlp | Grátis | Coletar dados de vídeos (YouTube, Instagram, TikTok, etc.) | Não |
-| Apify | Grátis ($5/mês de créditos) | Alternativa quando yt-dlp não conseguir | Sim — apify.com (opcional) |
+| Plataforma | yt-dlp (grátis) | Apify (recomendado) |
+|---|---|---|
+| **YouTube** | Faz tudo | Não precisa |
+| **Instagram** | Áudio, capa, curtidas do vídeo | Comentários com curtidas, views, shares |
+| **TikTok** | Igual ao Instagram | Igual ao Instagram |
 
 ---
 
-## Instalação (um comando só)
+## Instalação
 
-### Passo 1: Abra o Terminal
+Escolha o jeito mais fácil para você:
 
-O Terminal é um programa que já vem no seu computador.
+### Opção A: Dois cliques (mais fácil)
 
-**No Mac:**
-1. Aperte **Command + Barra de Espaço**
-2. Digite **Terminal**
-3. Clique no ícone que aparece
+Baixe o arquivo de instalação do GitHub e dê dois cliques nele:
 
-**No Windows:**
-1. Clique no botão **Iniciar**
-2. Digite **PowerShell**
-3. Clique em **Windows PowerShell**
+- **Mac:** baixe `instalar-sofia-mac.command` e dê dois cliques
+- **Windows:** baixe `instalar-sofia-windows.bat` e dê dois cliques
 
-### Passo 2: Cole o comando de instalação
+Uma janela vai abrir e tudo será instalado automaticamente.
 
-Copie e cole no Terminal, depois aperte **Enter**:
+### Opção B: Comando no Terminal
+
+1. Abra o **Terminal** (Mac) ou **PowerShell** (Windows)
+2. Cole o comando abaixo e aperte **Enter**:
 
 ```
 curl -sSL https://raw.githubusercontent.com/srbentostk/smart-content-plugin/main/scripts/install.sh | bash
 ```
 
-> **Nota:** O repositório precisa estar publicado no GitHub para o comando funcionar.
+> **Nota:** O repositório precisa estar publicado no GitHub para funcionar.
 
-Esse comando faz tudo sozinho:
+### O que a instalação faz (tudo sozinho):
+
 - ✅ Instala o Node.js
 - ✅ Instala o Claude Code
 - ✅ Instala o yt-dlp
 - ✅ Baixa os arquivos da Sofia
 
-### Passo 3: Abra a Sofia
+### Depois de instalar: Abra a Sofia
 
-Depois da instalação, digite:
+Digite no Terminal:
 
 ```
 cd ~/sofia-2.0 && claude
@@ -100,7 +100,7 @@ cd ~/sofia-2.0 && claude
 
 Na primeira vez, o Claude vai pedir login. Crie uma conta grátis em claude.ai se ainda não tiver.
 
-### Passo 4: Configure
+### Configure a Sofia
 
 Dentro do Claude, digite:
 
@@ -206,7 +206,7 @@ Feche o Terminal, abra novamente, e cole o comando de novo. Se persistir, tire u
 A Sofia avisa e pode sugerir usar o Apify. Você nunca gasta dinheiro sem autorizar antes. Também pode colar o texto do vídeo manualmente.
 
 ### "Preciso do Apify?"
-Não. É opcional. O yt-dlp funciona com a maioria dos vídeos. O Apify só é útil quando o yt-dlp falha em algum vídeo específico.
+**Para YouTube:** Não. O yt-dlp faz tudo de graça. **Para Instagram/TikTok:** É muito recomendado. Sem ele, a Sofia não consegue pegar os comentários mais curtidos com a quantidade de curtidas — dado essencial para entender o público. O Apify tem $5 grátis/mês (~150 análises).
 
 ---
 

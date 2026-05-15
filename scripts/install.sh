@@ -177,10 +177,12 @@ echo "fazer login. Crie uma conta grátis em claude.ai"
 echo "se ainda não tiver."
 echo ""
 
-# Perguntar se quer abrir agora
-read -p "Quer abrir a Sofia agora? (s/n) " -n 1 -r REPLY </dev/tty 2>/dev/null || REPLY="n"
-echo ""
-if [[ $REPLY =~ ^[Ss]$ ]]; then
-  cd "$INSTALL_DIR"
-  claude
+# Perguntar se quer abrir agora (só se estiver em terminal interativo)
+if [ -t 0 ] || [ -e /dev/tty ]; then
+  read -p "Quer abrir a Sofia agora? (s/n) " -n 1 -r REPLY </dev/tty 2>/dev/null || REPLY="n"
+  echo ""
+  if [[ $REPLY =~ ^[Ss]$ ]]; then
+    cd "$INSTALL_DIR"
+    claude
+  fi
 fi
