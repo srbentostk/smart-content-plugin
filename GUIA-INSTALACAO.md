@@ -101,7 +101,6 @@ Gera uma página bonita com a análise completa do vídeo.
 
 Salva tudo que a Sofia aprendeu em arquivos organizados.
 
-Todos os comandos são grátis. Para Instagram/TikTok, o Apify cobra ~R$0,15 por vídeo (coberto pelos $5 grátis/mês).
 
 ---
 
