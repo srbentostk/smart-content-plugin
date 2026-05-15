@@ -36,12 +36,20 @@ Serviço que coleta comentários com curtidas do Instagram e TikTok. Crie sua co
 
 1. Abra o **app Claude** no seu computador
 2. Vá na **aba Code**
-3. Cole estes dois comandos:
+3. Cole o primeiro comando e aperte **Enter**:
 
 ```
 claude plugin marketplace add https://github.com/srbentostk/smart-content-plugin
+```
+
+4. Espere aparecer uma mensagem de confirmação
+5. Agora cole o segundo comando e aperte **Enter**:
+
+```
 claude plugin install sofia
 ```
+
+6. Espere aparecer a confirmação de que o plugin foi instalado
 
 Pronto. A Sofia está instalada.
 
