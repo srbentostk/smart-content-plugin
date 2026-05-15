@@ -690,62 +690,55 @@
             <h3>Escolha como instalar</h3>
             <p>Tem 3 opções. Escolha a que for mais fácil para você:</p>
 
+            <div class="card" style="border-color:rgba(255,77,0,0.4); margin-top:1rem;">
+                <span class="icon">✨</span>
+                <h3>Opção A: Pelo app Claude (recomendado)</h3>
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.5rem;">O jeito mais fácil — sem Terminal</p>
+                <ol>
+                    <li>Baixe o <strong>app Claude</strong> em <a href="https://claude.ai/download" target="_blank" style="color:var(--orange);">claude.ai/download</a> (Mac ou Windows)</li>
+                    <li>Abra o app e faça login com sua conta</li>
+                    <li>Vá em <strong>Configurações > Plugins</strong> e procure por <strong>Sofia</strong></li>
+                    <li>Clique em <strong>Instalar</strong></li>
+                    <li>Pronto! Os comandos <code style="color:var(--orange);">/sofia:*</code> ficam disponíveis nas abas Code e Cowork</li>
+                </ol>
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.5rem;">Se o plugin ainda não estiver no catálogo oficial, use a Opção B ou C.</p>
+            </div>
+
             <div class="card-grid-2" style="margin-top:1rem;">
-                <div class="card" style="border-color:rgba(255,77,0,0.4);">
-                    <span class="icon">✨</span>
-                    <h3>Opção A: Pelo Claude Code (mais simples)</h3>
-                    <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.5rem;">Se já tem Claude Code instalado</p>
-                    <ol>
-                        <li>Abra o <strong>Terminal</strong> e digite <code>claude</code></li>
-                        <li>Dentro do Claude, digite:<br><code style="color:var(--orange);">/plugin install sofia</code></li>
-                        <li>Pronto! A Sofia está instalada.</li>
-                    </ol>
-                </div>
                 <div class="card">
                     <span class="icon">🖱️</span>
-                    <h3>Opção B: Dois cliques (instala tudo)</h3>
+                    <h3>Opção B: Instalador visual (dois cliques)</h3>
                     <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.5rem;">Se não tem nada instalado ainda</p>
                     <ol>
                         <li>Acesse a <a href="https://github.com/srbentostk/smart-content-plugin" target="_blank" style="color:var(--orange);">página do projeto</a></li>
-                        <li>Baixe <strong>Instalar Sofia.app</strong> (Mac) ou <strong>Instalar Sofia.vbs</strong> (Windows)</li>
+                        <li>Baixe <strong>Instalar Sofia.app</strong> (Mac) ou <strong>instalar-sofia-windows.bat</strong> (Windows)</li>
                         <li>Dê dois cliques no arquivo baixado</li>
                         <li>Siga as instruções na tela</li>
                     </ol>
                 </div>
-            </div>
-
-            <div class="card" style="margin-top:1rem;">
-                <span class="icon">⌨️</span>
-                <h3>Opção C: Comando no Terminal (instala tudo)</h3>
-                <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.5rem;">Se prefere usar o Terminal diretamente</p>
-                <ol>
-                    <li>Abra o <strong>Terminal</strong> (Mac) ou <strong>PowerShell</strong> (Windows)</li>
-                    <li>Cole o comando abaixo e aperte <strong>Enter</strong></li>
-                </ol>
-                <div class="code" style="margin-top:0.5rem;" onclick="navigator.clipboard.writeText(this.innerText.replace('clique para copiar','').trim())">curl -sSL https://raw.githubusercontent.com/srbentostk/smart-content-plugin/main/scripts/install.sh | bash<span class="label">clique para copiar</span></div>
+                <div class="card">
+                    <span class="icon">⌨️</span>
+                    <h3>Opção C: Via linha de comando</h3>
+                    <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.5rem;">Se já tem o Claude Code instalado</p>
+                    <p>Cole estes dois comandos:</p>
+                    <div class="code" style="margin-top:0.5rem;" onclick="navigator.clipboard.writeText('claude plugin marketplace add https://github.com/srbentostk/smart-content-plugin\nclaude plugin install sofia')">claude plugin marketplace add https://github.com/srbentostk/smart-content-plugin
+claude plugin install sofia<span class="label">clique para copiar</span></div>
+                </div>
             </div>
 
             <div class="highlight" style="margin-top:1rem;">
-                <p><strong>Não tem Claude Code?</strong> É a versão do Claude que roda no Terminal. Instale com:</p>
-                <p style="margin-top:0.3rem;"><a href="https://claude.ai/download" target="_blank" style="color:var(--orange);font-family:var(--font-mono);font-size:0.85rem;">claude.ai/download →</a> (Mac/Windows/Linux)</p>
-                <p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.3rem;">Ou as opções B e C acima já instalam o Claude Code automaticamente.</p>
+                <p><strong>Ainda não tem o app Claude?</strong> Baixe grátis em:</p>
+                <p style="margin-top:0.3rem;"><a href="https://claude.ai/download" target="_blank" style="color:var(--orange);font-family:var(--font-mono);font-size:0.85rem;">claude.ai/download →</a> (Mac ou Windows)</p>
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.3rem;">A Opção B (instalador visual) também instala o Claude automaticamente.</p>
             </div>
-
-            <p style="margin-top:1rem;">O que as opções B e C instalam automaticamente:</p>
-            <ul>
-                <li>✅ <strong>Node.js</strong> — programa necessário para rodar o Claude Code</li>
-                <li>✅ <strong>Claude Code</strong> — a versão do Claude que roda no Terminal</li>
-                <li>✅ <strong>yt-dlp</strong> — ferramenta grátis que coleta dados de vídeos</li>
-                <li>✅ <strong>Arquivos da Sofia</strong> — baixados para o seu computador</li>
-            </ul>
         </div>
 
         <div class="step" data-step="2">
-            <h3>Abra a Sofia</h3>
-            <p>Se usou a <strong>Opção A</strong> (marketplace), a Sofia já está pronta — digite o comando de setup abaixo.</p>
-            <p>Se usou a <strong>Opção B ou C</strong>, abra o Terminal e digite:</p>
-            <div class="code">claude<span class="label">abrir o Claude</span></div>
+            <h3>Abra o Claude</h3>
+            <p>Se usou a <strong>Opção A</strong> (app Claude), a Sofia já está pronta — digite o comando de setup abaixo.</p>
+            <p>Se usou a <strong>Opção B ou C</strong>, abra o <strong>app Claude</strong> (ou digite <code>claude</code> no Terminal).</p>
             <p>Na primeira vez, o Claude vai pedir para você fazer login. Use sua conta do <a href="https://claude.ai" target="_blank" style="color:var(--orange);">claude.ai</a>.</p>
+            <p style="margin-top:0.5rem; font-size:0.85rem; color:var(--text-muted);">Dica: Use a <strong>aba Code</strong> ou a <strong>aba Cowork</strong> — a aba Cowork é ideal se você não é programador.</p>
         </div>
 
         <div class="step" data-step="3">
@@ -769,7 +762,7 @@
             <h4>Links úteis</h4>
             <ul style="list-style:none;padding-left:0;">
                 <li style="margin-bottom:0.5rem;">🤖 <a href="https://claude.ai" target="_blank" style="color:var(--orange);">claude.ai</a> — criar conta no Claude (obrigatório)</li>
-                <li style="margin-bottom:0.5rem;">💻 <a href="https://claude.ai/download" target="_blank" style="color:var(--orange);">claude.ai/download</a> — baixar o Claude Code</li>
+                <li style="margin-bottom:0.5rem;">💻 <a href="https://claude.ai/download" target="_blank" style="color:var(--orange);">claude.ai/download</a> — baixar o app Claude</li>
                 <li style="margin-bottom:0.5rem;">🔗 <a href="https://apify.com" target="_blank" style="color:var(--purple);">apify.com</a> — criar conta no Apify (recomendado para Instagram)</li>
                 <li style="margin-bottom:0.5rem;">📦 <a href="https://github.com/srbentostk/smart-content-plugin" target="_blank" style="color:var(--text-secondary);">GitHub do projeto</a> — código e instaladores</li>
                 <li>📺 <a href="https://nodejs.org" target="_blank" style="color:var(--text-secondary);">nodejs.org</a> — Node.js (instalado automaticamente)</li>
@@ -978,7 +971,7 @@
                 <span class="arrow">›</span>
             </div>
             <div class="faq-a">
-                <p>Não. A Sofia precisa do Claude Code, que roda no Terminal do computador (Mac ou Windows). Não funciona no celular por enquanto.</p>
+                <p>Você pode despachar tarefas pelo celular usando o app Claude (funcionalidade "Dispatch"), mas a instalação e configuração inicial precisam ser feitas no computador.</p>
             </div>
         </div>
 
@@ -988,17 +981,17 @@
                 <span class="arrow">›</span>
             </div>
             <div class="faq-a">
-                <p>Não. A versão do Claude no navegador não permite instalar plugins como a Sofia. Você precisa do Claude Code (que roda no Terminal). O comando de instalação já instala o Claude Code para você.</p>
+                <p>Não. A versão do Claude no navegador não suporta plugins. Use o <strong>app Claude</strong> (gratuito para baixar em <a href="https://claude.ai/download" target="_blank" style="color:var(--orange);">claude.ai/download</a>). A Sofia funciona nas abas Code e Cowork do app.</p>
             </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-                O que é o Terminal?
+                Preciso usar o Terminal?
                 <span class="arrow">›</span>
             </div>
             <div class="faq-a">
-                <p>É um programa que já vem no seu computador. Parece uma tela escura onde você digita comandos. No Mac, chama "Terminal". No Windows, chama "PowerShell". Você só precisa abrir uma vez para colar o comando de instalação — depois disso, a Sofia cuida de tudo.</p>
+                <p>Não. O app Claude tem interface visual completa. Você pode instalar e usar a Sofia sem abrir o Terminal. O Terminal é opcional, para quem prefere linha de comando.</p>
             </div>
         </div>
 
@@ -1050,8 +1043,16 @@
 
         <div class="glossary-grid">
             <div class="glossary-item">
-                <dt>Terminal</dt>
-                <dd>Programa que já vem no computador. Parece uma tela escura onde você digita comandos. No Mac: "Terminal". No Windows: "PowerShell".</dd>
+                <dt>App Claude</dt>
+                <dd>Aplicativo do Claude para Mac e Windows. Tem abas Code (programação) e Cowork (tarefas gerais). Baixe em claude.ai/download.</dd>
+            </div>
+            <div class="glossary-item">
+                <dt>Cowork</dt>
+                <dd>Aba do app Claude para tarefas do dia a dia. Ideal para quem não é programador.</dd>
+            </div>
+            <div class="glossary-item">
+                <dt>Claude Code</dt>
+                <dd>Versão do Claude para desenvolvedores. Roda na aba Code do app ou no Terminal. Permite instalar plugins como a Sofia.</dd>
             </div>
             <div class="glossary-item">
                 <dt>yt-dlp</dt>
@@ -1060,10 +1061,6 @@
             <div class="glossary-item">
                 <dt>Apify</dt>
                 <dd>Serviço online que complementa o yt-dlp no Instagram e TikTok — traz os comentários com curtidas e as visualizações. Tem $5/mês grátis (~150 análises).</dd>
-            </div>
-            <div class="glossary-item">
-                <dt>Claude Code</dt>
-                <dd>Versão do Claude que roda no Terminal. É mais poderosa que a versão do navegador e permite instalar plugins como a Sofia.</dd>
             </div>
             <div class="glossary-item">
                 <dt>Hook</dt>
