@@ -102,19 +102,13 @@ Baixe o instalador do GitHub e dê dois cliques. Ele instala tudo automaticament
 - **Mac:** baixe `Instalar Sofia.app` e dê dois cliques (na primeira vez, clique com botão direito > Abrir)
 - **Windows:** baixe `instalar-sofia-windows.bat` e dê dois cliques
 
-### Opção C: Via linha de comando (para desenvolvedores)
+### Opção C: Via linha de comando
 
-Se já tem o Claude Code instalado:
+Se já tem o Claude Code instalado, cole estes dois comandos:
 
 ```
 claude plugin marketplace add https://github.com/srbentostk/smart-content-plugin
 claude plugin install sofia
-```
-
-Ou instale tudo de uma vez colando no Terminal/PowerShell:
-
-```
-curl -sSL https://raw.githubusercontent.com/srbentostk/smart-content-plugin/main/scripts/install.sh | bash
 ```
 
 ### Depois de instalar
