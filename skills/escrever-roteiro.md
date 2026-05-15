@@ -1,0 +1,120 @@
+---
+name: sofia-roteiro
+description: Escreve roteiro para conteúdo viral de forma conversacional, guiado pelos princípios de Psicologia Cognitiva do Engajamento. Faz perguntas, sugere hooks, oferece versões e análise crítica.
+---
+
+# Escrever Roteiro
+
+## Trigger
+
+Usuário quer criar um novo roteiro/conteúdo.
+
+## Fluxo conversacional
+
+### Fase 1: Investigação do tema e da bolha
+
+**REGRA:** Não avance para hooks ou escrita sem ter clareza total sobre o tema, a bolha e o contexto emocional do público. Faça perguntas uma a uma ou em blocos curtos — adapte conforme as respostas.
+
+**Bloco 1 — O básico:**
+1. "Qual é o tema ou assunto do vídeo?"
+2. "Qual é seu nicho / quem é seu público?"
+3. "Qual é a IDEIA que você quer que o público saia acreditando?" (a crença)
+
+**Bloco 2 — A bolha e o contexto emocional:**
+4. "O que as pessoas da sua bolha estão comentando sobre esse tema agora? Tem alguma polêmica, debate ou opinião dividida?"
+5. "Qual é a emoção que seu público JÁ carrega sobre esse assunto? (raiva, frustração, curiosidade, medo, esperança...)"
+6. "Tem algum personagem, caso real ou situação específica que seu público já conhece e que se conecta com esse tema?"
+7. "Existe alguma crença popular sobre esse tema que está errada ou que você discorda?"
+
+**Bloco 3 — Contexto criativo:**
+8. "Tem alguma referência de vídeo que gosta?"
+9. "Qual formato de gravação?" (tela dividida, storytelling visual, tela verde, câmera direta, etc.)
+10. "Tem alguma restrição? (duração, tom, assuntos a evitar)"
+
+Se o usuário não souber a ideia, ajude:
+- "Que conflito universal toca esse tema para o maior número de pessoas possível?"
+- "Que emoção seu público JÁ carrega sobre isso?"
+- "Que polêmica ou discussão existe na sua bolha sobre isso?"
+
+**Antes de avançar — validação obrigatória:**
+Avaliar internamente e ser honesto com o usuário:
+- O tema é GRANDE o suficiente? (atinge muitas pessoas?)
+- Existe conflito real que acontece NA CABEÇA do público?
+- Tem familiaridade suficiente para o público entrar rápido?
+
+Se o tema for pequeno ou fraco, diga e sugira como ampliar.
+
+### Fase 2: Formato e estrutura
+
+Consultar `references/estruturas-de-roteiro/` e sugerir 2-3 estruturas:
+> "Com base no que você me disse, sugiro essas estruturas:
+> 1. [Nome] — [descrição curta de como funciona]
+> 2. [Nome] — [descrição curta]
+> 3. [Nome] — [descrição curta]
+> Qual prefere? Posso escrever em mais de uma se quiser comparar."
+
+### Fase 3: Hook (3-5 sugestões)
+
+Gerar hooks variados, cada um usando princípios diferentes:
+
+```
+Hook 1: [frase] 
+→ Usa: Conflito universal + curiosidade
+→ Por que funciona: [1 linha]
+
+Hook 2: [frase]
+→ Usa: Familiaridade + contraste
+→ Por que funciona: [1 linha]
+
+Hook 3: [frase]
+→ Usa: Polêmica/debate mental
+→ Por que funciona: [1 linha]
+
+Hook 4: [frase]
+→ Usa: Aha antecipado + loop
+→ Por que funciona: [1 linha]
+
+(Hook 5 opcional: experimental)
+```
+
+Perguntar: "Qual hook te chamou mais atenção? Pode escolher um, combinar, ou escrever uma versão melhor."
+
+### Fase 4: Roteiro completo
+
+Com hook definido, escrever **2-3 versões**:
+- Cada versão usa estrutura/abordagem diferente
+- Todas aplicam os princípios rigorosamente
+- Todas seguem `references/regras-universais.md`
+- Consultar `references/elementos-viciantes/` e aplicar
+
+Para cada versão, incluir nota curta:
+> "Versão 1 — Estrutura: [nome]. Foco em: [princípio dominante]"
+
+### Fase 5: Escolha e refinamento
+
+Perguntar: "Qual versão prefere? Quer que eu ajuste algo?"
+
+Se o usuário pedir ajustes, fazer sem reescrever tudo.
+
+### Fase 6: Análise crítica (sugestão)
+
+> "Quer que eu rode uma análise crítica nesse roteiro? Vou avaliar se os princípios estão bem aplicados e se tem pontos fracos."
+
+Se sim → ativar agentes `analista-de-principios` e `critico`.
+
+### Fase 7: Melhorias (se aplicável)
+
+Se a crítica identificar problemas:
+> "A análise encontrou [N] pontos para melhorar. Quer que eu reescreva aplicando as sugestões?"
+
+Se sim → ativar agente `melhorador`.
+
+## Regras durante toda escrita
+
+- SEMPRE consultar `references/principios.md` antes de escrever
+- NUNCA inventar personagens, histórias ou dados
+- Se usar pessoa real, DEVE ser verificável com fonte
+- Gerar familiaridade, curiosidade, evitar redundância
+- O tema é a decisão mais importante — validar antes de tudo
+- Moral da história DEVE conectar com a vida do público
+- Usar linguagem da bolha do público

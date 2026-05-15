@@ -1,0 +1,22 @@
+# Sofia 2.0 — Configuração
+# Execute /sofia-setup para configurar automaticamente
+
+sofia:
+  # API Keys
+  apify_api_key: ""          # Obrigatório para Instagram/TikTok
+  youtube_api_key: ""        # Opcional (usa yt-dlp como fallback grátis)
+  firecrawl_api_key: ""      # Opcional (para scraping auxiliar)
+
+  # Output
+  obsidian_vault_path: ""    # Onde salvar análises e roteiros
+  output_format: "obsidian"  # obsidian | markdown | json
+
+  # Ambiente
+  ambiente: ""               # claude-code | gemini | outro
+  setup_completo: false
+  data_setup: ""
+
+  # Preferências
+  idioma: "pt-BR"
+  max_comentarios: 20        # Quantos comentários extrair por vídeo
+  auto_aprender: false       # Salvar padrões automaticamente após análise

@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofia 2.0 — Guia de Instalação e Uso</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #18181b;
+            --bg-card: #1e1e24;
+            --bg-card-hover: #26262e;
+            --orange: #ff4d00;
+            --purple: #7967ff;
+            --pink: #cc3366;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --gradient-main: linear-gradient(135deg, #ff4d00, #7967ff);
+            --gradient-btn: linear-gradient(to right, #ff4d00 0%, #7967ff 51%, #ff4d00 100%);
+            --gradient-subtle: linear-gradient(135deg, rgba(255,77,0,0.1), rgba(121,103,255,0.1));
+            --radius-pill: 100px;
+            --radius-card: 16px;
+            --radius-sm: 8px;
+            --font-body: 'Sora', sans-serif;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            overflow: hidden;
+            background: radial-gradient(ellipse at 50% 0%, rgba(255,77,0,0.15) 0%, transparent 60%),
+                        radial-gradient(ellipse at 50% 100%, rgba(121,103,255,0.1) 0%, transparent 50%),
+                        var(--bg-dark);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--gradient-main);
+        }
+        .hero-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            background: var(--gradient-subtle);
+            border: 1px solid rgba(255,77,0,0.2);
+            color: var(--orange);
+            padding: 0.4rem 1.2rem;
+            border-radius: var(--radius-pill);
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* TOC */
+        .toc {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 0 auto;
+            max-width: 750px;
+        }
+        .toc a {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-pill);
+            border: 1px solid #2e2e36;
+            transition: all 0.25s;
+        }
+        .toc a:hover {
+            color: var(--text-primary);
+            border-color: var(--orange);
+            background: rgba(255,77,0,0.08);
+        }
+
+        /* Container */
+        .container { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+        /* Sections */
+        .section { margin-bottom: 3.5rem; }
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+        }
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #2e2e36;
+        }
+        .section-intro {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Cards */
+        .card-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        @media (max-width: 600px) { .card-grid-2 { grid-template-columns: 1fr; } }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-card);
+            padding: 1.5rem;
+            border: 1px solid #2e2e36;
+            transition: all 0.25s;
+        }
+        .card:hover {
+            border-color: rgba(255,77,0,0.3);
+            background: var(--bg-card-hover);
+        }
+        .card .icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+        .card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+        .card p, .card li {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        .card ol, .card ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+        .card li { margin-bottom: 0.3rem; }
+
+        /* Pricing cards */
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid #2e2e36;
+            border-radius: var(--radius-card);
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+        .pricing-card.required::before { background: var(--gradient-main); }
+        .pricing-card.optional::before { background: linear-gradient(90deg, #2e2e36, #71717a); }
+        .badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.7rem;
+            border-radius: var(--radius-pill);
+            margin-bottom: 0.8rem;
+        }
+        .badge.req { background: rgba(255,77,0,0.15); color: var(--orange); border: 1px solid rgba(255,77,0,0.3); }
+        .badge.opt { background: rgba(121,103,255,0.1); color: var(--purple); border: 1px solid rgba(121,103,255,0.2); }
+        .badge.free { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); }
+        .pricing-card h3 { font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.3rem; }
+        .pricing-card .price { font-family: var(--font-mono); font-size: 0.85rem; color: #4ade80; margin-bottom: 0.5rem; }
+        .pricing-card .price.paid { color: var(--orange); }
+        .pricing-card .desc { font-size: 0.85rem; color: var(--text-secondary); }
+        .pricing-card .account { display: inline-block; margin-top: 0.8rem; font-size: 0.75rem; color: var(--purple); font-family: var(--font-mono); }
+
+        /* Steps */
+        .step {
+            position: relative;
+            padding-left: 3.5rem;
+            margin-bottom: 2rem;
+        }
+        .step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0; top: 0;
+            width: 2.2rem; height: 2.2rem;
+            background: var(--gradient-main);
+            color: white;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        .step::after {
+            content: '';
+            position: absolute;
+            left: 1.05rem;
+            top: 2.5rem;
+            bottom: -1.2rem;
+            width: 2px;
+            background: #2e2e36;
+        }
+        .step:last-child::after { display: none; }
+        .step h3 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .step p, .step li { color: var(--text-secondary); font-size: 0.9rem; }
+        .step ol, .step ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+        .step li { margin-bottom: 0.3rem; }
+
+        /* Code blocks */
+        .code {
+            background: #0f0f12;
+            border: 1px solid #2e2e36;
+            border-radius: var(--radius-sm);
+            padding: 0.8rem 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: #4ade80;
+            margin: 0.6rem 0;
+            overflow-x: auto;
+            position: relative;
+            cursor: pointer;
+            user-select: all;
+        }
+        .code .label {
+            position: absolute;
+            top: 0.4rem;
+            right: 0.6rem;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            user-select: none;
+        }
+        .code:hover { border-color: var(--orange); }
+        .code:hover .label { color: var(--orange); }
+
+        /* Highlight box */
+        .highlight {
+            background: var(--gradient-subtle);
+            border: 1px solid rgba(255,77,0,0.2);
+            border-radius: var(--radius-card);
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .highlight p { font-size: 0.9rem; color: var(--text-secondary); }
+        .highlight strong { color: var(--text-primary); }
+
+        /* Warning box */
+        .warning {
+            background: rgba(121,103,255,0.06);
+            border: 1px solid rgba(121,103,255,0.2);
+            border-radius: var(--radius-card);
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+        }
+        .warning p { font-size: 0.85rem; color: var(--text-secondary); }
+        .warning strong { color: var(--purple); }
+
+        /* Commands grid */
+        .cmd-grid { display: grid; grid-template-columns: 1fr; gap: 0.8rem; }
+        .cmd-card {
+            background: var(--bg-card);
+            border: 1px solid #2e2e36;
+            border-radius: var(--radius-card);
+            padding: 1.2rem 1.5rem;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 1rem;
+            align-items: center;
+            transition: all 0.25s;
+        }
+        .cmd-card:hover { border-color: rgba(255,77,0,0.3); background: var(--bg-card-hover); }
+        .cmd-name { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--orange); white-space: nowrap; }
+        .cmd-desc { font-size: 0.85rem; color: var(--text-secondary); }
+        .cmd-cost {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.25rem 0.6rem;
+            border-radius: var(--radius-pill);
+            white-space: nowrap;
+        }
+        .cmd-cost.free { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); }
+        .cmd-cost.paid { background: rgba(255,77,0,0.1); color: var(--orange); border: 1px solid rgba(255,77,0,0.2); }
+        @media (max-width: 600px) { .cmd-card { grid-template-columns: 1fr; gap: 0.4rem; } }
+
+        /* Chat demo */
+        .chat {
+            background: var(--bg-card);
+            border: 1px solid #2e2e36;
+            border-radius: var(--radius-card);
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        .chat-msg { margin-bottom: 1rem; display: flex; gap: 0.8rem; }
+        .chat-msg:last-child { margin-bottom: 0; }
+        .chat-avatar {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.7rem; font-weight: 700;
+            flex-shrink: 0; margin-top: 2px;
+        }
+        .chat-avatar.user { background: var(--gradient-main); color: white; }
+        .chat-avatar.sofia { background: rgba(121,103,255,0.2); color: var(--purple); }
+        .chat-bubble { font-size: 0.85rem; line-height: 1.5; }
+        .chat-bubble .who { font-size: 0.7rem; font-weight: 600; margin-bottom: 0.2rem; }
+        .chat-bubble .who.user-name { color: var(--orange); }
+        .chat-bubble .who.sofia-name { color: var(--purple); }
+        .chat-bubble p { color: var(--text-secondary); }
+
+        /* Flow */
+        .flow { display: flex; flex-direction: column; align-items: center; gap: 0; margin: 1.5rem 0; }
+        .flow-step {
+            background: var(--bg-card);
+            border: 1px solid #2e2e36;
+            border-radius: var(--radius-sm);
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            width: 100%;
+            max-width: 420px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .flow-step strong { color: var(--text-primary); font-family: var(--font-heading); }
+        .flow-step .cmd { font-family: var(--font-mono); font-size: 0.75rem; color: var(--orange); }
+        .flow-arrow { color: var(--text-muted); font-size: 1.2rem; line-height: 1; padding: 0.3rem 0; }
+
+        /* FAQ */
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid #2e2e36;
+            border-radius: var(--radius-card);
+            margin-bottom: 0.6rem;
+            overflow: hidden;
+        }
+        .faq-q {
+            padding: 1rem 1.2rem;
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .faq-q:hover { background: var(--bg-card-hover); }
+        .faq-q .arrow { color: var(--text-muted); transition: transform 0.2s; }
+        .faq-a { display: none; padding: 0 1.2rem 1rem; color: var(--text-secondary); font-size: 0.85rem; }
+        .faq-item.open .faq-a { display: block; }
+        .faq-item.open .arrow { transform: rotate(90deg); }
+
+        /* Glossary */
+        .glossary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+        @media (max-width: 600px) { .glossary-grid { grid-template-columns: 1fr; } }
+        .glossary-item {
+            background: var(--bg-card);
+            border: 1px solid #2e2e36;
+            border-radius: var(--radius-sm);
+            padding: 0.8rem 1rem;
+        }
+        .glossary-item dt { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 600; color: var(--orange); margin-bottom: 0.2rem; }
+        .glossary-item dd { font-size: 0.8rem; color: var(--text-secondary); }
+
+        /* Table */
+        .summary-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+        .summary-table th {
+            font-family: var(--font-heading); font-size: 0.7rem; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--text-muted); text-align: left;
+            padding: 0.6rem 0.8rem; border-bottom: 1px solid #2e2e36;
+        }
+        .summary-table td { padding: 0.7rem 0.8rem; border-bottom: 1px solid #1e1e24; color: var(--text-secondary); }
+        .summary-table tr:hover td { background: var(--bg-card); }
+        .summary-table .mono { font-family: var(--font-mono); font-size: 0.75rem; color: var(--orange); }
+        .check { color: #4ade80; }
+        .dash { color: var(--text-muted); }
+
+        /* Footer */
+        .footer { text-align: center; padding: 2rem; border-top: 1px solid #2e2e36; margin-top: 2rem; }
+        .footer p { font-size: 0.75rem; color: var(--text-muted); }
+        .footer .brand {
+            font-family: var(--font-heading); font-weight: 700;
+            background: var(--gradient-main);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        /* Screenshot placeholder */
+        .screenshot {
+            background: #0f0f12;
+            border: 1px dashed #2e2e36;
+            border-radius: var(--radius-sm);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+        }
+
+        /* Instruction block */
+        .instruction {
+            background: var(--bg-card);
+            border: 1px solid #2e2e36;
+            border-radius: var(--radius-card);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .instruction h4 {
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .instruction p, .instruction li { color: var(--text-secondary); font-size: 0.88rem; }
+        .instruction ol, .instruction ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+        .instruction li { margin-bottom: 0.4rem; }
+
+        /* Extraction visual */
+        .extraction-visual {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1rem;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+        @media (max-width: 600px) { .extraction-visual { grid-template-columns: 1fr; } }
+        .extraction-input, .extraction-output {
+            background: var(--bg-card);
+            border: 1px solid #2e2e36;
+            border-radius: var(--radius-card);
+            padding: 1.2rem;
+        }
+        .extraction-arrow { font-size: 1.5rem; color: var(--orange); text-align: center; }
+        @media (max-width: 600px) { .extraction-arrow { transform: rotate(90deg); } }
+
+        /* Feature cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid #2e2e36;
+            border-radius: var(--radius-card);
+            padding: 1.3rem;
+            transition: all 0.25s;
+        }
+        .feature-card:hover { border-color: rgba(255,77,0,0.3); }
+        .feature-card .feat-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+        .feature-card h4 { font-family: var(--font-heading); font-size: 0.95rem; margin-bottom: 0.3rem; }
+        .feature-card p { font-size: 0.82rem; color: var(--text-secondary); }
+
+        /* Big install box */
+        .install-box {
+            background: linear-gradient(135deg, rgba(255,77,0,0.08), rgba(121,103,255,0.08));
+            border: 2px solid rgba(255,77,0,0.3);
+            border-radius: var(--radius-card);
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .install-box h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .install-box p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; }
+        .install-box .code { font-size: 0.85rem; text-align: left; }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-badge">Guia completo</div>
+    <h1>Sofia 2.0</h1>
+    <p>Sua assistente de inteligência artificial que pesquisa vídeos virais e te ajuda a escrever roteiros que prendem a atenção.</p>
+    <div class="toc">
+        <a href="#o-que-e">O que é</a>
+        <a href="#o-que-faz">O que faz</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#instalacao">Instalação</a>
+        <a href="#comandos">Comandos</a>
+        <a href="#sugestoes">Sugestões</a>
+        <a href="#faq">Perguntas frequentes</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- O QUE É A SOFIA -->
+    <div class="section" id="o-que-e">
+        <div class="section-label">Introdução</div>
+        <div class="section-title">O que é a Sofia?</div>
+        <p class="section-intro">
+            A Sofia é uma assistente inteligente que vive dentro do Claude (uma inteligência artificial). Ela faz coisas que você levaria horas fazendo manualmente — em segundos.
+        </p>
+
+        <div class="card-grid-2">
+            <div class="card">
+                <span class="icon">🔍</span>
+                <h3>Pesquisa de vídeos</h3>
+                <p>Você manda o link de um vídeo viral e ela descobre <strong>por que aquele vídeo funcionou</strong> — frase por frase, com explicações sobre o que prende a atenção das pessoas.</p>
+            </div>
+            <div class="card">
+                <span class="icon">✍️</span>
+                <h3>Escrita de roteiros</h3>
+                <p>Ela te ajuda a <strong>escrever o texto do seu vídeo</strong>, fazendo perguntas para entender o que você quer dizer, sugerindo várias opções de abertura, e escrevendo versões completas.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- O QUE A SOFIA FAZ (detalhado, para leigos) -->
+    <div class="section" id="o-que-faz">
+        <div class="section-label">Em detalhe</div>
+        <div class="section-title">O que a Sofia consegue extrair de um vídeo?</div>
+        <p class="section-intro">
+            Quando você manda o link de um vídeo, a Sofia vai até a internet, coleta diversas informações daquele vídeo, e traz tudo organizado para você. Veja o que ela busca:
+        </p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feat-icon">📝</div>
+                <h4>Texto falado no vídeo</h4>
+                <p>Ela pega tudo que a pessoa falou no vídeo e transforma em texto escrito. É como ter a transcrição completa do que foi dito.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feat-icon">💬</div>
+                <h4>Comentários mais curtidos</h4>
+                <p>Ela pega os comentários que mais receberam curtidas. Isso mostra o que o público mais sentiu ao assistir o vídeo.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feat-icon">📊</div>
+                <h4>Números do vídeo</h4>
+                <p>Quantas pessoas assistiram, quantas curtiram, quantas comentaram. Esses números mostram o alcance do vídeo.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feat-icon">🖼️</div>
+                <h4>Capa do vídeo</h4>
+                <p>A imagem de capa (thumbnail) que aparece antes de clicar no vídeo. Útil para entender como o vídeo atrai o clique.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feat-icon">🎯</div>
+                <h4>Primeira frase (hook)</h4>
+                <p>A frase de abertura é separada e analisada. É ela que faz a pessoa parar de rolar o feed e prestar atenção.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feat-icon">🧠</div>
+                <h4>Análise frase a frase</h4>
+                <p>Cada frase do vídeo é marcada com o princípio que ela usa para prender a atenção — curiosidade, conflito, familiaridade, etc.</p>
+            </div>
+        </div>
+
+        <div class="highlight">
+            <p><strong>De onde vêm essas informações?</strong> A Sofia usa uma ferramenta chamada yt-dlp que vai até o site do vídeo (YouTube, Instagram, TikTok) e coleta essas informações automaticamente. É como se ela "lesse" a página do vídeo e trouxesse tudo para você. Essa ferramenta é 100% gratuita e funciona com milhares de sites.</p>
+        </div>
+    </div>
+
+    <!-- COMO FUNCIONA POR TRÁS -->
+    <div class="section" id="como-funciona">
+        <div class="section-label">Por trás</div>
+        <div class="section-title">Como a Sofia busca essas informações?</div>
+        <p class="section-intro">
+            A Sofia usa duas ferramentas para coletar dados dos vídeos. Ela sempre tenta a ferramenta gratuita primeiro.
+        </p>
+
+        <!-- yt-dlp -->
+        <div class="pricing-card required">
+            <span class="badge req">Ferramenta principal</span>
+            <span class="badge free">100% grátis</span>
+            <h3>yt-dlp</h3>
+            <div class="price">Grátis — sem conta, sem limite de uso</div>
+            <div class="desc">
+                <p>É um programa que roda no seu computador e coleta informações de vídeos. Funciona com <strong>milhares de sites</strong>.</p>
+                <p style="margin-top:0.5rem;"><strong>No YouTube, ele pega TUDO que a Sofia precisa:</strong></p>
+                <ul style="margin-top:0.3rem; padding-left:1.2rem;">
+                    <li>O <strong>texto falado</strong> no vídeo (transcrição completa)</li>
+                    <li>Os <strong>comentários mais curtidos</strong> (com a quantidade de curtidas de cada um)</li>
+                    <li>Os <strong>números</strong> do vídeo (visualizações, curtidas, data)</li>
+                    <li>A <strong>capa</strong> (imagem de thumbnail)</li>
+                </ul>
+                <p style="margin-top:0.5rem;"><strong>No Instagram e TikTok, ele pega dados parciais:</strong></p>
+                <ul style="margin-top:0.3rem; padding-left:1.2rem;">
+                    <li>✅ Curtidas do vídeo, descrição, capa, áudio</li>
+                    <li>❌ Não traz as <strong>curtidas de cada comentário</strong> (dado essencial para entender o público)</li>
+                    <li>❌ Traz poucos comentários e não traz as visualizações</li>
+                </ul>
+                <p style="margin-top:0.5rem;">Por isso, para Instagram e TikTok, a Sofia complementa com o Apify (veja abaixo).</p>
+            </div>
+        </div>
+
+        <!-- Apify -->
+        <div class="pricing-card required">
+            <span class="badge req">Necessário para Instagram</span>
+            <span class="badge opt">Tem créditos grátis</span>
+            <h3>Apify</h3>
+            <div class="price paid">~R$0,15 por vídeo — $5/mês grátis (~150 análises)</div>
+            <div class="desc">
+                <p>É um serviço online que coleta dados completos de redes sociais. Para <strong>Instagram</strong> (a plataforma mais usada pelos criadores), ele é importante porque traz o que o yt-dlp não consegue:</p>
+                <ul style="margin-top:0.5rem; padding-left:1.2rem;">
+                    <li>Os <strong>comentários mais curtidos COM a quantidade de curtidas</strong> — isso mostra o que o público mais sentiu ao ver o vídeo</li>
+                    <li>O número de <strong>visualizações</strong> do Reel</li>
+                    <li>Dados extras como <strong>compartilhamentos</strong> e <strong>salvamentos</strong></li>
+                </ul>
+                <p style="margin-top:0.5rem;"><strong>Preço:</strong> Ao criar a conta, você ganha $5 por mês em créditos grátis. Cada vídeo custa ~$0.03 (3 centavos de dólar). Com os créditos grátis, dá para analisar uns 150 vídeos por mês sem pagar.</p>
+                <p style="margin-top:0.5rem;"><strong>Para YouTube:</strong> Não precisa do Apify — o yt-dlp já faz tudo.</p>
+            </div>
+            <span class="account">Criar conta: apify.com (recomendado se usa Instagram)</span>
+        </div>
+
+        <div class="highlight">
+            <p>🎯 <strong>Resumo por plataforma:</strong></p>
+            <p style="margin-top:0.3rem;"><strong>YouTube</strong> → yt-dlp faz tudo (100% grátis)</p>
+            <p><strong>Instagram</strong> → yt-dlp pega o áudio e a capa + Apify pega os comentários com curtidas e as visualizações</p>
+            <p><strong>TikTok</strong> → igual ao Instagram</p>
+            <p style="margin-top:0.5rem;">A Sofia nunca gasta dinheiro sem perguntar antes. Se o Apify não estiver configurado, ela avisa e mostra o que conseguiu pegar só com o yt-dlp.</p>
+        </div>
+    </div>
+
+    <!-- INSTALAÇÃO -->
+    <div class="section" id="instalacao">
+        <div class="section-label">Passo a passo</div>
+        <div class="section-title">Instalação</div>
+        <p class="section-intro">
+            A instalação acontece em duas etapas: primeiro você abre o Terminal do seu computador, depois cola um comando que faz tudo automaticamente.
+        </p>
+
+        <div class="step" data-step="1">
+            <h3>Abra o Terminal</h3>
+            <p>O Terminal é um programa que já vem no seu computador. Ele parece uma tela preta onde você digita comandos. Não se preocupe — você só precisa copiar e colar uma coisa.</p>
+
+            <div class="card-grid-2" style="margin-top:1rem;">
+                <div class="card">
+                    <span class="icon">🍎</span>
+                    <h3>No Mac</h3>
+                    <ol>
+                        <li>Aperte <strong>Command + Barra de Espaço</strong> no teclado</li>
+                        <li>Digite <strong>Terminal</strong></li>
+                        <li>Clique no ícone que aparece</li>
+                    </ol>
+                    <div class="screenshot">Vai abrir uma janela escura com um cursor piscando — é ali que você vai colar o comando</div>
+                </div>
+                <div class="card">
+                    <span class="icon">🪟</span>
+                    <h3>No Windows</h3>
+                    <ol>
+                        <li>Clique no botão <strong>Iniciar</strong> (cantinho inferior esquerdo)</li>
+                        <li>Digite <strong>PowerShell</strong></li>
+                        <li>Clique em <strong>Windows PowerShell</strong></li>
+                    </ol>
+                    <div class="screenshot">Vai abrir uma janela azul/preta com um cursor piscando</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="step" data-step="2">
+            <h3>Cole o comando de instalação</h3>
+            <p>Com o Terminal aberto, copie o comando abaixo (clique nele para selecionar) e cole no Terminal. Depois aperte <strong>Enter</strong>.</p>
+
+            <div class="install-box">
+                <h3>Comando único de instalação</h3>
+                <p>Copie e cole no Terminal. Ele instala tudo automaticamente.</p>
+                <div class="code" onclick="navigator.clipboard.writeText(this.innerText.replace('clique para copiar','').trim())">curl -sSL https://raw.githubusercontent.com/srbentostk/smart-content-plugin/main/scripts/install.sh | bash<span class="label">clique para copiar</span></div>
+            </div>
+
+            <div class="warning">
+                <p>⚠️ <strong>Nota:</strong> O repositório precisa estar publicado no GitHub para o comando funcionar. Se o link não funcionar, peça o link atualizado ao seu instrutor.</p>
+            </div>
+
+            <p>O que esse comando faz (tudo sozinho, sem você precisar fazer nada):</p>
+            <ul>
+                <li>✅ Instala o <strong>Node.js</strong> (programa necessário para rodar o Claude Code)</li>
+                <li>✅ Instala o <strong>Claude Code</strong> (a versão do Claude que roda no Terminal)</li>
+                <li>✅ Instala o <strong>yt-dlp</strong> (a ferramenta que coleta dados de vídeos — grátis)</li>
+                <li>✅ Baixa os <strong>arquivos da Sofia</strong> para o seu computador</li>
+            </ul>
+            <p style="margin-top:0.8rem;">A instalação pode levar uns 5 minutos. Você vai ver mensagens aparecendo na tela — isso é normal.</p>
+        </div>
+
+        <div class="step" data-step="3">
+            <h3>Abra a Sofia</h3>
+            <p>Depois que a instalação terminar, o próprio Terminal vai mostrar o comando para abrir a Sofia. É só digitar:</p>
+            <div class="code">cd ~/sofia-2.0 && claude<span class="label">abrir a Sofia</span></div>
+            <p>Na primeira vez, o Claude vai pedir para você fazer login com sua conta. Siga as instruções na tela.</p>
+
+            <div class="warning">
+                <p><strong>Precisa ter conta no Claude:</strong> Se ainda não tem, crie grátis em <strong>claude.ai</strong>. A versão grátis funciona, mas a Pro ($20/mês) permite usar mais.</p>
+            </div>
+        </div>
+
+        <div class="step" data-step="4">
+            <h3>Configure a Sofia</h3>
+            <p>Com o Claude aberto, digite:</p>
+            <div class="code">/sofia-setup<span class="label">configuração inicial</span></div>
+            <p>A Sofia vai fazer uma verificação rápida:</p>
+            <ul>
+                <li>Verifica se o yt-dlp está funcionando</li>
+                <li>Pergunta se você tem conta no Apify (opcional — pode pular)</li>
+                <li>Faz um teste rápido para garantir que tudo está certo</li>
+                <li>Mostra uma mensagem de sucesso</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <p>🎉 <strong>Pronto!</strong> A Sofia está instalada. Agora é só usar os comandos abaixo.</p>
+        </div>
+
+        <!-- Apify setup (opcional) -->
+        <div class="instruction">
+            <h4>⚡ Extra: Configurar o Apify (opcional)</h4>
+            <p>Só faça isso se o yt-dlp não conseguir pegar alguma informação do Instagram ou TikTok. A maioria das pessoas não precisa.</p>
+            <ol>
+                <li>Abra <strong>apify.com</strong> no navegador</li>
+                <li>Clique em "Start free" e crie sua conta (e-mail ou Google)</li>
+                <li>Clique no seu nome no canto superior direito → <strong>Settings</strong></li>
+                <li>Clique em <strong>Integrations</strong></li>
+                <li>Copie o código que aparece em "Personal API Token"</li>
+                <li>Volte ao Claude e rode <code>/sofia-setup</code> novamente — cole o código quando ela pedir</li>
+            </ol>
+            <p style="margin-top:0.5rem;">Você ganha R$25 por mês em créditos grátis. Cada análise custa ~R$0,15. Dá para umas 150 análises/mês sem pagar.</p>
+        </div>
+    </div>
+
+    <!-- COMANDOS -->
+    <div class="section" id="comandos">
+        <div class="section-label">Uso</div>
+        <div class="section-title">O que você pode fazer com a Sofia</div>
+        <p class="section-intro">
+            Depois de instalar, você usa a Sofia digitando comandos simples. São como "botões" que você escreve. Aqui está tudo que ela faz:
+        </p>
+
+        <div class="cmd-grid">
+            <div class="cmd-card">
+                <span class="cmd-name">/sofia-analisar</span>
+                <span class="cmd-desc"><strong>Analisar um vídeo.</strong> Você cola o link e ela busca o texto falado, os comentários mais curtidos, os números e faz uma análise completa do que faz aquele vídeo funcionar.</span>
+                <span class="cmd-cost free">Grátis</span>
+            </div>
+            <div class="cmd-card">
+                <span class="cmd-name">/sofia-roteiro</span>
+                <span class="cmd-desc"><strong>Escrever um roteiro.</strong> Ela faz perguntas sobre seu tema, seu público e o que as pessoas estão comentando. Depois sugere aberturas e escreve 2-3 versões do roteiro completo.</span>
+                <span class="cmd-cost free">Grátis</span>
+            </div>
+            <div class="cmd-card">
+                <span class="cmd-name">/sofia-critica</span>
+                <span class="cmd-desc"><strong>Criticar um roteiro.</strong> Você cola um roteiro (seu ou de outra pessoa) e ela avalia com honestidade: está bom? Está chato? O que está faltando?</span>
+                <span class="cmd-cost free">Grátis</span>
+            </div>
+            <div class="cmd-card">
+                <span class="cmd-name">/sofia-melhorar</span>
+                <span class="cmd-desc"><strong>Melhorar um roteiro.</strong> Depois de uma crítica, ela reescreve o roteiro corrigindo os problemas que encontrou.</span>
+                <span class="cmd-cost free">Grátis</span>
+            </div>
+            <div class="cmd-card">
+                <span class="cmd-name">/sofia-dashboard</span>
+                <span class="cmd-desc"><strong>Ver painel visual.</strong> Gera uma página bonita com a análise completa de um vídeo — perfeita para estudar.</span>
+                <span class="cmd-cost free">Grátis</span>
+            </div>
+            <div class="cmd-card">
+                <span class="cmd-name">/sofia-exportar</span>
+                <span class="cmd-desc"><strong>Salvar e aprender.</strong> Exporta tudo que a Sofia aprendeu em arquivos organizados e faz ela ficar mais inteligente a cada análise.</span>
+                <span class="cmd-cost free">Grátis</span>
+            </div>
+        </div>
+
+        <div class="warning">
+            <p><strong>Sobre custos:</strong> Todas as funções são grátis. Para analisar vídeos do <strong>YouTube</strong>, é 100% grátis. Para vídeos do <strong>Instagram e TikTok</strong>, a Sofia usa o Apify para pegar os comentários com curtidas (~R$0,15 por vídeo) — mas o Apify dá $5 grátis por mês, o que dá para umas 150 análises sem pagar nada.</p>
+        </div>
+    </div>
+
+    <!-- EXEMPLO DE USO (Chat demo) -->
+    <div class="section">
+        <div class="section-label">Exemplo</div>
+        <div class="section-title">Como é usar a Sofia na prática</div>
+        <p class="section-intro">Veja como é uma conversa real com a Sofia ao analisar um vídeo:</p>
+
+        <div class="chat">
+            <div class="chat-msg">
+                <div class="chat-avatar user">V</div>
+                <div class="chat-bubble">
+                    <div class="who user-name">Você</div>
+                    <p>/sofia-analisar https://youtube.com/watch?v=exemplo123</p>
+                </div>
+            </div>
+            <div class="chat-msg">
+                <div class="chat-avatar sofia">S</div>
+                <div class="chat-bubble">
+                    <div class="who sofia-name">Sofia</div>
+                    <p>Detectei um vídeo do YouTube. Vou buscar as informações...</p>
+                    <p style="margin-top:0.3rem;">✅ Texto falado extraído (342 palavras)<br>
+                    ✅ 20 comentários mais curtidos coletados<br>
+                    ✅ Métricas: 2.4M views, 187K curtidas<br>
+                    ✅ Capa do vídeo salva</p>
+                    <p style="margin-top:0.5rem;">Agora vou analisar frase a frase por que esse vídeo funcionou...</p>
+                </div>
+            </div>
+            <div class="chat-msg">
+                <div class="chat-avatar sofia">S</div>
+                <div class="chat-bubble">
+                    <div class="who sofia-name">Sofia</div>
+                    <p><strong>Hook (frase de abertura):</strong> "Você sabia que esse cara faliu 3 vezes antes de ficar bilionário?"</p>
+                    <p style="margin-top:0.3rem;">→ Usa: Curiosidade + Familiaridade + Contraste<br>→ Por que funciona: cria uma lacuna ("como ele conseguiu?") e usa números concretos que prendem a atenção.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUGESTÕES DE USO -->
+    <div class="section" id="sugestoes">
+        <div class="section-label">Dicas</div>
+        <div class="section-title">Sugestões de como tirar o máximo da Sofia</div>
+
+        <div class="flow">
+            <div class="flow-step">
+                <strong>1. Analise um vídeo que você admira</strong><br>
+                <span class="cmd">/sofia-analisar</span> + link do vídeo
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <strong>2. Estude a análise</strong><br>
+                Entenda por que cada frase funciona
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <strong>3. Escreva seu próprio roteiro</strong><br>
+                <span class="cmd">/sofia-roteiro</span> sobre um tema parecido
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <strong>4. Peça uma crítica honesta</strong><br>
+                <span class="cmd">/sofia-critica</span>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <strong>5. Melhore com base na crítica</strong><br>
+                <span class="cmd">/sofia-melhorar</span>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <strong>6. Repita!</strong><br>
+                Quanto mais você analisa e escreve, melhor a Sofia fica
+            </div>
+        </div>
+
+        <div class="highlight">
+            <p>💡 <strong>Dica:</strong> Analise pelo menos 3 vídeos virais do seu nicho antes de escrever seu primeiro roteiro. A Sofia aprende com cada análise e fica mais inteligente para te ajudar.</p>
+        </div>
+    </div>
+
+    <!-- TABELA RESUMO -->
+    <div class="section">
+        <div class="section-label">Resumo</div>
+        <div class="section-title">Tudo que a Sofia faz — de um olhar</div>
+
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>Função</th>
+                    <th>Comando</th>
+                    <th>Grátis?</th>
+                    <th>Plataformas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Analisar vídeo</td>
+                    <td class="mono">/sofia-analisar</td>
+                    <td><span class="check">✓ Sim</span></td>
+                    <td>YouTube, Instagram, TikTok, e outros</td>
+                </tr>
+                <tr>
+                    <td>Escrever roteiro</td>
+                    <td class="mono">/sofia-roteiro</td>
+                    <td><span class="check">✓ Sim</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Criticar roteiro</td>
+                    <td class="mono">/sofia-critica</td>
+                    <td><span class="check">✓ Sim</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Melhorar roteiro</td>
+                    <td class="mono">/sofia-melhorar</td>
+                    <td><span class="check">✓ Sim</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Ver painel visual</td>
+                    <td class="mono">/sofia-dashboard</td>
+                    <td><span class="check">✓ Sim</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Exportar aprendizados</td>
+                    <td class="mono">/sofia-exportar</td>
+                    <td><span class="check">✓ Sim</span></td>
+                    <td>—</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section" id="faq">
+        <div class="section-label">Dúvidas</div>
+        <div class="section-title">Perguntas frequentes</div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                Preciso pagar alguma coisa?
+                <span class="arrow">›</span>
+            </div>
+            <div class="faq-a">
+                <p>A Sofia em si é grátis. Você precisa de uma conta no Claude (grátis ou Pro a $20/mês). O yt-dlp é 100% grátis. Para analisar vídeos do YouTube, não gasta nada. Para Instagram/TikTok, o Apify é recomendado (~R$0,15 por vídeo), mas ele dá $5 grátis por mês — o que cobre umas 150 análises.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                Funciona no celular?
+                <span class="arrow">›</span>
+            </div>
+            <div class="faq-a">
+                <p>Não. A Sofia precisa do Claude Code, que roda no Terminal do computador (Mac ou Windows). Não funciona no celular por enquanto.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                Funciona no navegador (claude.ai)?
+                <span class="arrow">›</span>
+            </div>
+            <div class="faq-a">
+                <p>Não. A versão do Claude no navegador não permite instalar plugins como a Sofia. Você precisa do Claude Code (que roda no Terminal). O comando de instalação já instala o Claude Code para você.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                O que é o Terminal?
+                <span class="arrow">›</span>
+            </div>
+            <div class="faq-a">
+                <p>É um programa que já vem no seu computador. Parece uma tela escura onde você digita comandos. No Mac, chama "Terminal". No Windows, chama "PowerShell". Você só precisa abrir uma vez para colar o comando de instalação — depois disso, a Sofia cuida de tudo.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                Com quais sites a Sofia funciona?
+                <span class="arrow">›</span>
+            </div>
+            <div class="faq-a">
+                <p>A ferramenta que a Sofia usa (yt-dlp) funciona com milhares de sites. Os principais são: <strong>YouTube, Instagram, TikTok, Twitter/X, Reddit, Facebook, Twitch e Vimeo</strong>. Se o site tiver vídeo público, provavelmente funciona.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                A instalação deu erro, o que faço?
+                <span class="arrow">›</span>
+            </div>
+            <div class="faq-a">
+                <p>Feche o Terminal e abra novamente. Cole o comando de instalação de novo. Se continuar dando erro, tire um print da mensagem de erro e envie para seu instrutor — ele vai te ajudar.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                O que acontece se o yt-dlp não conseguir pegar um vídeo?
+                <span class="arrow">›</span>
+            </div>
+            <div class="faq-a">
+                <p>A Sofia avisa o que conseguiu e o que não conseguiu pegar. Se o Apify estiver configurado, ela usa automaticamente para completar (os créditos grátis cobrem ~150 análises/mês). Se não, ela pergunta se você quer configurar ou se prefere colar o texto do vídeo manualmente.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                Preciso do Apify para usar a Sofia?
+                <span class="arrow">›</span>
+            </div>
+            <div class="faq-a">
+                <p><strong>Para YouTube:</strong> Não precisa. O yt-dlp faz tudo de graça. <strong>Para Instagram e TikTok:</strong> É muito recomendado. Sem o Apify, a Sofia não consegue pegar os comentários mais curtidos (com a quantidade de curtidas de cada um) — e isso é essencial para entender o que o público sentiu. O Apify tem $5 grátis por mês, o que dá para analisar ~150 vídeos sem pagar.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- GLOSSÁRIO -->
+    <div class="section" id="glossario">
+        <div class="section-label">Referência</div>
+        <div class="section-title">Glossário — Palavras usadas neste guia</div>
+
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <dt>Terminal</dt>
+                <dd>Programa que já vem no computador. Parece uma tela escura onde você digita comandos. No Mac: "Terminal". No Windows: "PowerShell".</dd>
+            </div>
+            <div class="glossary-item">
+                <dt>yt-dlp</dt>
+                <dd>Ferramenta gratuita que coleta dados de vídeos. No YouTube pega tudo (texto, comentários com curtidas, números). No Instagram/TikTok pega dados parciais (áudio, capa, curtidas do vídeo).</dd>
+            </div>
+            <div class="glossary-item">
+                <dt>Apify</dt>
+                <dd>Serviço online que complementa o yt-dlp no Instagram e TikTok — traz os comentários com curtidas e as visualizações. Tem $5/mês grátis (~150 análises).</dd>
+            </div>
+            <div class="glossary-item">
+                <dt>Claude Code</dt>
+                <dd>Versão do Claude que roda no Terminal. É mais poderosa que a versão do navegador e permite instalar plugins como a Sofia.</dd>
+            </div>
+            <div class="glossary-item">
+                <dt>Hook</dt>
+                <dd>A primeira frase do vídeo. É ela que faz a pessoa parar de rolar o feed e prestar atenção.</dd>
+            </div>
+            <div class="glossary-item">
+                <dt>Roteiro</dt>
+                <dd>O texto completo do que vai ser falado no vídeo, do começo ao fim.</dd>
+            </div>
+            <div class="glossary-item">
+                <dt>Princípios</dt>
+                <dd>As regras de psicologia que fazem um vídeo prender a atenção — curiosidade, conflito, familiaridade, contraste, etc.</dd>
+            </div>
+            <div class="glossary-item">
+                <dt>Bolha</dt>
+                <dd>O grupo de pessoas que segue o mesmo tipo de conteúdo. Exemplo: a bolha de empreendedorismo, a bolha de fitness, etc.</dd>
+            </div>
+            <div class="glossary-item">
+                <dt>Transcrição</dt>
+                <dd>O texto de tudo que foi falado no vídeo, transformado de áudio para texto escrito.</dd>
+            </div>
+            <div class="glossary-item">
+                <dt>Thumbnail</dt>
+                <dd>A imagem de capa do vídeo — aquela que aparece antes de clicar para assistir.</dd>
+            </div>
+            <div class="glossary-item">
+                <dt>Dashboard</dt>
+                <dd>Uma página visual que mostra a análise do vídeo toda organizada e bonita.</dd>
+            </div>
+            <div class="glossary-item">
+                <dt>API Key</dt>
+                <dd>Um código secreto (como uma senha) que permite um programa acessar um serviço. Só é necessário para o Apify, e é opcional.</dd>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>Sofia 2.0 — <span class="brand">Criadores do Futuro</span></p>
+    <p style="margin-top:0.3rem;">Feito com inteligência artificial para te ajudar a criar conteúdo que prende a atenção</p>
+</div>
+
+</body>
+</html>
