@@ -24,26 +24,35 @@ Executar sem mostrar ao usuário:
 - Verificar se existe Obsidian Vault: `find ~ -name ".obsidian" -maxdepth 4 -type d 2>/dev/null | head -5`
 - Ler config atual se existir: `knowledge/config.yaml`
 
-### 2. Mostrar resultado da verificação
-Mostrar ao usuário um resumo claro:
+### 2. Instalar o que estiver faltando (automático, sem pedir nada ao usuário)
+
+**REGRA: O usuário NÃO sabe usar Terminal. NUNCA peça para ele instalar nada manualmente. Instale tudo automaticamente usando a ferramenta Bash.**
+
+Se yt-dlp não estiver instalado, instalar automaticamente SEM perguntar:
+- Avisar: "Vou instalar o yt-dlp (ferramenta para extrair texto dos vídeos)... aguarde um momento."
+- macOS: executar `brew install yt-dlp` via Bash. Se brew não existir, executar `curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash` primeiro.
+- Linux: executar `pip3 install yt-dlp` via Bash
+- Windows: executar `winget install yt-dlp --accept-package-agreements --accept-source-agreements` via Bash
+- Depois de instalar, verificar novamente: `yt-dlp --version`
+- Se der certo: "✅ yt-dlp instalado com sucesso!"
+- Se falhar: "Não consegui instalar o yt-dlp automaticamente. Peça ajuda a alguém técnico para instalar o yt-dlp no seu computador."
+
+Se Node.js não estiver instalado, instalar automaticamente SEM perguntar:
+- Avisar: "Vou instalar o Node.js (necessário para alguns recursos)... aguarde um momento."
+- macOS: `brew install node`
+- Linux: `curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && sudo apt-get install -y nodejs`
+- Windows: `winget install OpenJS.NodeJS.LTS --accept-package-agreements --accept-source-agreements`
+
+### 3. Mostrar resultado da verificação
+Depois que tudo estiver instalado (ou já estava), mostrar ao usuário um resumo claro:
 
 > **Sofia 2.0 — Configuração inicial**
 >
-> Verifiquei seu computador. Aqui está o resultado:
+> Verifiquei seu computador e instalei o que precisava. Aqui está o resultado:
 >
 > ✅ Node.js instalado (v22.x)
 > ✅ yt-dlp instalado (2025.x)
 > ✅ Obsidian Vault encontrado em /caminho/do/vault
->
-> ❌ yt-dlp não encontrado (se faltar)
-
-Se yt-dlp não estiver instalado, explicar:
-> O yt-dlp é uma ferramenta que extrai o texto falado dos vídeos do YouTube. Preciso dele para funcionar.
->
-> Para instalar, cole este comando no Terminal:
-> - **Mac:** `brew install yt-dlp`
-> - **Linux:** `pip install yt-dlp`
-> - **Windows:** `winget install yt-dlp`
 
 ### 3. Perguntar sobre Apify (para Instagram/TikTok)
 Usar a ferramenta AskUserQuestion com estas opções EM PORTUGUÊS:
