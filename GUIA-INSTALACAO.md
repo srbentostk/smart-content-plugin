@@ -91,7 +91,7 @@ Baixe o instalador do GitHub e dê dois cliques:
 - **Mac:** baixe `Instalar Sofia.app` e dê dois cliques (na primeira vez, clique com botão direito > Abrir)
 - **Windows:** baixe `Instalar Sofia.vbs` e dê dois cliques
 
-Uma janela vai abrir e tudo será instalado automaticamente (Node.js, Claude Code, yt-dlp, arquivos da Sofia).
+Uma janela vai abrir e tudo será instalado automaticamente (Node.js, Claude Code, yt-dlp, plugin Sofia).
 
 ### Opção C: Comando no Terminal
 
@@ -102,12 +102,12 @@ Uma janela vai abrir e tudo será instalado automaticamente (Node.js, Claude Cod
 curl -sSL https://raw.githubusercontent.com/srbentostk/smart-content-plugin/main/scripts/install.sh | bash
 ```
 
-### Depois de instalar (Opções B e C): Abra a Sofia
+### Depois de instalar: Abra a Sofia
 
 Digite no Terminal:
 
 ```
-cd ~/sofia-2.0 && claude
+claude
 ```
 
 Na primeira vez, o Claude vai pedir login. Use a conta que criou no Passo 0.
@@ -117,7 +117,7 @@ Na primeira vez, o Claude vai pedir login. Use a conta que criou no Passo 0.
 Dentro do Claude, digite:
 
 ```
-/sofia-setup
+/smart-content-plugin:sofia-setup
 ```
 
 A Sofia verifica se tudo está funcionando e te guia pela configuração.
@@ -137,44 +137,44 @@ A Sofia verifica se tudo está funcionando e te guia pela configuração.
 
 ## Como usar a Sofia
 
-### Comando 1: Analisar um vídeo — `/sofia-analisar`
+### Comando 1: Analisar um vídeo — `/smart-content-plugin:sofia-analisar`
 
 Você cola o link de um vídeo e a Sofia busca tudo: texto falado, comentários, números, capa. Depois analisa frase por frase por que o vídeo funciona.
 
 ```
-/sofia-analisar https://youtube.com/watch?v=XXXXX
-/sofia-analisar https://instagram.com/reel/XXXXX
-/sofia-analisar https://tiktok.com/@usuario/video/XXXXX
+/smart-content-plugin:sofia-analisar https://youtube.com/watch?v=XXXXX
+/smart-content-plugin:sofia-analisar https://instagram.com/reel/XXXXX
+/smart-content-plugin:sofia-analisar https://tiktok.com/@usuario/video/XXXXX
 ```
 
 **Funciona com:** YouTube, Instagram, TikTok, e milhares de outros sites.
 **Custo:** Grátis (usa yt-dlp). Se yt-dlp não conseguir, pergunta se quer tentar com Apify (~R$0,15).
 
-### Comando 2: Escrever um roteiro — `/sofia-roteiro`
+### Comando 2: Escrever um roteiro — `/smart-content-plugin:sofia-roteiro`
 
 A Sofia faz perguntas sobre seu tema, público e o que as pessoas estão comentando. Depois sugere aberturas e escreve 2-3 versões do roteiro completo.
 
 **Custo:** Grátis
 
-### Comando 3: Criticar um roteiro — `/sofia-critica`
+### Comando 3: Criticar um roteiro — `/smart-content-plugin:sofia-critica`
 
 Cole um roteiro (seu ou de outra pessoa) e ela avalia com honestidade.
 
 **Custo:** Grátis
 
-### Comando 4: Melhorar um roteiro — `/sofia-melhorar`
+### Comando 4: Melhorar um roteiro — `/smart-content-plugin:sofia-melhorar`
 
 Depois de uma crítica, ela reescreve corrigindo os problemas.
 
 **Custo:** Grátis
 
-### Comando 5: Ver painel visual — `/sofia-dashboard`
+### Comando 5: Ver painel visual — `/smart-content-plugin:sofia-dashboard`
 
 Gera uma página bonita com a análise completa do vídeo.
 
 **Custo:** Grátis
 
-### Comando 6: Exportar — `/sofia-exportar`
+### Comando 6: Exportar — `/smart-content-plugin:sofia-exportar`
 
 Salva tudo que a Sofia aprendeu em arquivos organizados.
 
@@ -186,18 +186,18 @@ Salva tudo que a Sofia aprendeu em arquivos organizados.
 
 ```
 1. Analise um vídeo viral que você admira
-   /sofia-analisar + link do vídeo
+   /smart-content-plugin:sofia-analisar + link do vídeo
          ↓
 2. Estude a análise — entenda por que funciona
          ↓
 3. Escreva seu próprio roteiro
-   /sofia-roteiro
+   /smart-content-plugin:sofia-roteiro
          ↓
 4. Peça uma crítica honesta
-   /sofia-critica
+   /smart-content-plugin:sofia-critica
          ↓
 5. Melhore com base na crítica
-   /sofia-melhorar
+   /smart-content-plugin:sofia-melhorar
          ↓
 6. Repita! Quanto mais você analisa e escreve,
    melhor a Sofia fica

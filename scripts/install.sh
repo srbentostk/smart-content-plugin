@@ -107,82 +107,56 @@ else
 fi
 
 # ─────────────────────────────────────
-# 5. Git (necessário para baixar o plugin)
-# ─────────────────────────────────────
-if ! has_command git; then
-  echo ""
-  echo "▸ Instalando Git..."
-  if [ "$PLATFORM" = "mac" ]; then
-    # No Mac, xcode-select instala o git
-    xcode-select --install 2>/dev/null || true
-    # Alternativa via brew
-    brew install git 2>/dev/null || true
-  elif [ "$PLATFORM" = "linux" ]; then
-    sudo apt-get install -y git
-  fi
-fi
-
-# ─────────────────────────────────────
-# 6. Baixar o plugin Sofia
+# 5. Instalar plugin Sofia via marketplace
 # ─────────────────────────────────────
 echo ""
-echo "▸ Baixando Sofia 2.0..."
-INSTALL_DIR="$HOME/sofia-2.0"
+echo "▸ Instalando plugin Sofia..."
+PLUGIN_NAME="smart-content-plugin"
 
-if [ -d "$INSTALL_DIR" ]; then
-  echo "  Pasta já existe. Atualizando..."
-  cd "$INSTALL_DIR"
-  git pull origin main 2>/dev/null || echo "  (atualização manual necessária)"
-else
-  if has_command git; then
-    git clone https://github.com/srbentostk/smart-content-plugin.git "$INSTALL_DIR" 2>/dev/null
+if has_command claude; then
+  # Atualizar PATH para garantir que claude encontre npm/node
+  export PATH="$HOME/.claude/local/bin:$HOME/.local/bin:$PATH"
+
+  if claude plugin install "$PLUGIN_NAME" 2>/dev/null; then
+    echo "  ✓ Plugin Sofia instalado via marketplace"
+  elif claude plugin install --url "https://github.com/srbentostk/smart-content-plugin" 2>/dev/null; then
+    echo "  ✓ Plugin Sofia instalado via GitHub"
   else
-    echo "  Baixando como zip..."
-    curl -sL https://github.com/srbentostk/smart-content-plugin/archive/main.zip -o /tmp/sofia.zip
-    unzip -qo /tmp/sofia.zip -d /tmp/
-    mv /tmp/smart-content-plugin-main "$INSTALL_DIR"
-    rm -f /tmp/sofia.zip
+    echo "  ⚠ Plugin nao pode ser instalado automaticamente."
+    echo "    Abra o Claude e digite: /plugin install $PLUGIN_NAME"
   fi
+else
+  echo "  ⚠ Claude Code nao encontrado. Instale o plugin manualmente depois."
 fi
 
-echo "  ✓ Sofia 2.0 baixada em: $INSTALL_DIR"
-
 # ─────────────────────────────────────
-# 7. Configurar permissões
-# ─────────────────────────────────────
-chmod +x "$INSTALL_DIR/scripts/"*.sh 2>/dev/null
-
-# ─────────────────────────────────────
-# 8. Resultado final
+# 6. Resultado final
 # ─────────────────────────────────────
 echo ""
 echo ""
-echo "╔══════════════════════════════════════════════╗"
-echo "║                                              ║"
-echo "║   ✅  INSTALAÇÃO COMPLETA!                   ║"
-echo "║                                              ║"
-echo "║   Para usar a Sofia, cole no Terminal:        ║"
-echo "║                                              ║"
-echo "║   cd ~/sofia-2.0 && claude                   ║"
-echo "║                                              ║"
-echo "║   Depois digite:                             ║"
-echo "║   /sofia-setup   → configurar                ║"
-echo "║   /sofia-analisar → analisar vídeo           ║"
-echo "║   /sofia-roteiro  → escrever roteiro         ║"
-echo "║                                              ║"
-echo "╚══════════════════════════════════════════════╝"
+echo "╔══════════════════════════════════════════════════╗"
+echo "║                                                  ║"
+echo "║   ✅  INSTALAÇÃO COMPLETA!                       ║"
+echo "║                                                  ║"
+echo "║   Para usar a Sofia:                             ║"
+echo "║                                                  ║"
+echo "║   1. Abra o Terminal e digite: claude            ║"
+echo "║   2. Faca login em claude.ai                     ║"
+echo "║   3. Digite:                                     ║"
+echo "║      /smart-content-plugin:sofia-setup           ║"
+echo "║                                                  ║"
+echo "╚══════════════════════════════════════════════════╝"
 echo ""
-echo "Na primeira vez, o Claude vai pedir para você"
-echo "fazer login. Crie uma conta grátis em claude.ai"
-echo "se ainda não tiver."
+echo "Na primeira vez, o Claude vai pedir para voce"
+echo "fazer login. Crie uma conta gratis em claude.ai"
+echo "se ainda nao tiver."
 echo ""
 
 # Perguntar se quer abrir agora (só se estiver em terminal interativo)
 if [ -t 0 ] || [ -e /dev/tty ]; then
-  read -p "Quer abrir a Sofia agora? (s/n) " -n 1 -r REPLY </dev/tty 2>/dev/null || REPLY="n"
+  read -p "Quer abrir o Claude agora? (s/n) " -n 1 -r REPLY </dev/tty 2>/dev/null || REPLY="n"
   echo ""
   if [[ $REPLY =~ ^[Ss]$ ]]; then
-    cd "$INSTALL_DIR"
     claude
   fi
 fi

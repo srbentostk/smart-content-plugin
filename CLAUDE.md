@@ -6,17 +6,15 @@ Se `knowledge/config.yaml` não existir ou estiver incompleto, execute o setup a
 
 ## Skills disponíveis
 
-Se instalado via **marketplace**, os comandos são prefixados:
-
-| Marketplace | Standalone (clone local) | Descrição |
-|-------------|--------------------------|-----------|
-| `/smart-content-plugin:sofia-setup` | `/sofia-setup` | Configura API keys e dependências |
-| `/smart-content-plugin:sofia-analisar` | `/sofia-analisar` | Analisa vídeo(s) — cole link(s) |
-| `/smart-content-plugin:sofia-roteiro` | `/sofia-roteiro` | Escreve roteiro guiado por princípios |
-| `/smart-content-plugin:sofia-critica` | `/sofia-critica` | Análise crítica de um roteiro |
-| `/smart-content-plugin:sofia-melhorar` | `/sofia-melhorar` | Melhora roteiro pós-crítica |
-| `/smart-content-plugin:sofia-dashboard` | `/sofia-dashboard` | Gera/atualiza dashboard de conhecimentos |
-| `/smart-content-plugin:sofia-exportar` | `/sofia-exportar` | Exporta aprendizados ou aplica ao plugin |
+| Comando | Descrição |
+|---------|-----------|
+| `/smart-content-plugin:sofia-setup` | Configura API keys e dependências |
+| `/smart-content-plugin:sofia-analisar` | Analisa vídeo(s) — cole link(s) |
+| `/smart-content-plugin:sofia-roteiro` | Escreve roteiro guiado por princípios |
+| `/smart-content-plugin:sofia-critica` | Análise crítica de um roteiro |
+| `/smart-content-plugin:sofia-melhorar` | Melhora roteiro pós-crítica |
+| `/smart-content-plugin:sofia-dashboard` | Gera/atualiza dashboard de conhecimentos |
+| `/smart-content-plugin:sofia-exportar` | Exporta aprendizados ou aplica ao plugin |
 
 ## Como funciona
 

@@ -7,8 +7,7 @@
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
-$INSTALL_DIR = "$env:USERPROFILE\sofia-2.0"
-$REPO_URL = "https://github.com/srbentostk/smart-content-plugin.git"
+$PLUGIN_NAME = "smart-content-plugin"
 
 # ─────────────────────────────────────
 # Criar janela principal
@@ -44,7 +43,7 @@ $form.Controls.Add($lblSub)
 
 # Descricao
 $lblDesc = New-Object System.Windows.Forms.Label
-$lblDesc.Text = "Vou instalar tudo que voce precisa:`n`n  Node.js  |  Claude Code  |  yt-dlp  |  Arquivos da Sofia`n`nLeva uns 5 minutos. Voce nao precisa fazer nada."
+$lblDesc.Text = "Vou preparar seu computador com tudo que precisa:`n`n  Node.js  |  Claude Code  |  yt-dlp  |  Plugin Sofia`n`nLeva uns 5 minutos. Voce nao precisa fazer nada."
 $lblDesc.Font = New-Object System.Drawing.Font("Segoe UI", 9)
 $lblDesc.ForeColor = [System.Drawing.Color]::FromArgb(200, 200, 200)
 $lblDesc.Size = New-Object System.Drawing.Size(440, 75)
@@ -212,38 +211,20 @@ $btnInstall.Add_Click({
         Update-UI "Passo 3 de 4: yt-dlp instalado" "" 75
     }
 
-    # ── 4. Baixar Sofia ──
-    Update-UI "Passo 4 de 4: Baixando Sofia 2.0..." "" 80
+    # ── 4. Instalar plugin Sofia ──
+    Update-UI "Passo 4 de 4: Instalando plugin Sofia..." "" 80
 
-    if (Test-Path $INSTALL_DIR) {
-        Update-UI "Passo 4 de 4: Atualizando Sofia 2.0..." "" 85
-        if (Test-CommandExists "git") {
-            Push-Location $INSTALL_DIR
-            Run-Silent "git" "pull origin main" | Out-Null
-            Pop-Location
-        }
-    } else {
-        if (Test-CommandExists "git") {
-            Update-UI "Passo 4 de 4: Clonando repositorio..." "" 85
-            Run-Silent "git" "clone $REPO_URL `"$INSTALL_DIR`"" | Out-Null
-        } else {
-            Update-UI "Passo 4 de 4: Baixando como zip..." "" 85
-            try {
-                $zipPath = "$env:TEMP\sofia.zip"
-                $extractPath = "$env:TEMP\sofia-extract"
-                Invoke-WebRequest -Uri "https://github.com/srbentostk/smart-content-plugin/archive/main.zip" -OutFile $zipPath -UseBasicParsing
-                Expand-Archive -Path $zipPath -DestinationPath $extractPath -Force
-                Move-Item "$extractPath\smart-content-plugin-main" $INSTALL_DIR
-                Remove-Item $zipPath -Force -ErrorAction SilentlyContinue
-                Remove-Item $extractPath -Recurse -Force -ErrorAction SilentlyContinue
-            } catch {
-                $errors += "Arquivos da Sofia nao puderam ser baixados"
+    if (Test-CommandExists "claude") {
+        Update-UI "Passo 4 de 4: Instalando plugin via marketplace..." "" 85
+        $exitCode = Run-Silent "claude" "plugin install $PLUGIN_NAME"
+        if ($exitCode -ne 0) {
+            $exitCode = Run-Silent "claude" "plugin install --url https://github.com/srbentostk/smart-content-plugin"
+            if ($exitCode -ne 0) {
+                $errors += "Plugin Sofia nao pode ser instalado"
             }
         }
-    }
-
-    if (-not (Test-Path $INSTALL_DIR)) {
-        $errors += "Pasta da Sofia nao foi criada"
+    } else {
+        $errors += "Claude Code nao esta disponivel para instalar o plugin"
     }
 
     # ── Resultado ──
@@ -251,17 +232,17 @@ $btnInstall.Add_Click({
     if ($errors.Count -eq 0) {
         Update-UI "Instalacao completa!" "Tudo pronto para usar a Sofia." 100
 
-        $lblDesc.Text = "Para usar a Sofia:`n`n  1. Abra o PowerShell`n  2. Digite: cd ~/sofia-2.0`n  3. Digite: claude`n  4. Na primeira vez, faca login em claude.ai`n  5. Depois digite: /sofia-setup"
+        $lblDesc.Text = "Para usar a Sofia:`n`n  1. Abra o PowerShell`n  2. Digite: claude`n  3. Na primeira vez, faca login em claude.ai`n  4. Depois digite:`n     /smart-content-plugin:sofia-setup"
         $lblDesc.Refresh()
 
-        $btnInstall.Text = "Abrir Sofia"
+        $btnInstall.Text = "Abrir Claude"
         $btnInstall.Enabled = $true
         $btnCancel.Text = "Fechar"
         $btnCancel.Enabled = $true
 
         # Remover evento anterior e adicionar novo
         $btnInstall.add_Click({
-            Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd '$INSTALL_DIR'; claude"
+            Start-Process powershell -ArgumentList "-NoExit", "-Command", "claude"
             $form.Close()
         }.GetNewClosure())
 

@@ -7,8 +7,7 @@
 # Toda a interface usa dialogos nativos do macOS.
 # ═══════════════════════════════════════════
 
-INSTALL_DIR="$HOME/sofia-2.0"
-REPO_URL="https://github.com/srbentostk/smart-content-plugin.git"
+PLUGIN_NAME="smart-content-plugin"
 LOG_FILE="/tmp/sofia-install.log"
 
 # Garantir PATH completo (dentro de .app o PATH e minimo)
@@ -52,14 +51,14 @@ has_cmd() {
 REPLY=$(osascript 2>/dev/null <<'WELCOME'
 button returned of (display dialog "Bem-vindo ao instalador da Sofia 2.0!
 
-Vou instalar tudo que você precisa:
+Vou preparar seu computador com tudo que precisa:
 
-  ✦  Node.js (necessário para rodar o Claude)
-  ✦  Claude Code (a inteligência artificial)
-  ✦  yt-dlp (coleta dados de vídeos — grátis)
-  ✦  Arquivos da Sofia
+  ✦  Node.js (necessario para rodar o Claude)
+  ✦  Claude Code (a inteligencia artificial)
+  ✦  yt-dlp (coleta dados de videos — gratis)
+  ✦  Plugin Sofia (instalado automaticamente)
 
-Leva uns 5 minutos. Você não precisa fazer nada." buttons {"Cancelar", "Instalar"} default button "Instalar" with title "Sofia 2.0 — Instalador" with icon note)
+Leva uns 5 minutos. Voce nao precisa fazer nada." buttons {"Cancelar", "Instalar"} default button "Instalar" with title "Sofia 2.0 — Instalador" with icon note)
 WELCOME
 )
 
@@ -201,33 +200,26 @@ echo "Claude: $(command -v claude 2>/dev/null || echo 'FALHOU')" >> "$LOG_FILE"
 echo "yt-dlp: $(command -v yt-dlp 2>/dev/null || echo 'FALHOU')" >> "$LOG_FILE"
 
 # ─────────────────────────────────────
-# 5. Baixar Sofia 2.0
+# 5. Instalar plugin Sofia via marketplace
 # ─────────────────────────────────────
-show_progress "Passo 5 de 5" "Baixando Sofia 2.0..."
+show_progress "Passo 5 de 5" "Instalando plugin Sofia..."
 
-if [ -d "$INSTALL_DIR" ]; then
-    cd "$INSTALL_DIR"
-    git pull origin main >>"$LOG_FILE" 2>&1 || echo "Pull falhou (nao critico)" >> "$LOG_FILE"
-else
-    if has_cmd git; then
-        git clone "$REPO_URL" "$INSTALL_DIR" >>"$LOG_FILE" 2>&1
+if has_cmd claude; then
+    claude plugin install "$PLUGIN_NAME" >>"$LOG_FILE" 2>&1
+    if [ $? -eq 0 ]; then
+        echo "Plugin Sofia: instalado via marketplace" >> "$LOG_FILE"
     else
-        curl -sL https://github.com/srbentostk/smart-content-plugin/archive/main.zip -o /tmp/sofia.zip 2>>"$LOG_FILE"
-        unzip -qo /tmp/sofia.zip -d /tmp/ 2>>"$LOG_FILE"
-        mv /tmp/smart-content-plugin-main "$INSTALL_DIR" 2>>"$LOG_FILE"
-        rm -f /tmp/sofia.zip
+        echo "Plugin Sofia: marketplace falhou, tentando --plugin-url..." >> "$LOG_FILE"
+        claude plugin install --url "https://github.com/srbentostk/smart-content-plugin" >>"$LOG_FILE" 2>&1
+        if [ $? -ne 0 ]; then
+            ERRORS="$ERRORS\n• Plugin Sofia nao pode ser instalado"
+            echo "ERRO: Plugin install falhou" >> "$LOG_FILE"
+        fi
     fi
+else
+    ERRORS="$ERRORS\n• Claude Code nao esta disponivel para instalar o plugin"
+    echo "ERRO: Claude nao encontrado para instalar plugin" >> "$LOG_FILE"
 fi
-
-# Permissoes dos scripts
-chmod +x "$INSTALL_DIR/scripts/"*.sh 2>/dev/null
-
-if [ ! -d "$INSTALL_DIR" ]; then
-    ERRORS="$ERRORS\n• Arquivos da Sofia não puderam ser baixados"
-    echo "ERRO: Clone/download falhou" >> "$LOG_FILE"
-fi
-
-echo "Sofia dir: $(ls -d $INSTALL_DIR 2>/dev/null || echo 'FALHOU')" >> "$LOG_FILE"
 
 # ─────────────────────────────────────
 # Resultado final
@@ -235,24 +227,24 @@ echo "Sofia dir: $(ls -d $INSTALL_DIR 2>/dev/null || echo 'FALHOU')" >> "$LOG_FI
 
 if [ -z "$ERRORS" ]; then
     osascript 2>/dev/null <<'SUCCESS'
-display dialog "Instalação completa!
+display dialog "Instalacao completa!
 
 Para usar a Sofia:
 
 1. Abra o Terminal
-   (Command + Espaço → digite Terminal)
+   (Command + Espaco → digite Terminal)
 
-2. Cole este comando:
-   cd ~/sofia-2.0 && claude
+2. Digite: claude
 
-3. Na primeira vez, faça login em claude.ai
+3. Na primeira vez, faca login em claude.ai
 
-4. Depois digite:  /sofia-setup
+4. Depois digite:
+   /smart-content-plugin:sofia-setup
 
-Pronto! A Sofia vai te guiar a partir daí." buttons {"OK"} default button "OK" with title "Sofia 2.0 — Sucesso ✓" with icon note
+Pronto! A Sofia vai te guiar a partir dai." buttons {"OK"} default button "OK" with title "Sofia 2.0 — Sucesso" with icon note
 SUCCESS
 else
-    osascript -e "display dialog \"Instalação parcial.\n\nAlguns itens não puderam ser instalados:$ERRORS\n\nConsulte o log em:\n/tmp/sofia-install.log\n\nOu peça ajuda ao seu instrutor.\" buttons {\"OK\"} default button \"OK\" with title \"Sofia 2.0 — Atenção\" with icon caution" 2>/dev/null
+    osascript -e "display dialog \"Instalacao parcial.\n\nAlguns itens nao puderam ser instalados:$ERRORS\n\nConsulte o log em:\n/tmp/sofia-install.log\n\nOu peca ajuda ao seu instrutor.\" buttons {\"OK\"} default button \"OK\" with title \"Sofia 2.0 — Atencao\" with icon caution" 2>/dev/null
 fi
 
 echo "Instalacao finalizada em $(date)" >> "$LOG_FILE"
