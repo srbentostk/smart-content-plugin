@@ -15,6 +15,19 @@ A Sofia é uma assistente inteligente que vive dentro do Claude (uma inteligênc
 
 ---
 
+## Onde a Sofia funciona
+
+| Plataforma | Funciona? | Como usar |
+|---|---|---|
+| **App Claude (aba Code)** | Sim | Instale o plugin e use os comandos `/sofia:*` |
+| **App Claude (aba Cowork)** | Sim | Mesmo plugin, ideal para quem não é programador |
+| **Claude Code (Terminal)** | Sim | Para desenvolvedores que preferem linha de comando |
+| **Claude.ai (navegador)** | Não | O navegador não suporta plugins |
+
+> **Resumo:** Baixe o **app Claude** no computador. A Sofia funciona tanto na aba Code quanto na aba Cowork.
+
+---
+
 ## O que a Sofia extrai de um vídeo
 
 Quando você manda o link de um vídeo, a Sofia coleta:
@@ -72,53 +85,43 @@ Antes de instalar, crie contas nestes serviços (todos têm versão grátis):
 
 Escolha o jeito mais fácil para você:
 
-### Opção A: Marketplace (mais simples — se já tem Claude Code)
+### Opção A: Pelo app Claude (recomendado)
 
-Se você já tem o Claude Code instalado, basta abrir o terminal e digitar:
+1. **Baixe o app Claude** em [claude.ai/download](https://claude.ai/download) (Mac ou Windows)
+2. Abra o app e faça login com sua conta
+3. Vá em **Configurações > Plugins** e procure por **Sofia**
+4. Clique em **Instalar**
+5. Pronto! Os comandos `/sofia:*` ficam disponíveis nas abas Code e Cowork
 
-```
-/plugin install sofia
-```
-
-Pronto. Todos os comandos da Sofia ficam disponíveis imediatamente.
-
-> **Baixar Claude Code:** Se ainda não tem, baixe em [claude.ai/download](https://claude.ai/download)
+> Se o plugin ainda não estiver no catálogo oficial, use a Opção B.
 
 ### Opção B: Instalador visual (dois cliques)
 
-Baixe o instalador do GitHub e dê dois cliques:
+Baixe o instalador do GitHub e dê dois cliques. Ele instala tudo automaticamente (Node.js, Claude, yt-dlp, plugin Sofia):
 
 - **Mac:** baixe `Instalar Sofia.app` e dê dois cliques (na primeira vez, clique com botão direito > Abrir)
-- **Windows:** baixe `Instalar Sofia.vbs` e dê dois cliques
+- **Windows:** baixe `instalar-sofia-windows.bat` e dê dois cliques
 
-Uma janela vai abrir e tudo será instalado automaticamente (Node.js, Claude Code, yt-dlp, plugin Sofia).
+### Opção C: Via linha de comando (para desenvolvedores)
 
-### Opção C: Comando no Terminal
+Se já tem o Claude Code instalado:
 
-1. Abra o **Terminal** (Mac) ou **PowerShell** (Windows)
-2. Cole o comando abaixo e aperte **Enter**:
+```
+claude plugin marketplace add https://github.com/srbentostk/smart-content-plugin
+claude plugin install sofia
+```
+
+Ou instale tudo de uma vez colando no Terminal/PowerShell:
 
 ```
 curl -sSL https://raw.githubusercontent.com/srbentostk/smart-content-plugin/main/scripts/install.sh | bash
 ```
 
-### Depois de instalar: Abra a Sofia
+### Depois de instalar
 
-Digite no Terminal:
-
-```
-claude
-```
-
-Na primeira vez, o Claude vai pedir login. Use a conta que criou no Passo 0.
-
-### Configure a Sofia
-
-Dentro do Claude, digite:
-
-```
-/sofia:setup
-```
+1. Abra o **app Claude** (ou digite `claude` no Terminal)
+2. Na primeira vez, faça login com sua conta
+3. Digite: `/sofia:setup`
 
 A Sofia verifica se tudo está funcionando e te guia pela configuração.
 
@@ -129,7 +132,7 @@ A Sofia verifica se tudo está funcionando e te guia pela configuração.
 | O que | Link |
 |---|---|
 | Criar conta Claude | [claude.ai](https://claude.ai) |
-| Baixar Claude Code | [claude.ai/download](https://claude.ai/download) |
+| Baixar app Claude | [claude.ai/download](https://claude.ai/download) |
 | Criar conta Apify | [apify.com](https://www.apify.com) |
 | Repositório Sofia | [github.com/srbentostk/smart-content-plugin](https://github.com/srbentostk/smart-content-plugin) |
 
@@ -211,19 +214,19 @@ Salva tudo que a Sofia aprendeu em arquivos organizados.
 A Sofia é grátis. O Claude tem versão grátis. O yt-dlp é grátis. O Apify é opcional e tem $5 grátis/mês.
 
 ### "Funciona no celular?"
-Não. Precisa de computador (Mac ou Windows).
+Você pode despachar tarefas pelo celular usando o app Claude (funcionalidade "Dispatch"), mas a instalação e configuração inicial precisam ser feitas no computador.
 
 ### "Funciona no navegador (claude.ai)?"
-Não. A versão do navegador não permite instalar plugins. O comando de instalação já instala o Claude Code (versão que funciona no Terminal).
+Não. A versão do navegador não suporta plugins. Use o **app Claude** (gratuito para baixar).
 
-### "O que é o Terminal?"
-É um programa que já vem no computador. Parece uma tela escura. No Mac: "Terminal". No Windows: "PowerShell".
+### "Preciso usar o Terminal?"
+Não. O app Claude tem interface visual completa. O Terminal é opcional, para quem prefere.
 
 ### "Com quais sites a Sofia funciona?"
 YouTube, Instagram, TikTok, Twitter/X, Reddit, Facebook, Twitch, Vimeo, e milhares de outros.
 
 ### "A instalação deu erro"
-Feche o Terminal, abra novamente, e cole o comando de novo. Se persistir, tire um print e envie para seu instrutor.
+Tente novamente. Se persistir, tire um print e envie para seu instrutor.
 
 ### "O yt-dlp não conseguiu pegar um vídeo"
 A Sofia avisa e pode sugerir usar o Apify. Você nunca gasta dinheiro sem autorizar antes. Também pode colar o texto do vídeo manualmente.
@@ -237,10 +240,11 @@ A Sofia avisa e pode sugerir usar o Apify. Você nunca gasta dinheiro sem autori
 
 | Palavra | O que significa |
 |---|---|
-| **Terminal** | Programa que já vem no computador. Tela escura onde se digita comandos. |
+| **App Claude** | Aplicativo do Claude para Mac e Windows. Tem abas Code (programação) e Cowork (tarefas gerais). |
+| **Claude Code** | Versão do Claude para desenvolvedores. Roda no app ou no Terminal. |
+| **Cowork** | Aba do app Claude para tarefas do dia a dia (não precisa saber programar). |
 | **yt-dlp** | Ferramenta grátis que coleta dados de vídeos (texto, comentários, números) de milhares de sites. |
 | **Apify** | Serviço online opcional para coleta avançada de dados. Tem créditos grátis. |
-| **Claude Code** | Versão do Claude que roda no Terminal. Permite instalar plugins como a Sofia. |
 | **Hook** | A primeira frase do vídeo. Faz a pessoa parar e prestar atenção. |
 | **Roteiro** | O texto completo do que vai ser falado no vídeo. |
 | **Princípios** | Regras de psicologia que fazem um vídeo prender atenção. |

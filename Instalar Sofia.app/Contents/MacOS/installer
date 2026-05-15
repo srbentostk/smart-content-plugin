@@ -234,17 +234,18 @@ display dialog "Instalacao completa!
 
 Para usar a Sofia:
 
-1. Abra o Terminal
-   (Command + Espaco → digite Terminal)
+1. Abra o app Claude
+   (Se ainda nao tem, baixe em claude.ai/download)
 
-2. Digite: claude
+2. Faca login com sua conta
 
-3. Na primeira vez, faca login em claude.ai
-
-4. Depois digite:
+3. Na aba Code ou Cowork, digite:
    /sofia:setup
 
-Pronto! A Sofia vai te guiar a partir dai." buttons {"OK"} default button "OK" with title "Sofia 2.0 — Sucesso" with icon note
+Pronto! A Sofia vai te guiar a partir dai.
+
+Dica: A aba Cowork e ideal se voce
+nao e programador." buttons {"OK"} default button "OK" with title "Sofia 2.0 — Sucesso" with icon note
 SUCCESS
 else
     osascript -e "display dialog \"Instalacao parcial.\n\nAlguns itens nao puderam ser instalados:$ERRORS\n\nConsulte o log em:\n/tmp/sofia-install.log\n\nOu peca ajuda ao seu instrutor.\" buttons {\"OK\"} default button \"OK\" with title \"Sofia 2.0 — Atencao\" with icon caution" 2>/dev/null

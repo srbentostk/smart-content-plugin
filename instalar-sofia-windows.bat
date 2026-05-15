@@ -92,10 +92,10 @@ echo ║   ✅  INSTALAÇÃO COMPLETA!                       ║
 echo ║                                                  ║
 echo ║   Para usar a Sofia:                             ║
 echo ║                                                  ║
-echo ║   1. Abra o PowerShell                           ║
-echo ║   2. Digite: claude                              ║
-echo ║   3. Na primeira vez, faca login em claude.ai    ║
-echo ║   4. Depois digite:                              ║
+echo ║   1. Abra o app Claude                           ║
+echo ║      (baixe em claude.ai/download)               ║
+echo ║   2. Faca login com sua conta                    ║
+echo ║   3. Na aba Code ou Cowork, digite:              ║
 echo ║      /sofia:setup                                ║
 echo ║                                                  ║
 echo ╚══════════════════════════════════════════════════╝
@@ -106,7 +106,12 @@ echo.
 
 set /p REPLY="Quer abrir o Claude agora? (s/n) "
 if /i "%REPLY%"=="s" (
-    claude
+    REM Tentar abrir o app Claude Desktop primeiro, fallback para CLI
+    if exist "%LOCALAPPDATA%\Programs\Claude\Claude.exe" (
+        start "" "%LOCALAPPDATA%\Programs\Claude\Claude.exe"
+    ) else (
+        claude
+    )
 ) else (
     pause
 )

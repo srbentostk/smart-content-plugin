@@ -238,7 +238,7 @@ $btnInstall.Add_Click({
     if ($errors.Count -eq 0) {
         Update-UI "Instalacao completa!" "Tudo pronto para usar a Sofia." 100
 
-        $lblDesc.Text = "Para usar a Sofia:`n`n  1. Abra o PowerShell`n  2. Digite: claude`n  3. Na primeira vez, faca login em claude.ai`n  4. Depois digite:`n     /sofia:setup"
+        $lblDesc.Text = "Para usar a Sofia:`n`n  1. Abra o app Claude`n     (Baixe em claude.ai/download se nao tem)`n  2. Faca login com sua conta`n  3. Na aba Code ou Cowork, digite:`n     /sofia:setup`n`n  Dica: A aba Cowork e ideal se voce nao e programador."
         $lblDesc.Refresh()
 
         $btnInstall.Text = "Abrir Claude"
@@ -248,7 +248,13 @@ $btnInstall.Add_Click({
 
         # Remover evento anterior e adicionar novo
         $btnInstall.add_Click({
-            Start-Process powershell -ArgumentList "-NoExit", "-Command", "claude"
+            # Tentar abrir o app Claude Desktop primeiro, fallback para CLI
+            $claudeApp = "$env:LOCALAPPDATA\Programs\Claude\Claude.exe"
+            if (Test-Path $claudeApp) {
+                Start-Process $claudeApp
+            } else {
+                Start-Process powershell -ArgumentList "-NoExit", "-Command", "claude"
+            }
             $form.Close()
         }.GetNewClosure())
 

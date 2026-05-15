@@ -156,9 +156,10 @@ if [ ${#ERRORS[@]} -eq 0 ]; then
   echo "║                                                  ║" | tee -a "$LOG"
   echo "║   Para usar a Sofia:                             ║" | tee -a "$LOG"
   echo "║                                                  ║" | tee -a "$LOG"
-  echo "║   1. Abra o Terminal e digite: claude            ║" | tee -a "$LOG"
-  echo "║   2. Na primeira vez, faça login em claude.ai    ║" | tee -a "$LOG"
-  echo "║   3. Depois digite:                              ║" | tee -a "$LOG"
+  echo "║   1. Abra o app Claude                           ║" | tee -a "$LOG"
+  echo "║      (baixe em claude.ai/download)               ║" | tee -a "$LOG"
+  echo "║   2. Faça login com sua conta                    ║" | tee -a "$LOG"
+  echo "║   3. Na aba Code ou Cowork, digite:              ║" | tee -a "$LOG"
   echo "║      /sofia:setup                                ║" | tee -a "$LOG"
   echo "║                                                  ║" | tee -a "$LOG"
   echo "╚══════════════════════════════════════════════════╝" | tee -a "$LOG"
@@ -188,6 +189,10 @@ if [ -t 0 ] || [ -e /dev/tty ]; then
   read -p "Quer abrir o Claude agora? (s/n) " -n 1 -r REPLY </dev/tty 2>/dev/null || REPLY="n"
   echo ""
   if [[ $REPLY =~ ^[Ss]$ ]]; then
-    claude
+    if [ "$PLATFORM" = "mac" ] && [ -d "/Applications/Claude.app" ]; then
+      open "/Applications/Claude.app"
+    else
+      claude
+    fi
   fi
 fi
