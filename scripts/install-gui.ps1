@@ -214,13 +214,19 @@ $btnInstall.Add_Click({
     # ── 4. Instalar plugin Sofia ──
     Update-UI "Passo 4 de 4: Instalando plugin Sofia..." "" 80
 
+    $REPO_URL = "https://github.com/srbentostk/smart-content-plugin"
+
     if (Test-CommandExists "claude") {
         Update-UI "Passo 4 de 4: Instalando plugin via marketplace..." "" 85
         $exitCode = Run-Silent "claude" "plugin install $PLUGIN_NAME"
         if ($exitCode -ne 0) {
-            $exitCode = Run-Silent "claude" "plugin install --url https://github.com/srbentostk/smart-content-plugin"
+            Update-UI "Passo 4 de 4: Marketplace indisponivel, tentando via GitHub..." "" 90
+            $exitCode = Run-Silent "claude" "plugin marketplace add $REPO_URL"
+            if ($exitCode -eq 0) {
+                $exitCode = Run-Silent "claude" "plugin install $PLUGIN_NAME"
+            }
             if ($exitCode -ne 0) {
-                $errors += "Plugin Sofia nao pode ser instalado"
+                $errors += "Plugin Sofia nao pode ser instalado automaticamente. Abra o Claude e digite: /plugin install sofia"
             }
         }
     } else {

@@ -204,15 +204,18 @@ echo "yt-dlp: $(command -v yt-dlp 2>/dev/null || echo 'FALHOU')" >> "$LOG_FILE"
 # ─────────────────────────────────────
 show_progress "Passo 5 de 5" "Instalando plugin Sofia..."
 
+REPO_URL="https://github.com/srbentostk/smart-content-plugin"
+
 if has_cmd claude; then
-    claude plugin install "$PLUGIN_NAME" >>"$LOG_FILE" 2>&1
-    if [ $? -eq 0 ]; then
+    if claude plugin install "$PLUGIN_NAME" >>"$LOG_FILE" 2>&1; then
         echo "Plugin Sofia: instalado via marketplace" >> "$LOG_FILE"
     else
-        echo "Plugin Sofia: marketplace falhou, tentando --plugin-url..." >> "$LOG_FILE"
-        claude plugin install --url "https://github.com/srbentostk/smart-content-plugin" >>"$LOG_FILE" 2>&1
-        if [ $? -ne 0 ]; then
-            ERRORS="$ERRORS\n• Plugin Sofia nao pode ser instalado"
+        echo "Plugin Sofia: marketplace falhou, tentando via GitHub..." >> "$LOG_FILE"
+        if claude plugin marketplace add "$REPO_URL" >>"$LOG_FILE" 2>&1 && \
+           claude plugin install "$PLUGIN_NAME" >>"$LOG_FILE" 2>&1; then
+            echo "Plugin Sofia: instalado via GitHub" >> "$LOG_FILE"
+        else
+            ERRORS="$ERRORS\n• Plugin Sofia nao pode ser instalado automaticamente.\n  Abra o Claude e digite: /plugin install sofia"
             echo "ERRO: Plugin install falhou" >> "$LOG_FILE"
         fi
     fi
