@@ -46,15 +46,44 @@ Para CADA frase ou bloco do roteiro, identifique:
 
 3. **Se é forte ou sutil** — "bate forte" ou "é mais discreto"
 
-## Formato de output
+## Formato de output — bloco a bloco, frase a frase
+
+**Regra visual obrigatória:** o texto do roteiro vem **sempre primeiro, dentro de blockquote** (`>`). A análise vem **logo abaixo, em texto comum**. Uma linha em branco separa cada par.
+
+Assim fica visualmente óbvio: o que está em `>` é fala do vídeo, o que está fora é o seu comentário.
+
+### Template
 
 ```markdown
-**O que rola aqui:** [explicação simples do que essa frase faz com quem assiste]
-> Frase original do roteiro
+> "Frase ou bloco original do roteiro aqui"
 
-**O que rola aqui:** [explicação]
-> Próxima frase do roteiro
+Aqui você explica o que essa frase faz com quem assiste, por que funciona (ou não), e se bate forte ou é mais discreto. Em linguagem simples, frases curtas.
+
+> "Próxima frase do roteiro"
+
+Explicação da próxima frase, no mesmo padrão.
+
+> "Bloco maior pode ser agrupado quando faz sentido ler junto, mas em geral mantenha frase por frase pra ficar mais fácil de seguir"
+
+Análise do bloco.
 ```
+
+### Exemplo real do formato
+
+> "Eu morava num quarto de 8 metros quadrados em São Paulo e não tinha dinheiro nem pra comida"
+
+Aqui ele abre mostrando uma situação que muita gente já viveu ou tem medo de viver. Bate forte porque é específico (8 metros quadrados, São Paulo) e isso faz a cena ficar real na cabeça da pessoa. Quem está rolando o feed para porque pensa "como ele saiu disso?".
+
+> "Aí eu descobri uma coisa que ninguém me contou antes"
+
+Frase clássica que faz a pessoa querer saber o que vem depois. Segura a atenção sem entregar nada ainda — a curiosidade fica aberta.
+
+### Não fazer
+
+❌ Não colocar a análise antes da frase
+❌ Não misturar análise e roteiro no mesmo parágrafo
+❌ Não usar negrito tipo "**Princípio:**" antes da frase — quebra o ritmo visual
+❌ Não anotar TODA frase se algumas são só conectivos — agrupa quando faz sentido
 
 ## Análise da abertura (primeiros segundos)
 

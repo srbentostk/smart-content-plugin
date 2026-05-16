@@ -31,31 +31,47 @@ Anotar onde os princípios aparecem e onde faltam. Sem forçar.
 ### 3. Crítica honesta (agente: critico)
 Aplicar a estrutura de output abaixo.
 
-### 4. Output — estrutura simples
+### 4. Output — estrutura simples + análise bloco a bloco
+
+**Regra visual:** trecho do roteiro sempre em **blockquote** (`>`). A crítica vem em **texto comum abaixo**. Visualmente óbvio o que é fala e o que é comentário.
 
 ```markdown
 ## Resumo em 3 linhas
-- **Sobre o que é:** [ideia central em uma frase]
-- **Pra quem funciona:** [tamanho do público]
-- **O que está segurando o roteiro:** [ponto forte principal]
+- Sobre o que é: [ideia central em uma frase]
+- Pra quem funciona: [tamanho do público]
+- O que está segurando o roteiro: [ponto forte principal]
 
-## A abertura segura?
-[sim / mais ou menos / não] — [explicação em 1-2 frases simples]
+## A abertura
 
-## Onde a pessoa desiste?
-[apontar o ponto exato + por quê, em linguagem simples]
+> "[primeira frase do roteiro]"
+
+[sim / mais ou menos / não] — explicação em 1-2 frases simples do por quê.
+
+## Análise bloco a bloco
+
+> "Primeiro bloco do roteiro"
+
+Aqui você comenta: o que funciona, o que não funciona, onde a pessoa pode desistir, o que precisa mudar. Linguagem simples.
+
+> "Próximo bloco"
+
+Comentário do próximo bloco.
+
+> "E assim por diante"
+
+Comentário final.
 
 ## Pontos fortes (manter)
 1. [...]
 2. [...]
 
-## Problemas (em ordem de gravidade)
-1. **[Maior problema]** — [explicação simples] — [sugestão de direção]
+## Problemas (maior primeiro)
+1. **[maior problema]** — explicação simples — direção da solução
 2. [...]
 
 ## Veredicto rápido
 - Segura até o final? sim / mais ou menos / não
-- Faria a pessoa compartilhar? sim / mais ou menos / não
+- Faria compartilhar? sim / mais ou menos / não
 - Vale postar como está? sim / só depois de ajustar / não
 ```
 

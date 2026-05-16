@@ -37,26 +37,37 @@ Para cada link:
 - Análise especial do hook
 - Padrões dos comentários: que emoção/debate domina
 
-### 4. Output — estrutura simples
+### 4. Output — estrutura simples + análise frase a frase
+
+**Regra visual:** sempre que mostrar trecho do roteiro, usar **blockquote** (`>`). A análise vem em **texto comum abaixo**. Isso deixa visualmente óbvio o que é fala do vídeo e o que é comentário seu.
 
 ```markdown
 ## Resumo em 3 linhas
-- **Do que fala:** [tema em uma frase]
-- **Por que funcionou:** [1-2 motivos principais em linguagem simples]
-- **O que dá pra aprender:** [insight prático aplicável]
+- Do que fala: [tema em uma frase]
+- Por que funcionou: [1-2 motivos em linguagem simples]
+- O que dá pra aprender: [insight prático]
 
 ## A abertura
-> "[primeira frase]"
 
-**Por que segura:** [explicação simples]
+> "[primeira frase do roteiro]"
 
-## A estrutura (em 4-6 passos)
-1. **Abre com:** [...]
-2. **Vira pra:** [...]
-3. **Sobe pra:** [...]
-4. **Fecha com:** [...]
+Aqui explica por que essa abertura segura a pessoa. Em linguagem simples, 2-4 frases.
 
-## O que o público sentiu (vindo dos comentários)
+## Análise bloco a bloco
+
+> "Primeira parte do roteiro"
+
+Análise dessa parte: o que faz com quem assiste, por que funciona, se bate forte ou é discreto.
+
+> "Próxima parte"
+
+Análise da próxima parte.
+
+> "E assim por diante até o final"
+
+Análise final.
+
+## O que o público sentiu (dos comentários)
 - Reação dominante: [...]
 - O que mais comentaram: [...]
 - O que isso revela: [...]
@@ -65,9 +76,6 @@ Para cada link:
 1. [...]
 2. [...]
 3. [...]
-
-## Roteiro anotado
-[transcrição com observações curtas em itálico ao lado das frases-chave]
 ```
 
 > Tabela técnica de princípios fica em arquivo separado (`principios-detalhados.md`) — só mostrar se o usuário pedir.
