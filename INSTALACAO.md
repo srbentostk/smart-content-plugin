@@ -62,6 +62,18 @@ A Sofia está instalada e configurada. Agora é só usar.
 
 ---
 
+## Como atualizar a Sofia
+
+Quando sair uma versão nova, abra o app Claude na **aba Code** e cole:
+
+```
+claude plugin update sofia
+```
+
+Depois, **feche o app Claude** e **abra de novo** para a atualização funcionar.
+
+---
+
 ## Como usar a Sofia
 
 Você não precisa decorar nada. É só conversar com ela no app Claude.

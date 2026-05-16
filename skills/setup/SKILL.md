@@ -70,22 +70,7 @@ Opções:
   > 5. Cole aqui:
 - "Não quero configurar agora" → Pular. Avisar: "Sem o Apify, a Sofia funciona para YouTube mas não consegue pegar comentários do Instagram e TikTok."
 
-### 4. Perguntar sobre YouTube Data API (opcional)
-Usar AskUserQuestion EM PORTUGUÊS:
-
-Pergunta: "Quer configurar a YouTube Data API? (Opcional — o yt-dlp já extrai transcrições de graça)"
-
-Opções:
-- "Não, usar só o yt-dlp (recomendado)" → Pular
-- "Sim, quero configurar" → Mostrar instruções com link direto:
-  > Para pegar sua API key do YouTube:
-  > 1. Acesse: **https://console.cloud.google.com/apis/library/youtube.googleapis.com**
-  > 2. Ative a API clicando em "Ativar"
-  > 3. Vá em: **https://console.cloud.google.com/apis/credentials**
-  > 4. Clique em "Criar credenciais" → "Chave de API"
-  > 5. Copie a chave e cole aqui:
-
-### 5. Configurar onde salvar
+### 4. Configurar onde salvar
 Se encontrou Obsidian Vault, sugerir automaticamente:
 
 > Encontrei seu Obsidian Vault em: `/caminho/do/vault`
@@ -108,31 +93,18 @@ Opções:
 - "Criar pasta Sofia na área de trabalho" → Usar `~/Desktop/Sofia/`
 - "Escolher outro local" → Pedir caminho
 
-### 6. Firecrawl (opcional)
-Usar AskUserQuestion EM PORTUGUÊS:
-
-Pergunta: "Quer configurar o Firecrawl para pesquisa auxiliar de páginas web? (Opcional)"
-
-Opções:
-- "Não, pular" → Pular
-- "Sim, configurar" → Mostrar instruções com link direto:
-  > Para pegar sua API key do Firecrawl:
-  > 1. Acesse: **https://www.firecrawl.dev/app/api-keys**
-  > 2. Crie sua conta se ainda não tem
-  > 3. Copie a API key e cole aqui:
-
-### 7. Salvar config
+### 5. Salvar config
 Criar/atualizar `knowledge/config.yaml` com todas as configurações coletadas.
 Incluir data do setup e marcar `setup_completo: true`.
 
-### 8. Teste rápido
+### 6. Teste rápido
 Executar um teste silencioso:
 ```bash
 yt-dlp --dump-json "https://www.youtube.com/watch?v=dQw4w9WgXcQ" 2>/dev/null | head -1
 ```
 Se funcionar, confirmar. Se falhar, avisar o usuário.
 
-### 9. Mensagem final
+### 7. Mensagem final
 Mostrar ao usuário:
 
 > **✅ Sofia 2.0 configurada com sucesso!**
@@ -153,8 +125,6 @@ Mostrar ao usuário:
 ```yaml
 sofia:
   apify_api_key: ""
-  youtube_api_key: ""
-  firecrawl_api_key: ""
   obsidian_vault_path: ""
   output_format: "obsidian"
   ambiente: "claude-code"
