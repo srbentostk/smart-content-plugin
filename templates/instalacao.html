@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofia 2.0 — Como Instalar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #18181b;
+            --bg-card: #1e1e24;
+            --orange: #ff4d00;
+            --purple: #7967ff;
+            --text: #f4f4f5;
+            --text-sec: #a1a1aa;
+            --text-muted: #71717a;
+            --gradient: linear-gradient(135deg, #ff4d00, #7967ff);
+            --radius: 16px;
+            --font: 'Sora', sans-serif;
+            --font-h: 'Space Grotesk', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.7; min-height: 100vh; }
+
+        .hero {
+            position: relative; padding: 3rem 2rem 2rem; text-align: center;
+            background: radial-gradient(ellipse at 50% 0%, rgba(255,77,0,0.15) 0%, transparent 60%), var(--bg);
+        }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient); }
+        .hero h1 {
+            font-family: var(--font-h); font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 800;
+            background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        .hero p { color: var(--text-sec); font-size: 1rem; max-width: 500px; margin: 0 auto; }
+
+        .container { max-width: 700px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+        .step-block {
+            background: var(--bg-card); border-radius: var(--radius); padding: 2rem; margin-bottom: 1.5rem;
+            border: 1px solid #2e2e36; position: relative;
+        }
+        .step-num {
+            position: absolute; top: -14px; left: 24px;
+            background: var(--orange); color: #fff; font-family: var(--font-h); font-weight: 700;
+            font-size: 0.75rem; padding: 0.3rem 1rem; border-radius: 100px;
+        }
+        .step-block h2 { font-family: var(--font-h); font-size: 1.3rem; margin-bottom: 0.8rem; margin-top: 0.5rem; }
+        .step-block p { color: var(--text-sec); font-size: 0.92rem; margin-bottom: 0.6rem; }
+        .step-block ol, .step-block ul { color: var(--text-sec); font-size: 0.92rem; padding-left: 1.3rem; margin-bottom: 0.8rem; }
+        .step-block li { margin-bottom: 0.4rem; }
+        .step-block li strong { color: var(--text); }
+
+        .link { color: var(--orange); text-decoration: none; font-weight: 600; }
+        .link:hover { text-decoration: underline; }
+
+        .cmd-box {
+            background: #111; border: 1px solid #333; border-radius: 10px; padding: 0.8rem 1rem;
+            font-family: var(--font-mono); font-size: 0.82rem; color: #e0e0e0;
+            margin: 0.8rem 0; cursor: pointer; position: relative; word-break: break-all;
+            transition: border-color 0.2s;
+        }
+        .cmd-box:hover { border-color: var(--orange); }
+        .cmd-box .copy-label {
+            position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+            font-size: 0.65rem; color: var(--text-muted); font-family: var(--font);
+        }
+        .cmd-box.copied { border-color: #22c55e; }
+        .cmd-box.copied .copy-label { color: #22c55e; }
+
+        .note {
+            background: rgba(255,77,0,0.08); border-left: 3px solid var(--orange);
+            border-radius: 0 10px 10px 0; padding: 0.8rem 1rem; margin: 1rem 0;
+            font-size: 0.85rem; color: var(--text-sec);
+        }
+        .note strong { color: var(--text); }
+
+        .success {
+            background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.3);
+            border-radius: 12px; padding: 1.2rem; text-align: center; margin: 1.5rem 0;
+        }
+        .success p { color: var(--text); font-size: 1rem; margin: 0; }
+
+        .divider { height: 1px; background: #2e2e36; margin: 2.5rem 0; }
+
+        .section-title {
+            font-family: var(--font-h); font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;
+            padding-bottom: 0.6rem; border-bottom: 1px solid #2e2e36;
+        }
+
+        .use-card {
+            background: var(--bg-card); border-radius: var(--radius); padding: 1.2rem 1.5rem;
+            margin-bottom: 0.8rem; border: 1px solid #2e2e36;
+        }
+        .use-card h3 { font-family: var(--font-h); font-size: 1rem; margin-bottom: 0.3rem; }
+        .use-card p { color: var(--text-sec); font-size: 0.88rem; margin: 0; }
+        .use-card .example { color: var(--text-muted); font-size: 0.8rem; font-style: italic; margin-top: 0.3rem; }
+
+        .flow {
+            display: flex; flex-direction: column; align-items: center; margin: 1.5rem 0;
+        }
+        .flow-step {
+            background: var(--bg-card); border: 1px solid #2e2e36; border-radius: 12px;
+            padding: 0.8rem 1.5rem; text-align: center; width: 100%; max-width: 400px;
+            font-size: 0.9rem;
+        }
+        .flow-step strong { color: var(--orange); }
+        .flow-arrow { color: var(--text-muted); font-size: 1.2rem; margin: 0.3rem 0; }
+
+        .tip {
+            background: rgba(121,103,255,0.08); border: 1px solid rgba(121,103,255,0.2);
+            border-radius: 12px; padding: 1rem 1.2rem; margin-top: 1.5rem; font-size: 0.88rem; color: var(--text-sec);
+        }
+        .tip strong { color: var(--purple); }
+
+        .footer {
+            text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.75rem;
+            border-top: 1px solid #2e2e36; margin-top: 2rem;
+        }
+
+        @media print {
+            body { background: #fff; color: #111; }
+            .hero { background: #fff; padding: 1rem; }
+            .hero::before { display: none; }
+            .hero h1 { background: none; -webkit-text-fill-color: #ff4d00; color: #ff4d00; }
+            .hero p { color: #555; }
+            .step-block { background: #f9f9f9; border-color: #ddd; page-break-inside: avoid; }
+            .step-num { background: #ff4d00; }
+            .cmd-box { background: #f0f0f0; border-color: #ccc; color: #111; }
+            .cmd-box .copy-label { display: none; }
+            .note { background: #fff5f0; }
+            .success { background: #f0fdf4; border-color: #86efac; }
+            .use-card { background: #f9f9f9; border-color: #ddd; }
+            .flow-step { background: #f9f9f9; border-color: #ddd; }
+            .tip { background: #f5f3ff; border-color: #c4b5fd; }
+            .footer { display: none; }
+            a { color: #ff4d00; }
+            .link { color: #ff4d00; }
+            .section-title { color: #111; border-color: #ddd; }
+            p, li, .use-card p, .note, .tip { color: #333; }
+            .use-card h3 { color: #111; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>Sofia 2.0</h1>
+    <p>Guia de instalação e primeiros passos</p>
+</div>
+
+<div class="container">
+
+    <!-- PASSO 1 -->
+    <div class="step-block">
+        <span class="step-num">Passo 1</span>
+        <h2>Crie sua conta no Claude</h2>
+        <ol>
+            <li>Acesse <a href="https://claude.ai" target="_blank" class="link">claude.ai</a> no navegador</li>
+            <li>Clique em <strong>Sign up</strong> e crie sua conta (pode usar email ou conta Google)</li>
+            <li>Depois de criar, baixe o <strong>app Claude</strong> no computador em <a href="https://claude.ai/download" target="_blank" class="link">claude.ai/download</a></li>
+            <li>Instale o app normalmente (no Mac, arraste para Aplicativos; no Windows, clique em Instalar)</li>
+            <li>Abra o app e faça login com a conta que você criou</li>
+        </ol>
+    </div>
+
+    <!-- PASSO 2 -->
+    <div class="step-block">
+        <span class="step-num">Passo 2</span>
+        <h2>Instale a Sofia</h2>
+        <ol>
+            <li>No app Claude, clique na <strong>aba Code</strong> (fica no topo da tela)</li>
+            <li>Cole o comando abaixo no campo de texto e aperte <strong>Enter</strong>:</li>
+        </ol>
+
+        <div class="cmd-box" onclick="copyCmd(this)">
+            claude plugin marketplace add https://github.com/srbentostk/smart-content-plugin
+            <span class="copy-label">clique para copiar</span>
+        </div>
+
+        <p>Espere aparecer uma confirmação. Depois, cole o <strong>segundo comando</strong> e aperte <strong>Enter</strong>:</p>
+
+        <div class="cmd-box" onclick="copyCmd(this)">
+            claude plugin install sofia
+            <span class="copy-label">clique para copiar</span>
+        </div>
+
+        <div class="note">
+            <strong>Importante:</strong> depois de instalar, <strong>feche o app Claude</strong> e <strong>abra de novo</strong>. Isso é necessário para ele reconhecer a Sofia.
+        </div>
+    </div>
+
+    <!-- PASSO 3 -->
+    <div class="step-block">
+        <span class="step-num">Passo 3</span>
+        <h2>Configure a Sofia</h2>
+        <p>Depois de reabrir o app Claude, digite no campo de texto:</p>
+
+        <div class="cmd-box" onclick="copyCmd(this)">
+            /sofia:setup
+            <span class="copy-label">clique para copiar</span>
+        </div>
+
+        <p>A Sofia cuida de tudo automaticamente:</p>
+        <ul>
+            <li>Instala o que estiver faltando no seu computador (sem você precisar fazer nada)</li>
+            <li>Pede a API key do Apify se você quiser analisar Instagram/TikTok</li>
+            <li>Detecta onde salvar seus arquivos</li>
+            <li>Faz um teste para confirmar que está tudo funcionando</li>
+        </ul>
+
+        <div class="note">
+            <strong>Sobre o Apify (opcional):</strong> o Apify pega os comentários com curtidas do Instagram e TikTok. Para YouTube, nao precisa.<br><br>
+            Se quiser configurar: crie conta em <a href="https://console.apify.com/sign-up" target="_blank" class="link">console.apify.com/sign-up</a> (ganha $5 de credito/mes), depois pegue seu token em <a href="https://console.apify.com/account/integrations" target="_blank" class="link">console.apify.com/account/integrations</a>.
+        </div>
+    </div>
+
+    <div class="success">
+        <p>✅ <strong>Pronto!</strong> A Sofia esta instalada e configurada.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- COMO USAR -->
+    <div class="section-title">Como usar a Sofia</div>
+    <p style="color:var(--text-sec); font-size:0.92rem; margin-bottom:1.2rem;">Voce nao precisa decorar nada. E so conversar com ela no app Claude.</p>
+
+    <div class="use-card">
+        <h3>📊 Analisar um video viral</h3>
+        <p>Cole o link de um video e peca para a Sofia analisar. Ela descobre o texto falado, os comentarios mais curtidos e explica por que o video funciona.</p>
+        <p class="example">Exemplo: "Sofia, analisa esse video: https://youtube.com/watch?v=XXXXX"</p>
+    </div>
+
+    <div class="use-card">
+        <h3>✍️ Escrever um roteiro</h3>
+        <p>Peca para a Sofia te ajudar a escrever um roteiro. Ela faz perguntas sobre seu tema e seu publico, sugere aberturas e escreve 2-3 versoes completas.</p>
+    </div>
+
+    <div class="use-card">
+        <h3>🔍 Criticar um roteiro</h3>
+        <p>Cole um roteiro (seu ou de outra pessoa) e peca uma critica honesta. Ela avalia o que esta bom e o que precisa melhorar.</p>
+    </div>
+
+    <div class="use-card">
+        <h3>🔧 Melhorar um roteiro</h3>
+        <p>Depois de uma critica, peca para ela reescrever corrigindo os problemas.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- MODO RECOMENDADO -->
+    <div class="section-title">Modo recomendado de uso</div>
+
+    <div class="flow">
+        <div class="flow-step"><strong>1.</strong> Analise um video viral que voce admira</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>2.</strong> Estude a analise — entenda por que funciona</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>3.</strong> Escreva seu proprio roteiro sobre um tema parecido</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>4.</strong> Peca uma critica honesta</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>5.</strong> Melhore com base na critica</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><strong>6.</strong> Repita! Quanto mais voce analisa, melhor a Sofia fica</div>
+    </div>
+
+    <div class="tip">
+        💡 <strong>Dica:</strong> analise pelo menos 3 videos virais do seu nicho antes de escrever seu primeiro roteiro. A Sofia aprende com cada analise.
+    </div>
+
+</div>
+
+<div class="footer">
+    Sofia 2.0 — Plugin para Claude
+</div>
+
+<script>
+function copyCmd(el) {
+    const text = el.textContent.replace('clique para copiar', '').trim();
+    navigator.clipboard.writeText(text).then(() => {
+        el.classList.add('copied');
+        el.querySelector('.copy-label').textContent = 'copiado!';
+        setTimeout(() => {
+            el.classList.remove('copied');
+            el.querySelector('.copy-label').textContent = 'clique para copiar';
+        }, 2000);
+    });
+}
+</script>
+
+</body>
+</html>
