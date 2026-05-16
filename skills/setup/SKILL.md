@@ -104,7 +104,56 @@ yt-dlp --dump-json "https://www.youtube.com/watch?v=dQw4w9WgXcQ" 2>/dev/null | h
 ```
 Se funcionar, confirmar. Se falhar, avisar o usuário.
 
-### 7. Mensagem final
+### 7. Oferecer aprendizado de estilo de escrita
+
+Depois de tudo configurado, perguntar:
+
+> **Quer que a Sofia aprenda seu estilo de escrita?**
+>
+> Se sim, eu vou ler alguns dos seus melhores roteiros e aprender como você fala: tom de voz, ritmo das frases, palavras que usa, como abre os vídeos, o que evitar. Depois, quando escrever roteiros pra você, vou usar o seu jeito de escrever.
+
+Usar AskUserQuestion EM PORTUGUÊS:
+
+Pergunta: "Quer personalizar o estilo de escrita da Sofia?"
+
+Opções:
+- "Sim, quero que aprenda meu estilo" → Ir pro fluxo de aprendizado (abaixo)
+- "Depois, quero usar primeiro" → Pular. Avisar: "Quando quiser, é só me pedir pra aprender seu estilo."
+
+**Se sim — Fluxo de aprendizado de estilo:**
+
+1. Perguntar sobre clientes:
+   > "Você escreve roteiros só pra um perfil (o seu) ou pra clientes diferentes?"
+
+   - **Um perfil só** → Criar 1 perfil em `knowledge/estilos/{nome}.md`
+   - **Vários clientes** → Criar 1 perfil por cliente em `knowledge/estilos/{cliente}.md`. Explicar: "Cada cliente vai ter seu próprio estilo salvo. Quando for escrever, vou perguntar pra qual cliente."
+
+2. Pedir roteiros:
+   > "Me manda de 3 a 5 dos seus melhores roteiros (os que performaram melhor ou que mais representam como você fala). Pode colar aqui ou me mandar o link do arquivo."
+
+3. Digerir e aprender:
+   Para cada roteiro, extrair silenciosamente:
+   - Tom de voz (sério, brincalhão, direto, provocador, reflexivo)
+   - Ritmo (frases curtas ou longas, pausas, cadência)
+   - Palavras e expressões recorrentes
+   - Tipo de abertura mais comum
+   - Tipo de fechamento mais comum
+   - Estruturas preferidas
+   - O que NÃO faz (identificar ausências como padrão)
+
+4. Mostrar o perfil ao usuário pra validação:
+   > "Aprendi isso sobre seu estilo. Veja se faz sentido:"
+   > [mostrar perfil resumido]
+   > "Tem algo errado ou que eu deva ajustar?"
+
+5. Salvar em `knowledge/estilos/{nome}.md` seguindo o template `_template.md`
+
+6. Perguntar:
+   > "Tem algo que você sabe que deve EVITAR nos roteiros? (palavra, tom, tipo de conteúdo)"
+
+   Adicionar na seção "O que EVITAR" do perfil.
+
+### 8. Mensagem final
 Mostrar ao usuário:
 
 > **✅ Sofia 2.0 configurada com sucesso!**
@@ -130,4 +179,8 @@ sofia:
   ambiente: "claude-code"
   setup_completo: true
   data_setup: ""
+  estilo:
+    configurado: false
+    multiplos_clientes: false
+    perfis: []
 ```

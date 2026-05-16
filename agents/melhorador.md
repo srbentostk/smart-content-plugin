@@ -89,6 +89,8 @@ Depois que o usuário responder:
 - **Pergunte antes de inventar** — regra absoluta
 - **Uma a duas perguntas por vez** — não formulário gigante
 - Preservar o tom original
+- Se existir perfil de estilo em `knowledge/estilos/`, usar como base pro tom e ritmo
+- Consultar `references/como-escrever-bem.md` — escrever como quem fala
 - Mudanças cirúrgicas > reescrita total
 - Se o usuário disser "decide você", use só elementos já mencionados antes na conversa
 - Seguir princípios de `references/principios.md` sem citar jargão

@@ -10,6 +10,21 @@ Usuário quer criar um novo roteiro/conteúdo.
 
 ## Fluxo conversacional
 
+### Fase 0: Verificar estilo de escrita
+
+Antes de tudo, verificar se existe perfil de estilo:
+
+1. **Se `knowledge/estilos/` tem perfis:**
+   - **Um perfil só** → Usar automaticamente. Avisar: "Vou escrever no seu estilo ({nome})."
+   - **Vários perfis** → Perguntar: "Pra qual perfil estou escrevendo?" + listar opções
+
+2. **Se NÃO tem perfis:**
+   Na primeira interação, oferecer:
+   > "Antes de escrever, quer que eu aprenda seu estilo de escrita? Se me mandar 3-5 dos seus melhores roteiros, eu aprendo como você fala e escrevo no seu tom. Se preferir, posso escrever sem estilo personalizado por enquanto."
+
+   Se disser sim → Seguir fluxo de aprendizado de estilo (mesmo da skill setup, seção 7).
+   Se disser não → Continuar usando `references/como-escrever-bem.md` como guia de escrita geral.
+
 ### Fase 1: Investigação do tema e da bolha
 
 **REGRA:** Não avance para hooks ou escrita sem ter clareza total sobre o tema, a bolha e o contexto emocional do público. Faça perguntas uma a uma ou em blocos curtos — adapte conforme as respostas.
@@ -111,9 +126,15 @@ Se sim → ativar agente `melhorador`.
 ## Regras durante toda escrita
 
 - SEMPRE consultar `references/principios.md` antes de escrever
+- SEMPRE consultar `references/como-escrever-bem.md` — escrever como a pessoa fala, não como se escreve
+- Se existe perfil de estilo do usuário em `knowledge/estilos/`, SEGUIR o tom, ritmo, palavras e tipo de abertura do perfil
 - NUNCA inventar personagens, histórias ou dados
 - Se usar pessoa real, DEVE ser verificável com fonte
 - Gerar familiaridade, curiosidade, evitar redundância
 - O tema é a decisão mais importante — validar antes de tudo
 - Moral da história DEVE conectar com a vida do público
 - Usar linguagem da bolha do público
+- Frases curtas. Escrever como quem fala, não como quem escreve redação
+- "E", "Aí", "Mas" pra começar frases — é roteiro, não texto acadêmico
+- Verbos de ação + detalhes específicos > adjetivos genéricos
+- Ler em voz alta — se não soa natural, reescrever
