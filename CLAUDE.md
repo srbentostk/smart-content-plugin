@@ -1,4 +1,4 @@
-# Sofia 2.0 — Plugin de Pesquisa e Roteiro Viral
+# Sofia 3.1 — Plugin de Pesquisa e Roteiro Viral
 
 ## Primeiro uso
 
@@ -53,6 +53,15 @@ Sofia/Roteiros/{data}-{titulo}/
 Sofia/Knowledge/
 Sofia/Dashboard/
 ```
+
+## Manutenção do plugin
+
+Ao fazer qualquer alteração no plugin, **sempre** manter sincronizados:
+- `.claude-plugin/plugin.json` — versão e metadados
+- `.claude-plugin/marketplace.json` — versão do plugin no marketplace
+- `package.json` — versão do pacote
+
+Ao bumpar versão: atualizar os 3 arquivos + criar tag git anotada descrevendo o que mudou.
 
 ## Dependências
 

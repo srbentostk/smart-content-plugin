@@ -1,48 +1,18 @@
 {
-  "name": "sofia-2.0",
-  "version": "2.0.0",
-  "description": "Sistema de pesquisa e escrita de roteiros para conteúdo viral, guiado por Psicologia Cognitiva do Engajamento",
-  "author": "Bento",
-  "license": "UNLICENSED",
+  "name": "sofia",
+  "version": "3.1.0",
+  "description": "Plugin inteligente para pesquisa de vídeos virais e escrita de roteiros, guiado por princípios de Psicologia Cognitiva do Engajamento",
+  "author": "srbentostk",
+  "license": "MIT",
   "keywords": [
     "roteiro",
     "viral",
     "engajamento",
     "conteudo",
     "psicologia-cognitiva",
-    "claude-code-plugin",
-    "obsidian"
+    "claude-code-plugin"
   ],
   "engines": {
     "node": ">=18.0.0"
-  },
-  "sofia": {
-    "type": "plugin",
-    "platform": ["claude-code", "gemini-cli", "agent-sdk"],
-    "skills": [
-      "skills/setup.md",
-      "skills/analisar-video.md",
-      "skills/escrever-roteiro.md",
-      "skills/critica-roteiro.md",
-      "skills/melhorar-roteiro.md",
-      "skills/dashboard.md",
-      "skills/exportar.md"
-    ],
-    "agents": [
-      "agents/pesquisador.md",
-      "agents/analista-de-principios.md",
-      "agents/critico.md",
-      "agents/roteirista.md",
-      "agents/melhorador.md",
-      "agents/aprendiz.md"
-    ],
-    "connectors": {
-      "apify": { "required": true, "purpose": "Instagram/TikTok scraping" },
-      "youtube": { "required": false, "purpose": "Comentários ordenados (yt-dlp é fallback grátis)" },
-      "firecrawl": { "required": false, "purpose": "Web scraping auxiliar" }
-    },
-    "dependencies": {
-      "yt-dlp": { "required": true, "install": "brew install yt-dlp" }
-    }
   }
 }
