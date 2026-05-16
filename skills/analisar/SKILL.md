@@ -1,5 +1,5 @@
 ---
-description: Analisa vídeo(s) viral(is) extraindo transcrição, comentários e identificando o que faz funcionar. Cole um ou mais links de vídeo (Instagram, YouTube, TikTok).
+description: Analisa vídeo(s) viral(is) mostrando o que faz cada parte funcionar, quais princípios estão aplicados e o que dá pra aprender. Cole um ou mais links.
 ---
 
 # Analisar Vídeo
@@ -8,106 +8,71 @@ description: Analisa vídeo(s) viral(is) extraindo transcrição, comentários e
 
 Usuário cola link(s) de vídeo ou pede para analisar conteúdo.
 
-## Antes de analisar — sempre pergunte
+## Antes de analisar — pergunte (1-2 perguntas)
 
-Não saia analisando sem entender pra quê. Pergunte (uma ou duas por vez):
+Não saia analisando sem saber pra quê:
 
-1. **"Por que você quer analisar esse vídeo?"** (entender o sucesso, copiar formato, aprender padrão, comparar com o seu)
-2. **"Você quer aplicar o que aprender em qual tipo de conteúdo seu?"** (nicho, plataforma)
-3. **"Tem algo específico que te chamou atenção nesse vídeo?"** (a abertura, o roteiro, os comentários, a edição)
+1. "Por que quer analisar esse vídeo?" (aprender, copiar formato, comparar)
+2. "Tem algo específico que te chamou atenção?" (abertura, roteiro, comentários)
 
-Isso direciona a análise — sem isso, vira relatório genérico.
+Se já ficou claro pelo contexto, pule direto.
 
 ## Fluxo
 
-### 1. Receber links
-- Aceitar um ou múltiplos links
-- Detectar plataforma de cada um
-- Confirmar com o usuário: "Vou analisar [N] vídeo(s). Confirma?"
-
-### 2. Pesquisa (agente: pesquisador)
-Para cada link:
+### 1. Pesquisa (agente: pesquisador)
 - Transcrição completa
-- Top 20 comentários por likes
+- Top 20 comentários
 - Métricas (views, likes, comments)
-- Hook isolado (primeira frase)
+- Hook isolado
 
-### 3. Análise (agente: analista-de-principios)
-- Frase a frase, anotar o que faz cada parte funcionar
-- Análise especial do hook
-- Padrões dos comentários: que emoção/debate domina
+### 2. Análise bloco a bloco (agente: analista-de-principios)
 
-### 4. Output — estrutura simples + análise frase a frase
-
-**Regra visual:** sempre que mostrar trecho do roteiro, usar **blockquote** (`>`). A análise vem em **texto comum abaixo**. Isso deixa visualmente óbvio o que é fala do vídeo e o que é comentário seu.
+**Formato obrigatório:** roteiro em blockquote, análise embaixo em 1-2 frases. Sempre nomeie o princípio.
 
 ```markdown
-## Resumo em 3 linhas
-- Do que fala: [tema em uma frase]
-- Por que funcionou: [1-2 motivos em linguagem simples]
-- O que dá pra aprender: [insight prático]
+> "Frase do roteiro"
 
-## A abertura
+(Princípio) O que faz e por que funciona. Se fraco: como melhorar.
 
-> "[primeira frase do roteiro]"
+> "Próxima frase"
 
-Aqui explica por que essa abertura segura a pessoa. Em linguagem simples, 2-4 frases.
-
-## Análise bloco a bloco
-
-> "Primeira parte do roteiro"
-
-Análise dessa parte: o que faz com quem assiste, por que funciona, se bate forte ou é discreto.
-
-> "Próxima parte"
-
-Análise da próxima parte.
-
-> "E assim por diante até o final"
-
-Análise final.
-
-## O que o público sentiu (dos comentários)
-- Reação dominante: [...]
-- O que mais comentaram: [...]
-- O que isso revela: [...]
-
-## 3 padrões pra você usar
-1. [...]
-2. [...]
-3. [...]
+(Princípio + Princípio) Comentário curto.
 ```
 
-> Tabela técnica de princípios fica em arquivo separado (`principios-detalhados.md`) — só mostrar se o usuário pedir.
+**Regras de concisão:**
+- Máximo 2 frases por bloco
+- Não repita o que a frase diz
+- Se não tem nada pra comentar, agrupe com a próxima
+- Se algo está fraco ou faltando: diga qual princípio e sugira melhoria
+
+### 3. Insights de comentários (3-4 linhas)
+- Reação dominante
+- O que mais comentaram e o que isso revela
+
+### 4. Resumão
+
+```markdown
+## Resumo
+- **Ideia:** [1 frase]
+- **Por que funciona:** [1-2 motivos]
+- **Ponto mais forte:** [o que carrega]
+- **O que dá pra aprender:** [padrão aplicável]
+- **Princípios presentes:** [lista curta]
+- **Princípios que faltam:** [se relevante]
+```
 
 ### 5. Salvar
 `Sofia/Pesquisas/{canal}/{titulo}/`
-- `analise.md` (output acima)
-- `roteiro-anotado.md`
-- `hook.md`
-- `comentarios.md`
-- `metricas.md`
-- `principios-detalhados.md` (opcional)
 
 ### 6. Próximos passos
-> "O que quer fazer agora?
-> 1. Ver o roteiro anotado em detalhe
-> 2. Aprender (salvar esses padrões pra usar depois)
-> 3. Escrever um roteiro seu inspirado nisso (vou te perguntar algumas coisas pra não inventar)
-> 4. Comparar com outro vídeo
-> 5. Exportar"
+> "O que quer fazer?
+> 1. Escrever um roteiro inspirado nisso (vou te perguntar antes)
+> 2. Comparar com outro vídeo
+> 3. Salvar padrões na base de conhecimento
+> 4. Exportar"
 
 ## Múltiplos vídeos
 
-Se vários links:
-- Analisar cada um separado
-- Ao final, gerar comparativo simples:
-  - "O que esses vídeos têm em comum"
-  - "Onde eles diferem"
-  - "Padrão que mais aparece"
-
-## Perguntas (se necessário)
-
-- "Não consegui extrair a transcrição. Pode colar manualmente?"
-- "Qual o idioma do vídeo?"
-- "Quer foco em algum aspecto específico?"
+Analisar cada um separado. No final, comparativo em 3-4 linhas:
+- O que têm em comum
+- Padrão mais forte

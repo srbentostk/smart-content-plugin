@@ -1,91 +1,70 @@
 ---
-description: Faz análise crítica honesta de um roteiro em linguagem simples. Identifica o que segura a pessoa, o que ela não vai entender, e o que precisa ser melhorado. Use quando quiser feedback real sobre um roteiro.
+description: Faz análise crítica concisa de um roteiro — mostra o que funciona, o que não funciona, e como melhorar. Com princípios nomeados e sugestões práticas.
 ---
 
 # Crítica de Roteiro
 
 ## Trigger
 
-Usuário pede para criticar/avaliar um roteiro (colado ou em arquivo).
+Usuário pede para criticar/avaliar um roteiro.
 
-## Antes de criticar — sempre pergunte
+## Antes de criticar — pergunte o que falta (1-2 perguntas)
 
-Não comece a análise sem entender o contexto. Faça essas perguntas (uma por vez, conversando):
+- "Pra quem é?" (público)
+- "O que quer que a pessoa faça depois?" (objetivo)
+- "Que plataforma?" (Reels, TikTok, YouTube)
 
-1. **"Pra quem é esse vídeo?"** (público, nicho, idade aproximada)
-2. **"O que você quer que aconteça depois que a pessoa assistir?"** (comentar, comprar, salvar, marcar amigo)
-3. **"Em que plataforma vai postar?"** (Reels, TikTok, YouTube Shorts, YouTube longo)
-4. **"Esse roteiro é original seu, é baseado em algo, ou é uma versão de um vídeo que você já viu funcionar?"**
-
-Se o usuário já forneceu parte dessas infos, só pergunte o que falta.
+Se já ficou claro, pule direto.
 
 ## Fluxo
 
-### 1. Ler o roteiro como se fosse o público
-Antes de qualquer análise técnica, leia como se estivesse rolando o feed:
-- Eu pararia? Onde desistiria? Comentaria?
+### 1. Análise bloco a bloco (agente: analista-de-principios + critico)
 
-### 2. Análise frase a frase (agente: analista-de-principios)
-Anotar onde os princípios aparecem e onde faltam. Sem forçar.
-
-### 3. Crítica honesta (agente: critico)
-Aplicar a estrutura de output abaixo.
-
-### 4. Output — estrutura simples + análise bloco a bloco
-
-**Regra visual:** trecho do roteiro sempre em **blockquote** (`>`). A crítica vem em **texto comum abaixo**. Visualmente óbvio o que é fala e o que é comentário.
+Roteiro em blockquote. Comentário curto embaixo (1-2 frases). Sempre nomeie o princípio.
 
 ```markdown
-## Resumo em 3 linhas
-- Sobre o que é: [ideia central em uma frase]
-- Pra quem funciona: [tamanho do público]
-- O que está segurando o roteiro: [ponto forte principal]
+> "Frase do roteiro"
 
-## A abertura
-
-> "[primeira frase do roteiro]"
-
-[sim / mais ou menos / não] — explicação em 1-2 frases simples do por quê.
-
-## Análise bloco a bloco
-
-> "Primeiro bloco do roteiro"
-
-Aqui você comenta: o que funciona, o que não funciona, onde a pessoa pode desistir, o que precisa mudar. Linguagem simples.
-
-> "Próximo bloco"
-
-Comentário do próximo bloco.
-
-> "E assim por diante"
-
-Comentário final.
-
-## Pontos fortes (manter)
-1. [...]
-2. [...]
-
-## Problemas (maior primeiro)
-1. **[maior problema]** — explicação simples — direção da solução
-2. [...]
-
-## Veredicto rápido
-- Segura até o final? sim / mais ou menos / não
-- Faria compartilhar? sim / mais ou menos / não
-- Vale postar como está? sim / só depois de ajustar / não
+(Princípio) Funciona porque [X]. / Fraco porque [X] — melhoraria se [Y].
 ```
 
-> Tabela detalhada de princípios fica em arquivo separado se o usuário pedir — não jogar tudo de uma vez.
+**Se algo falta:** diga qual princípio deveria estar ali e como encaixar.
+**Se está fraco:** diga o que está errado + sugestão em 1 frase.
+**Se funciona:** diga o que funciona e por quê, sem enrolar.
 
-### 5. Oferecer próximos passos
+### 2. Diagnóstico
 
-> "Quer que eu melhore esse roteiro? Antes preciso que você me passe algumas informações pra eu não inventar nada — posso te perguntar?"
+```markdown
+## Diagnóstico
+
+**Ideia central:** [1 frase]
+**O que segura:** [ponto forte]
+**O que derruba:** [maior problema + como resolver]
+
+**Abertura:** segura / mais ou menos / não — [1 frase]
+**Onde desiste:** [ponto exato + por quê]
+
+## O que melhorar (em ordem)
+1. [Problema] — [sugestão concreta]
+2. [Problema] — [sugestão concreta]
+
+## Princípios que faltam
+- (Nome) — onde encaixaria
+
+## Veredicto
+- Segura até o final? sim / mais ou menos / não
+- Faria compartilhar? sim / mais ou menos / não
+- Vale postar? sim / ajustar / não
+```
+
+### 3. Próximo passo
+
+> "Quer que eu melhore? Vou te perguntar algumas coisas antes pra não inventar nada."
 
 ## Regras
 
-- **Sempre perguntar contexto antes** — sem isso a crítica é chute
-- **Linguagem simples** — explicar como se fosse para um amigo
-- **Honestidade absoluta** — sem elogio vazio, sem destruição
-- **Priorizar** — maior problema primeiro, não lista enorme
-- **Reconhecer o que funciona** — não é só lista de defeitos
-- **Específico** — "onde" e "por quê", nunca genérico
+- **Conciso** — 1-2 frases por ponto, sem repetir
+- **Cada problema vem com sugestão** — criticar sem sugerir não ajuda
+- **Nomeie os princípios** — entre parênteses, sempre
+- **Maior problema primeiro**
+- **Honesto** — se funciona, diga. Se não, diga o que fazer.
